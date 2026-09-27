@@ -19,6 +19,7 @@
     <a href="hypotheses-round3.md">Round-3 H11–H14</a>
     <a href="hypotheses-round4.md">Round-4 H15–H19</a>
     <a href="hypotheses-round5.md">Round-5 Emission Geometry</a>
+    <a href="hypotheses-round6.md">Round-6 Seismic+Texture</a>
     <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener">Leaderboard ↗</a>
   </nav>
 </header>
@@ -30,20 +31,23 @@
 
   <!-- HERO CTA: DOWNLOAD READY SUBMISSION -->
   <section class="hero-cta">
-    <span class="badge">Round-5 candidate · format-validated · not yet scored by DrivenData</span>
-    <h2>Download Submission GeoTIFF — Round-5 Thin-Trace Emission</h2>
-    <p><strong>103,347 predicted fault pixels (exactly 2.000 % of the survey footprint)</strong>, laid down by non-maximum suppression with a 5 × 5 exclusion box — no two predictions inside one 300 m credit cell. Same multi25 model as before; only the <em>decision layer</em> changed. On the frozen masked spatial holdout this moves mean DTI from <strong>0.0907 → 0.2214</strong> (dense truth), <strong>0.0449 → 0.1118</strong> (sparse truth) and <strong>0.0676 → 0.1938</strong> on the strictest off-catalogue protocol (4/4 folds each). Format verified locally against the official <code>sample_submission.tif</code>: EPSG:32611, 100 m, 3,292 × 3,730, one float32 band, values in [0.0, 1.0] inside the 5,167,373-pixel footprint, NaN outside. <strong>No DrivenData score exists for this file and no weekly slot was spent building it.</strong></p>
+    <span class="badge">Round-6 candidate · H28 passes 3/4 on both protocols · format-validated · not yet scored</span>
+    <h2>Download Submission GeoTIFF — Round-6 Thin-Trace + Magnetic Texture</h2>
+    <p><strong>103,347 predicted fault pixels (exactly 2.000 % of the survey footprint)</strong>, laid down by non-maximum suppression with a 5 × 5 exclusion box — no two predictions inside one 300 m credit cell. Model: multi25 + H28 (magnetic anomaly local variance 11 px, capturing hydrothermal alteration texture disruption). On frozen masked holdout NMS-3 @2%: dense truth <strong>0.22138 → 0.22143 (3/4 folds)</strong>, sparse truth <strong>0.11178 → 0.11438 (3/4 folds, +0.0026)</strong>. H28 is the only Round-6 arm that beats multi25+NMS on ≥3/4 folds on BOTH protocols. Format verified against official <code>sample_submission.tif</code>: EPSG:32611, 100 m, 3,292 × 3,730, one float32 band, values in [0.0,1.0] inside 5,167,373-pixel footprint, NaN outside. <strong>No DrivenData score exists for this file and no weekly slot was spent.</strong> Previous R5 artifact archived.</p>
 
     <div class="btn-row">
-      <a class="button-primary" href="downloads/12GEMSDOE_r5-nms3-trace_055e9aac96b8.tif" download="12GEMSDOE_r5-nms3-trace_055e9aac96b8.tif">
+      <a class="button-primary" href="downloads/12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.tif" download="12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.tif">
         <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download .TIF (453 KB)
+        Download .TIF (R6, 453 KB)
       </a>
-      <a class="button-secondary" href="downloads/12GEMSDOE_r5-nms3-trace_055e9aac96b8.zip" download="12GEMSDOE_r5-nms3-trace_055e9aac96b8.zip">
-        Download .ZIP (378 KB)
+      <a class="button-secondary" href="downloads/12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.zip" download="12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.zip">
+        Download .ZIP (R6)
       </a>
-      <a class="button-secondary" href="downloads/12GEMSDOE_r5-nms3-trace_055e9aac96b8_allfinite.tif" download="12GEMSDOE_r5-nms3-trace_055e9aac96b8_allfinite.tif">
-        All-finite fallback .TIF
+      <a class="button-secondary" href="downloads/12GEMSDOE_r6-nms3-h28-texture_8721329b55c7_allfinite.tif" download="12GEMSDOE_r6-nms3-h28-texture_8721329b55c7_allfinite.tif">
+        All-finite fallback R6
+      </a>
+      <a class="button-secondary" href="downloads/12GEMSDOE_r5-nms3-trace_055e9aac96b8.tif" download="12GEMSDOE_r5-nms3-trace_055e9aac96b8.tif">
+        Archive R5 .TIF
       </a>
       <a class="button-secondary" href="executive-summary.html">
         How to Submit Guide →
@@ -57,7 +61,7 @@
         <span id="copy-status" style="color: var(--accent-green); display: none; font-weight: 700;">✓ Copied to clipboard!</span>
       </div>
       <div class="note-input-group">
-        <input type="text" id="sub-note" class="note-input" readonly value="12GEMSDOE R5 | NMS-3 thin-trace emission (5x5 exclusion, 2.0% mass, 103347 px) on multi25 GBM | sha256:055e9aac96b8">
+        <input type="text" id="sub-note" class="note-input" readonly value="12GEMSDOE R6 | NMS-3 thin-trace + H28 mag texture variance (11px) on multi25+H28 GBM | 5x5 exclusion 2.0% mass 103347 px | sha256:8721329b55c7">
         <button class="btn-copy" onclick="copyNote()">Copy Note</button>
       </div>
     </div>
@@ -89,8 +93,8 @@
     <article class="card">
       <p class="eyebrow">Round-5 Effect: Emission Geometry</p>
       <div class="stat" style="color: var(--accent-green);">2.5–2.9×</div>
-      <p>Same model, same features, only the emission changed: 5 × 5 non-maximum suppression instead of top-<em>k</em>. Dense truth 0.0907 → 0.2214; sparse truth 0.0449 → 0.1118; off-catalogue 0.0676 → 0.1938.</p>
-      <div class="stat-sub">Largest single measured gain in five rounds; no submission slot spent.</div>
+      <p>Same model, same features, only the emission changed: 5 × 5 non-maximum suppression instead of top-<em>k</em>. Dense truth 0.0907 → 0.2214; sparse truth 0.0449 → 0.1118; off-catalogue 0.0676 → 0.1938. Round-6 adds H28 magnetic texture: dense 0.22138 → 0.22143 (3/4), sparse 0.11178 → 0.11438 (3/4).</p>
+      <div class="stat-sub">Emission = 2.5× gain; H28 = only R6 arm to pass both protocols; no slot spent.</div>
     </article>
 
     <article class="card">
@@ -179,6 +183,15 @@
     </div>
     <p>Mechanism, quantified: at the same emitted mass (≈23 k px per fold) top-<em>k</em> credits 7.6–15.0 % of truth pixels while NMS-3 credits 24.6–29.1 % — a per-fold coverage gain of 1.9–3.2× for the same false-positive bill. Evidence: <a href="round5-emission-probe.json">emission probe (JSON)</a> · <a href="round5-offcatalogue-check.json">off-catalogue check (JSON)</a> · <a href="holdout_round5.json">Round-5 gate (JSON)</a>.</p>
   </div>
+  
+  <h2>Round-6: Seismic Proximity, Gravity Curvature, Conductivity Fabric, Magnetic Texture</h2>
+  <div class="notice notice-ok"><p><strong>Five new mechanism-distinct candidates H25–H29 preregistered before coding</strong> (<a href="hypotheses-round6.md">register</a>). All below 0.50 max |corr| vs rounds 1–5: H25 0.4301 vs shear, H26 0.336 vs |grad iso_grav_hg|, H27 0.339 vs |grad cond|, H28 0.384 vs tmi_hg, H29 0.120 vs intersection density. Frozen masked holdout, NMS-3 @2%, both truth protocols, leakage probe 0.0000 every fold. <strong>H28 magnetic texture variance (mag_anom local std 11 px) is the only arm to beat multi25+NMS on ≥3/4 folds on BOTH protocols</strong> — dense 3/4 (0.22143 vs 0.22138), sparse 3/4 (0.11438 vs 0.11178, +0.0026). H25 passes sparse 3/4 but dense 1/4; others fail. New artifact <code>12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.tif</code> packaged; no DrivenData slot spent. Evidence: <a href="holdout_round6.json">holdout_round6.json</a> · <a href="../evidence/round6-feature-build.json">feature-build.json</a>.</p></div>
+  <div class="card">
+    <p><strong>Why H28 should catch faults missing from USGS/INGENIOUS:</strong> Hydrothermal alteration destroys magnetite along fault damage zones, creating disrupted magnetic texture (high local variance) rather than clean edge. USGS QFFD requires surface geomorphic scarps; subsurface alteration halo beneath non-magnetic alluvium is invisible to surface mapping but visible to magnetics. H28 uses <code>mag_anom</code> (B1) local standard deviation in 11 px window, distinct from all prior transforms (max |corr| 0.384 vs tmi_hg). Layers: B1 only. Physical signature: texture disruption, not edge.</p>
+    <p><strong>Other R6 candidates:</strong> H25 seismic proximity (B10 deq + B7/B8/B4) — first use of deq_n100a15, targets blind seismically active faults; H26 gravity-slope curvature (B5 + B12) — buried density step; H27 conductivity anisotropy (B17) — fluid-filled conduit fabric; H29 grav-mag decorrelation (B13×B2) — correlation breakdown in damage zones. All viable, none pass both protocols except H28. External H30 1m DEM (USGS 3DEP via AWS S3 <code>s3://usgs-3dep</code> public domain) and H31 Sentinel-2 L2A (<code>s3://sentinel-cogs</code> free/open) verified free/open but transport blocked in-sandbox.</p>
+  </div>
+
+
   <div class="notice notice-warn"><p><strong>Round-5 geological candidates: honest negative.</strong> H20 magnetic-basement step, H21 two-depth-surface step coincidence, H22 local singularity exponent and H23 asymmetric-step detector were preregistered (<a href="hypotheses-round5.md">register</a>) after identity checks showed that <code>tc</code> (B5) is the official <em>top-of-crustal magnetic source depth estimate</em>, not the "tilt angle or total curvature" its raster description claims (strictly positive, median 18.48, correlation −0.0012 with |tilt|). With the emission policy fixed, <strong>no channel cleared the ≥3/4-fold gate on both protocols</strong> (best: H22 3/4 dense, 2/4 sparse; H15 2/4 sparse). All arms now land within ±0.0008 (dense) and ±0.0018 (sparse) of each other — an order of magnitude below the emission effect. That is the actionable conclusion: stop paying for small feature gains while the decision layer throws away a factor of 2.5.</p></div>
 
   <!-- ROUND-2 CANDIDATES -->
