@@ -1,0 +1,73 @@
+{
+  "generated_utc": "20260927T215027Z",
+  "slug": "r5-nms3-trace",
+  "policy": {
+    "emission": "greedy non-maximum suppression, Chebyshev radius 2 (5x5), descending probability, deterministic tie-break by pixel index",
+    "budget_fraction_of_valid": 0.02,
+    "emitted_pixels": 103347,
+    "valid_pixels": 5167373,
+    "candidates": "valid & ~catalogue (a new fault is not a catalogue pixel)",
+    "values": "1.0 on emitted pixels, 0.0 elsewhere inside the footprint",
+    "preregistered_in": "docs/hypotheses-round5.md"
+  },
+  "model": {
+    "model": "HistGradientBoostingClassifier",
+    "model_parameters": {
+      "max_iter": 100,
+      "max_leaf_nodes": 15,
+      "early_stopping": false,
+      "random_state": 12027
+    },
+    "features": "first 25 channels of data/candidate-features-30.npy",
+    "training": {
+      "positives": 60988,
+      "sampled_negatives": 100000,
+      "class_weighting": "balanced total weight"
+    }
+  },
+  "files": {
+    "primary_tif": {
+      "name": "12GEMSDOE_r5-nms3-trace_055e9aac96b8.tif",
+      "bytes": 463577,
+      "validation": {
+        "sha256": "055e9aac96b89b9a1d8fca8005778733039ed79f1165bb8cdd46dcfc51d6f53d",
+        "valid_pixels": 5167373,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "outside_footprint": "NaN (mirrors official sample_submission.tif)"
+    },
+    "fallback_tif": {
+      "name": "12GEMSDOE_r5-nms3-trace_055e9aac96b8_allfinite.tif",
+      "bytes": 406714,
+      "validation": {
+        "sha256": "d7fc78a036f325ddb80f94fdda1864b4af0889eb58b0291356945fb1b44e1da0",
+        "valid_pixels": 5167373,
+        "min": 0.0,
+        "max": 1.0,
+        "mask_equals_template": false,
+        "validator": "relaxed (grid/CRS/dtype/range; mask reported, not enforced)"
+      },
+      "outside_footprint": "0.0 (every pixel finite and in [0,1])",
+      "use_if": "the primary file is rejected with 'Predicted values must be in range [0, 1]'"
+    },
+    "zip": {
+      "name": "12GEMSDOE_r5-nms3-trace_055e9aac96b8.zip",
+      "bytes": 387359,
+      "contents": [
+        "12GEMSDOE_r5-nms3-trace_055e9aac96b8.tif"
+      ]
+    }
+  },
+  "suggested_note": "12GEMSDOE R5 | NMS-3 thin-trace emission (5x5 exclusion, 2.0% mass, 103347 px) on multi25 GBM | sha256:055e9aac96b8",
+  "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+  "labels_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+  "feature_cube_sha256": "7eb403a2e7d27425264d70fdc41b21f1699f1854b96154aa82640636c4d5709d",
+  "holdout_evidence": [
+    "evidence/round5-emission-probe.json",
+    "evidence/round5-offcatalogue-check.json",
+    "evidence/holdout_round5.json"
+  ],
+  "drivendata_score": null,
+  "release_status": "Format-validated locally and holdout-validated on both truth protocols. NOT scored by DrivenData in this evidence set, and the standing strongest-sibling-baseline gate is unsatisfied. Spending a weekly slot is a human decision."
+}

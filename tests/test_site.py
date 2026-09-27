@@ -36,14 +36,27 @@ def test_static_links_and_submission_deliverable():
                 assert target.exists(), f"Broken link in {p}: {link} -> {target}"
 
     home = (root / 'docs/index.html').read_text()
-    assert '12GEMSDOE_multiphysics_submission_06ca61e5.tif' in home
-    assert 'Download .TIF' in home
-    
-    # Check that released GeoTIFF deliverables exist
-    tif_path = root / 'docs/downloads/12GEMSDOE_multiphysics_submission_06ca61e5.tif'
-    zip_path = root / 'docs/downloads/12GEMSDOE_multiphysics_submission_06ca61e5.zip'
-    assert tif_path.is_file(), f"Submission TIF must exist at {tif_path}"
-    assert zip_path.is_file(), f"Submission ZIP must exist at {zip_path}"
+    guide = (root / 'docs/executive-summary.html').read_text()
+    assert 'Download .TIF' in home and 'Download .TIF' in guide
+
+    # Round-5 primary deliverable must be the one the site hands out.
+    primary = '12GEMSDOE_r5-nms3-trace_055e9aac96b8.tif'
+    assert primary in home, 'index.html must link the Round-5 primary artifact'
+    assert primary in guide, 'executive-summary.html must link the Round-5 primary artifact'
+    for name in (primary,
+                 primary.replace('.tif', '.zip'),
+                 primary.replace('.tif', '_allfinite.tif')):
+        assert (root / 'docs/downloads' / name).is_file(), f'missing deliverable: {name}'
+
+    # The superseded round-1..4 archive stays downloadable and referenced.
+    archived = '12GEMSDOE_multiphysics_submission_06ca61e5.tif'
+    assert (root / 'docs/downloads' / archived).is_file()
+
+    # The copy-to-clipboard note must match the manifest of the shipped artifact.
+    manifest = json.loads(
+        (root / 'docs/downloads' / primary.replace('.tif', '.json')).read_text())
+    note = manifest['suggested_note']
+    assert note in home and note in guide, 'site note must match the manifest note'
 
 def test_submission_artifact_strict_conformance():
     root = Path(__file__).resolve().parents[1]

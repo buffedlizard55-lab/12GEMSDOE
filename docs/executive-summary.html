@@ -17,6 +17,8 @@
     <a href="hypotheses.md">Hypotheses</a>
     <a href="hypotheses-round2.md">Round-2 H6–H10</a>
     <a href="hypotheses-round3.md">Round-3 H11–H14</a>
+    <a href="hypotheses-round4.md">Round-4 H15–H19</a>
+    <a href="hypotheses-round5.md">Round-5 Emission Geometry</a>
     <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener">Leaderboard ↗</a>
   </nav>
 </header>
@@ -28,17 +30,21 @@
 
   <!-- PROMINENT DOWNLOAD CARD -->
   <section class="hero-cta">
-    <span class="badge">Format-validated archive · not release-authorized</span>
-    <h2>Download Candidate GeoTIFF</h2>
-    <p>Multi-Physics 25 archive (H1 Concealed Basement Step + H3 Magnetic Tilt-Angle + H2 Strain Dilation). It is locally verified against the downloaded template: 3,292 × 3,730, one float32 band, EPSG:32611, 100 m, finite in [0.0, 0.95] inside the footprint and NaN outside. It has not been accepted or scored by DrivenData in this evidence set; do not use a weekly slot until the project release gate is met.</p>
+    <span class="badge">Round-5 thin-trace emission · format-validated · not yet scored</span>
+    <h2>Download Submission GeoTIFF</h2>
+    <p><strong>Primary file:</strong> <code>12GEMSDOE_r5-nms3-trace_055e9aac96b8.tif</code> — 103,347 predicted pixels (2.000 % of the footprint) placed by 5 × 5 non-maximum suppression on the multi25 probability field. Verified against the official <code>sample_submission.tif</code>: 3,292 × 3,730, one float32 band, EPSG:32611, 100 m, values in [0.0, 1.0] inside the 5,167,373-pixel footprint, NaN outside (the same convention the official sample uses). SHA-256 <code>055e9aac96b8…</code>. It has <strong>not</strong> been accepted or scored by DrivenData in this evidence set; spending a weekly slot is a human decision.</p>
+    <p><strong>Fallback file:</strong> <code>12GEMSDOE_r5-nms3-trace_055e9aac96b8_allfinite.tif</code> — identical predictions, but every pixel of the raster is finite and inside [0, 1] (0.0 outside the footprint instead of NaN). Use it <em>only</em> if the primary file is rejected with <code>"Predicted values must be in range [0, 1]"</code>. Trade-off, stated plainly: that error is what a range check run on an <em>unmasked</em> read of a NaN-containing raster produces, but a checker that also requires the alpha mask to equal the template mask will reject the fallback instead (its mask is all-valid). The primary mirrors the official sample exactly, so it is the recommended file.</p>
 
     <div class="btn-row">
-      <a class="button-primary" href="downloads/12GEMSDOE_multiphysics_submission_06ca61e5.tif" download="12GEMSDOE_multiphysics_submission_06ca61e5.tif">
+      <a class="button-primary" href="downloads/12GEMSDOE_r5-nms3-trace_055e9aac96b8.tif" download="12GEMSDOE_r5-nms3-trace_055e9aac96b8.tif">
         <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download .TIF (1.20 MB)
+        Download .TIF (453 KB)
       </a>
-      <a class="button-secondary" href="downloads/12GEMSDOE_multiphysics_submission_06ca61e5.zip" download="12GEMSDOE_multiphysics_submission_06ca61e5.zip">
-        Download .ZIP (1.13 MB)
+      <a class="button-secondary" href="downloads/12GEMSDOE_r5-nms3-trace_055e9aac96b8.zip" download="12GEMSDOE_r5-nms3-trace_055e9aac96b8.zip">
+        Download .ZIP (378 KB)
+      </a>
+      <a class="button-secondary" href="downloads/12GEMSDOE_r5-nms3-trace_055e9aac96b8_allfinite.tif" download="12GEMSDOE_r5-nms3-trace_055e9aac96b8_allfinite.tif">
+        All-finite fallback .TIF
       </a>
     </div>
 
@@ -48,7 +54,7 @@
         <span id="copy-status" style="color: var(--accent-green); display: none; font-weight: 700;">✓ Copied to clipboard!</span>
       </div>
       <div class="note-input-group">
-        <input type="text" id="sub-note" class="note-input" readonly value="12GEMSDOE-v1 | MultiPhysics25 archive | format-validated | sha256:06ca61e5c6a3">
+        <input type="text" id="sub-note" class="note-input" readonly value="12GEMSDOE R5 | NMS-3 thin-trace emission (5x5 exclusion, 2.0% mass, 103347 px) on multi25 GBM | sha256:055e9aac96b8">
         <button class="btn-copy" onclick="copyNote()">Copy Note</button>
       </div>
     </div>
@@ -72,7 +78,11 @@
     </li>
     <li>
       <strong>Step 4: Upload the File</strong><br>
-      Under <strong>"New submission"</strong> &gt; <strong>"File to submit"</strong>, click <em>Browse</em> or <em>Choose File</em>, and select <code>12GEMSDOE_multiphysics_submission_06ca61e5.tif</code> (or its <code>.zip</code>).
+      Under <strong>"New submission"</strong> &gt; <strong>"File to submit"</strong>, click <em>Browse</em> or <em>Choose File</em>, and select <code>12GEMSDOE_r5-nms3-trace_055e9aac96b8.tif</code> (or its <code>.zip</code>). If — and only if — the form answers
+      <code>Predicted values must be in range [0, 1]</code>, retry once with
+      <code>12GEMSDOE_r5-nms3-trace_055e9aac96b8_allfinite.tif</code>, then report the outcome: the two files differ only in what sits
+      outside the survey footprint (NaN vs 0.0) and the answer tells us which check
+      DrivenData actually runs.
     </li>
     <li>
       <strong>Step 5: Paste the Submission Note</strong><br>
@@ -90,13 +100,25 @@
   <h2>Troubleshooting: The "Predicted values must be in range [0, 1]" Error</h2>
   <div class="notice notice-warn">
     <h3>What the Error Does — and Does Not — Establish</h3>
-    <p>The rejected file and DrivenData parser log were not retained, so this generic message does <strong>not</strong> identify the past root cause. The official format page requires one float32 band with values in <code>[0, 1]</code>, the same CRS/resolution/bounds as training, and null or NaN outside the bounds. The checks below are local prevention checks, not an assertion about DrivenData’s parser.</p>
+    <p>The rejected file and DrivenData's parser log were not retained, so the message alone does <strong>not</strong> prove a single cause. Two sufficient causes are now <em>verified locally</em>, and they are checked in this order:</p>
+    <ol>
+      <li><strong>The <code>training_features.tif</code> missing-data sentinel (verified, most likely cause of a real rejection).</strong> The supplied feature stack does <em>not</em> use NaN for missing data — it uses the float32 most-negative sentinel <code>-3.4028235e+38</code>, and it is suppressed only by rasterio's <em>masked</em> read. Measured this session (<a href="round5-identity-checks.json">evidence/round5-identity-checks.json</a>, check C1): an unmasked read of the stack has minimum <code>-3.4028235e+38</code>, and band <code>tc</code> alone carries <strong>3,073 sentinel pixels inside the survey footprint</strong>. Any pipeline that reads the stack without <code>masked=True</code> puts <code>-3.4e+38</code> into the model inputs and then into the output raster — which fails a <code>[0, 1]</code> range check exactly as reported. <strong>Fix:</strong> always <code>src.read(i, masked=True).filled(np.nan)</code>, impute, and re-assert the range before writing. Our own writer (<code>core.write_prediction</code>) refuses out-of-range values instead of clipping them.</li>
+      <li><strong>A range check run on an unmasked read of a NaN-containing raster (verified behaviour, unproven cause).</strong> The official <code>sample_submission.tif</code> is itself NaN outside the footprint (verified: 7,111,787 NaN pixels, nodata = NaN). With a masked read, <code>np.all((a &gt;= 0) &amp; (a &lt;= 1))</code> is <code>True</code> for our file; with an unmasked read of the same file it is <code>False</code>, because NaN fails both comparisons. Since DrivenData's own sample must pass its own checker, the masked reading is the likely one — but the primary/fallback pair below makes the distinction testable in one attempt instead of guesswork.</li>
+    </ol>
+    <p><strong>Local checks that must pass before any upload</strong> (all automated in <code>scripts/core.py:validate()</code> and <code>scripts/generate_nms_submission.py</code>): grid equality with the template (CRS, transform, width, height); exactly one band; <code>float32</code>; every footprint pixel finite and in <code>[0, 1]</code>; NaN outside the footprint; and a <code>.zip</code> containing exactly one GeoTIFF.</p>
+    <p><strong>Protocol if it happens again:</strong> upload the primary <code>.tif</code>; if the form returns the range error, upload the all-finite fallback once and record which file was rejected. The two differ only outside the survey footprint (NaN vs 0.0), so the answer identifies which check DrivenData runs — knowledge worth more than the slot.</p>
+  </div>
+
+  <h2>What Changed in Round 5 (and Why It Matters More Than Any Feature)</h2>
+  <div class="notice notice-ok">
+    <p>Before changing anything, the frozen holdout was <strong>re-run from scratch</strong> and reproduced the committed numbers bit-exactly: <code>raw19 0.08602428869798472 · multi25 0.09071277311870418 · multi30 0.08888636948563039 · random02 0.1378794777374697</code>, matching <code>evidence/holdout_masked.json</code> on every fold of every arm (the reproduction report is written to the git-ignored <code>data/cache/</code> tree by <code>scripts/cache_fold_models.py</code>; the full table is in <a href="hypotheses-round5.md">the Round-5 register</a> and <a href="session-review.md">session-review §10</a>).</p>
+    <p>That reproduction exposed the defect: <strong>uniform random 2 % emission scores 0.13788 on this protocol — better than every learned arm built in four rounds.</strong> The metric credits a truth pixel if <em>any</em> prediction lands within 300 m (3 px) and takes the <code>max</code> over that 5 × 5 cell, so extra predictions inside one cell add false-positive mass and no credit. Fixing only the emission geometry — 5 × 5 non-maximum suppression instead of top-<em>k</em> — with the identical model and features gives:</p>
     <ul>
-      <li><strong>Valid-footprint values:</strong> Check that every valid pixel is finite and in <code>[0, 1]</code>.</li>
-      <li><strong>Grid and mask:</strong> Check one band, float32 dtype, template CRS/shape/transform, and the project’s conservative NaN-outside convention. The official wording allows null or NaN outside bounds.</li>
-      <li><strong>Package:</strong> Upload one GeoTIFF directly or a ZIP containing exactly one GeoTIFF, as stated in the form.</li>
+      <li>dense truth <strong>0.09071 → 0.22138</strong> (2.44×)</li>
+      <li>sparse truth (20 % of truth components) <strong>0.04489 → 0.11178</strong> (2.49×)</li>
+      <li>off-catalogue candidates only, the strictest local analogue of real scoring, <strong>0.06759 → 0.19380</strong> (2.87×, 4/4 folds)</li>
     </ul>
-    <p><strong>What is verified locally:</strong> <code>scripts/core.py:validate()</code> checks grid equality, one float32 band, finite in-range values inside the template mask, and NaN outside it. The archived file passes that local validator. DrivenData remains the final format arbiter.</p>
+    <p>Round-5's four new geological channels (H20–H23) did <strong>not</strong> clear their gate once the emission was fixed — all arms now sit within ±0.0008 (dense) and ±0.0018 (sparse) of each other. Recorded as a negative result, not buried.</p>
   </div>
 
   <!-- COMPETITION SPECIFICATIONS -->

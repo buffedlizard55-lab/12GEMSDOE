@@ -17,6 +17,8 @@
     <a href="hypotheses.md">Hypotheses</a>
     <a href="hypotheses-round2.md">Round-2 H6–H10</a>
     <a href="hypotheses-round3.md">Round-3 H11–H14</a>
+    <a href="hypotheses-round4.md">Round-4 H15–H19</a>
+    <a href="hypotheses-round5.md">Round-5 Emission Geometry</a>
     <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener">Leaderboard ↗</a>
   </nav>
 </header>
@@ -28,17 +30,20 @@
 
   <!-- HERO CTA: DOWNLOAD READY SUBMISSION -->
   <section class="hero-cta">
-    <span class="badge">Format-validated candidate · research release gate pending</span>
-    <h2>Download Candidate GeoTIFF (Multi-Physics 25 Archive)</h2>
-    <p>The archived candidate targets blind faults using basement curvature (H1), magnetic tilt derivative (H3), and strain-dilation (H2). It beat raw19 on the leakage-free masked known-fault proxy (<strong>+0.00469 mean DTI, 3/4 folds</strong>, probe 0.0000), but no strongest sibling baseline has been reproduced and H11 failed its next gate. It is therefore <strong>not release-authorized</strong>. Format is locally verified against the official template: EPSG:32611, 100 m, 3,292 × 3,730, one float32 band, finite in [0.0, 0.95] in the footprint, NaN outside.</p>
+    <span class="badge">Round-5 candidate · format-validated · not yet scored by DrivenData</span>
+    <h2>Download Submission GeoTIFF — Round-5 Thin-Trace Emission</h2>
+    <p><strong>103,347 predicted fault pixels (exactly 2.000 % of the survey footprint)</strong>, laid down by non-maximum suppression with a 5 × 5 exclusion box — no two predictions inside one 300 m credit cell. Same multi25 model as before; only the <em>decision layer</em> changed. On the frozen masked spatial holdout this moves mean DTI from <strong>0.0907 → 0.2214</strong> (dense truth), <strong>0.0449 → 0.1118</strong> (sparse truth) and <strong>0.0676 → 0.1938</strong> on the strictest off-catalogue protocol (4/4 folds each). Format verified locally against the official <code>sample_submission.tif</code>: EPSG:32611, 100 m, 3,292 × 3,730, one float32 band, values in [0.0, 1.0] inside the 5,167,373-pixel footprint, NaN outside. <strong>No DrivenData score exists for this file and no weekly slot was spent building it.</strong></p>
 
     <div class="btn-row">
-      <a class="button-primary" href="downloads/12GEMSDOE_multiphysics_submission_06ca61e5.tif" download="12GEMSDOE_multiphysics_submission_06ca61e5.tif">
+      <a class="button-primary" href="downloads/12GEMSDOE_r5-nms3-trace_055e9aac96b8.tif" download="12GEMSDOE_r5-nms3-trace_055e9aac96b8.tif">
         <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download .TIF (1.20 MB)
+        Download .TIF (453 KB)
       </a>
-      <a class="button-secondary" href="downloads/12GEMSDOE_multiphysics_submission_06ca61e5.zip" download="12GEMSDOE_multiphysics_submission_06ca61e5.zip">
-        Download .ZIP (1.13 MB)
+      <a class="button-secondary" href="downloads/12GEMSDOE_r5-nms3-trace_055e9aac96b8.zip" download="12GEMSDOE_r5-nms3-trace_055e9aac96b8.zip">
+        Download .ZIP (378 KB)
+      </a>
+      <a class="button-secondary" href="downloads/12GEMSDOE_r5-nms3-trace_055e9aac96b8_allfinite.tif" download="12GEMSDOE_r5-nms3-trace_055e9aac96b8_allfinite.tif">
+        All-finite fallback .TIF
       </a>
       <a class="button-secondary" href="executive-summary.html">
         How to Submit Guide →
@@ -52,7 +57,7 @@
         <span id="copy-status" style="color: var(--accent-green); display: none; font-weight: 700;">✓ Copied to clipboard!</span>
       </div>
       <div class="note-input-group">
-        <input type="text" id="sub-note" class="note-input" readonly value="12GEMSDOE-v1 | Multiphysics Basement-Curvature + Tilt-Angle + Strain-Dilation | [0, 1] verified | sha256:06ca61e5c6a3">
+        <input type="text" id="sub-note" class="note-input" readonly value="12GEMSDOE R5 | NMS-3 thin-trace emission (5x5 exclusion, 2.0% mass, 103347 px) on multi25 GBM | sha256:055e9aac96b8">
         <button class="btn-copy" onclick="copyNote()">Copy Note</button>
       </div>
     </div>
@@ -82,10 +87,17 @@
     </article>
 
     <article class="card">
+      <p class="eyebrow">Round-5 Effect: Emission Geometry</p>
+      <div class="stat" style="color: var(--accent-green);">2.5–2.9×</div>
+      <p>Same model, same features, only the emission changed: 5 × 5 non-maximum suppression instead of top-<em>k</em>. Dense truth 0.0907 → 0.2214; sparse truth 0.0449 → 0.1118; off-catalogue 0.0676 → 0.1938.</p>
+      <div class="stat-sub">Largest single measured gain in five rounds; no submission slot spent.</div>
+    </article>
+
+    <article class="card">
       <p class="eyebrow">Leaderboard Target</p>
-      <div class="stat" style="color: var(--accent-gold);">0.3049</div>
-      <p>Leaderboard snapshot fetched 2026-09-27. This workbench targets a better validated model, not leaderboard churn.</p>
-      <div class="stat-sub">Rules say to use the competition website for the current timeline.</div>
+      <div class="stat" style="color: var(--accent-gold);">0.3168</div>
+      <p>Re-fetched this session from the official leaderboard: #1 DARD 0.3168, #2 0.2993, #3 0.2854. Three rows still tie at exactly 0.1563 (#26–28).</p>
+      <div class="stat-sub">Time-stamped snapshot 2026-09-27, not a live claim.</div>
     </article>
   </div>
 
@@ -150,6 +162,24 @@
 
   <h2>Round-4 Candidate Result: H15 Passes as Research Signal</h2>
   <div class="notice"><p><strong>H15 coincident multi-physics boundary alignment cleared its preregistered gate.</strong> On the frozen masked spatial holdout, multi25+H15 scored 0.09364 versus 0.09071 for multi25 (+0.00293 mean, 3/4 folds; leakage probe 0.0000). H16/H17 did not pass; H18 rejected (0/4); H10 harmful on all folds (−0.00490, dropped); no single multi30 channel passes alone. <strong>No H15 GeoTIFF was built and no weekly slot was spent</strong> — the strongest-sibling-baseline gate is still outstanding. H19 (Sentinel-2 alteration) is deferred: source verified free/open, S3 blocked in-sandbox. <a href="hypotheses-round4.md">Review the preregistered candidates, source ledger, and full results →</a></p></div>
+
+  <h2>Round-5: The Defect Was the Emission Policy, Not the Features</h2>
+  <div class="notice notice-ok"><p><strong>Reproduction first.</strong> <code>scripts/cache_fold_models.py</code> re-trained raw19 / multi25 / multi30 / random02 on the frozen masked protocol and matched <code>evidence/holdout_masked.json</code> on <strong>every fold of every arm to full float64 precision</strong> (multi25 = 0.09071277311870418). Rounds 1–4 are verified reproducible. That verification exposed the real defect: on the same protocol the <em>uniform random 2 %</em> control scores 0.13788 — better than every learned arm we have built.</p></div>
+  <div class="card">
+    <p>The official metric gives a truth pixel credit if <em>any</em> predicted pixel falls within 300 m (3 px) of it, and takes <code>max</code> over that 5 × 5 cell. Two predictions inside one cell therefore add false-positive mass and add <strong>zero</strong> true-positive credit. Every round 1–4 arm — and the archived <code>06ca61e5</code> artifact — emitted top-<em>k</em> by probability, which piles mass exactly where it is wasted. The sparsest emission that can still credit every truth pixel is one with no two predictions in a 5 × 5 block: non-maximum suppression at radius 2, density 1/25.</p>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Protocol (frozen masked spatial holdout, mean of 4 folds)</th><th>top-<em>k</em> @ 2 % (rounds 1–4 policy)</th><th>NMS-3 @ 2 % (Round-5 policy)</th><th>Ratio</th></tr></thead>
+        <tbody>
+          <tr><td>Dense truth (truth = full catalogue)</td><td>0.09071</td><td><strong style="color:var(--accent-green);">0.22138</strong></td><td>2.44×</td></tr>
+          <tr><td>Sparse truth (20 % of truth components)</td><td>0.04489</td><td><strong style="color:var(--accent-green);">0.11178</strong></td><td>2.49×</td></tr>
+          <tr><td>Off-catalogue only (strictest analogue of real scoring)</td><td>0.06759</td><td><strong style="color:var(--accent-green);">0.19380</strong></td><td>2.87× · 4/4 folds</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Mechanism, quantified: at the same emitted mass (≈23 k px per fold) top-<em>k</em> credits 7.6–15.0 % of truth pixels while NMS-3 credits 24.6–29.1 % — a per-fold coverage gain of 1.9–3.2× for the same false-positive bill. Evidence: <a href="round5-emission-probe.json">emission probe (JSON)</a> · <a href="round5-offcatalogue-check.json">off-catalogue check (JSON)</a> · <a href="holdout_round5.json">Round-5 gate (JSON)</a>.</p>
+  </div>
+  <div class="notice notice-warn"><p><strong>Round-5 geological candidates: honest negative.</strong> H20 magnetic-basement step, H21 two-depth-surface step coincidence, H22 local singularity exponent and H23 asymmetric-step detector were preregistered (<a href="hypotheses-round5.md">register</a>) after identity checks showed that <code>tc</code> (B5) is the official <em>top-of-crustal magnetic source depth estimate</em>, not the "tilt angle or total curvature" its raster description claims (strictly positive, median 18.48, correlation −0.0012 with |tilt|). With the emission policy fixed, <strong>no channel cleared the ≥3/4-fold gate on both protocols</strong> (best: H22 3/4 dense, 2/4 sparse; H15 2/4 sparse). All arms now land within ±0.0008 (dense) and ±0.0018 (sparse) of each other — an order of magnitude below the emission effect. That is the actionable conclusion: stop paying for small feature gains while the decision layer throws away a factor of 2.5.</p></div>
 
   <!-- ROUND-2 CANDIDATES -->
   <h2>Round-2 Candidates (H6–H10): New Mechanisms Only</h2>

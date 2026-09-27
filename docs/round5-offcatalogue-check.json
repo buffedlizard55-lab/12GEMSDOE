@@ -1,0 +1,118 @@
+{
+  "protocol": "masked spatial holdout; candidates restricted to valid & ~catalogue; budget 0.02; NMS radius 2; cached multi25 probabilities",
+  "budget": 0.02,
+  "script_sha256": "15b8d2063ee6e404249a58746fe4e303210981055dba06b2ec97444c2d9a7ca9",
+  "core_sha256": "27f1adfb460b719b1507fd8678f3a2b40e2c5a73225238ded90315fd16f8eee6",
+  "folds": [
+    {
+      "fold": 0,
+      "region_pixels": 1257920,
+      "offcatalogue_candidates": 1240283,
+      "emitted_mass": 25158,
+      "topk_offcatalogue": {
+        "tp": 1100.1148574494475,
+        "fp": 22782.179101914167,
+        "fn": 16536.885142550553,
+        "coverage": 0.06237539589779711,
+        "dti": 0.058250102340941405
+      },
+      "nms3_offcatalogue": {
+        "tp": 3845.0891493925983,
+        "fp": 23367.00327888131,
+        "fn": 13791.9108506074,
+        "coverage": 0.21801265234408337,
+        "dti": 0.1966594473196747
+      },
+      "unrestricted_topk_pixels_landing_on_catalogue": 1002
+    },
+    {
+      "fold": 1,
+      "region_pixels": 1250187,
+      "offcatalogue_candidates": 1234384,
+      "emitted_mass": 25003,
+      "topk_offcatalogue": {
+        "tp": 1206.9549944133682,
+        "fp": 23140.31494539976,
+        "fn": 14596.045005586631,
+        "coverage": 0.07637505501571652,
+        "dti": 0.06892217096123106
+      },
+      "nms3_offcatalogue": {
+        "tp": 3454.6910525029416,
+        "fp": 23429.98157557845,
+        "fn": 12348.308947497058,
+        "coverage": 0.21860982424241862,
+        "dti": 0.1917213450681312
+      },
+      "unrestricted_topk_pixels_landing_on_catalogue": 908
+    },
+    {
+      "fold": 2,
+      "region_pixels": 1230268,
+      "offcatalogue_candidates": 1216121,
+      "emitted_mass": 24605,
+      "topk_offcatalogue": {
+        "tp": 819.3367278039409,
+        "fp": 23326.527088046074,
+        "fn": 13327.66327219606,
+        "coverage": 0.0579159346719404,
+        "dti": 0.05074306425292201
+      },
+      "nms3_offcatalogue": {
+        "tp": 3017.438551527782,
+        "fp": 23157.073433965445,
+        "fn": 11129.561448472217,
+        "coverage": 0.21329176161219918,
+        "dti": 0.1822950076743958
+      },
+      "unrestricted_topk_pixels_landing_on_catalogue": 607
+    },
+    {
+      "fold": 3,
+      "region_pixels": 1428998,
+      "offcatalogue_candidates": 1415597,
+      "emitted_mass": 28579,
+      "topk_offcatalogue": {
+        "tp": 1491.9435018509853,
+        "fp": 25612.082009404898,
+        "fn": 11909.056498149015,
+        "coverage": 0.11133075903671258,
+        "dti": 0.09242844762901983
+      },
+      "nms3_offcatalogue": {
+        "tp": 3435.1643338632193,
+        "fp": 26932.783806860447,
+        "fn": 9965.83566613678,
+        "coverage": 0.2563364177198134,
+        "dti": 0.20454237456096494
+      },
+      "unrestricted_topk_pixels_landing_on_catalogue": 1398
+    }
+  ],
+  "arms": {
+    "topk_offcatalogue": 0.06758594629602857,
+    "nms3_offcatalogue": 0.19380454365579164,
+    "topk_allcandidates_oncatalogue_tp_fraction": 978.75
+  },
+  "per_fold": {
+    "topk_offcatalogue": [
+      0.058250102340941405,
+      0.06892217096123106,
+      0.05074306425292201,
+      0.09242844762901983
+    ],
+    "nms3_offcatalogue": [
+      0.1966594473196747,
+      0.1917213450681312,
+      0.1822950076743958,
+      0.20454237456096494
+    ],
+    "topk_allcandidates_oncatalogue_tp_fraction": [
+      1002.0,
+      908.0,
+      607.0,
+      1398.0
+    ]
+  },
+  "total_seconds": 5.06
+}
