@@ -1,0 +1,16 @@
+{
+  "reviewed_utc": "2026-09-27",
+  "official_pages_retrieved": [
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516"
+  ],
+  "literature_search_only_not_full_pdf_review": [
+    "https://pubs.usgs.gov/of/2002/ofr-02-0400/ofr-02-0400.pdf",
+    "https://pubs.usgs.gov/of/1983/0170c/report.pdf"
+  ],
+  "github_recursive_trees_retrieved": ["GEMSDOE", "GEMSDOE2", "GEMSDOE3", "GEMSDOE4", "5GEMSDOE", "6GEMSDOE", "7GEMSDOE", "8GEMSDOE", "11GEMSDOE"],
+  "github_tree_not_found": ["9GEMSDOE", "10GEMSDOE"],
+  "source_code_downloaded_for_local_inspection": ["GEMSDOE", "5GEMSDOE", "8GEMSDOE", "11GEMSDOE"],
+  "limitations": ["Not every downloaded source line has a formal verification proof.", "Tree inspection is not full code review.", "Official reference repository tree was inspected; no claim of server-metric implementation parity.", "Scientific literature snippets establish precedent only; proposed mechanisms remain unvalidated hypotheses.", "Original repeated request is condensed, not verbatim, in README."]
+}

@@ -1,0 +1,167 @@
+{
+  "protocol": "docs/hypotheses.md",
+  "status": "screening_only_not_submission_eligible",
+  "foldmap_sha256": "059d81370291ab1704d4f1453a55bc491f2986a9f9287b6df158dc780843e1f1",
+  "source_sha256": {
+    "scripts/experiment.py": "83e160331ca86f889e9da231d0fca07d7eecfa6ea8e040783bc1d51adb6cf2e5",
+    "scripts/core.py": "27f1adfb460b719b1507fd8678f3a2b40e2c5a73225238ded90315fd16f8eee6",
+    "docs/hypotheses.md": "4ff5f094f5a8db1c07707fdb8583c88ba350b345ad59d5fc559436f04f4def9b"
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "train_positive": 41865,
+      "train_negative": 100000,
+      "score_pixels": 1257920,
+      "score_positive": 17637,
+      "arms": {
+        "raw19": {
+          "tp": 3317.9648239206376,
+          "fp": 67894.27687469864,
+          "fn": 14319.035176079362,
+          "dti": 0.11702734081685934
+        },
+        "restoration27": {
+          "tp": 3427.3616035518685,
+          "fp": 67669.14148468288,
+          "fn": 14209.638396448132,
+          "dti": 0.12098463155343062
+        },
+        "random06": {
+          "tp": 6596.653187686853,
+          "fp": 71838.73823146801,
+          "fn": 11040.346812313146,
+          "dti": 0.22138887847926178
+        }
+      },
+      "seconds": 36.798935890197754
+    },
+    {
+      "fold": 1,
+      "train_positive": 43563,
+      "train_negative": 100000,
+      "score_pixels": 1250187,
+      "score_positive": 15803,
+      "arms": {
+        "raw19": {
+          "tp": 3471.090063659577,
+          "fp": 68179.39462945839,
+          "fn": 12331.909936340424,
+          "dti": 0.1286899789643219
+        },
+        "restoration27": {
+          "tp": 3591.764027671233,
+          "fp": 67847.71656692328,
+          "fn": 12211.235972328766,
+          "dti": 0.1333726154290087
+        },
+        "random06": {
+          "tp": 5857.730042104425,
+          "fp": 71752.42328077683,
+          "fn": 9945.269957895576,
+          "dti": 0.20798325774258142
+        }
+      },
+      "seconds": 34.10700535774231
+    },
+    {
+      "fold": 2,
+      "train_positive": 45359,
+      "train_negative": 100000,
+      "score_pixels": 1230268,
+      "score_positive": 14147,
+      "arms": {
+        "raw19": {
+          "tp": 2486.0515249355744,
+          "fp": 68693.9956646776,
+          "fn": 11660.948475064426,
+          "dti": 0.09728768575590892
+        },
+        "restoration27": {
+          "tp": 2367.3061723424935,
+          "fp": 68859.03083971176,
+          "fn": 11779.693827657506,
+          "dti": 0.09260722340209653
+        },
+        "random06": {
+          "tp": 5256.199818702489,
+          "fp": 70877.82476987586,
+          "fn": 8890.80018129751,
+          "dti": 0.1980153570960151
+        }
+      },
+      "seconds": 39.57495474815369
+    },
+    {
+      "fold": 3,
+      "train_positive": 46675,
+      "train_negative": 100000,
+      "score_pixels": 1428998,
+      "score_positive": 13401,
+      "arms": {
+        "raw19": {
+          "tp": 3597.4704376745,
+          "fp": 77274.81787396464,
+          "fn": 9803.5295623255,
+          "dti": 0.1337585414807198
+        },
+        "restoration27": {
+          "tp": 3419.1808325102065,
+          "fp": 77608.83355494557,
+          "fn": 9981.819167489793,
+          "dti": 0.12698245837195493
+        },
+        "random06": {
+          "tp": 4964.11055823692,
+          "fp": 82935.35768115534,
+          "fn": 8436.88944176308,
+          "dti": 0.17540596778240136
+        }
+      },
+      "seconds": 42.40811038017273
+    }
+  ],
+  "means": {
+    "raw19": 0.1191908867544525,
+    "restoration27": 0.1184867321891227,
+    "random06": 0.2006983652750649
+  },
+  "paired_deltas": [
+    0.003957290736571278,
+    0.004682636464686779,
+    -0.004680462353812392,
+    -0.006776083108764874
+  ],
+  "release_allowed": false,
+  "release_reason": "Current strongest sibling baseline not reproduced under identical protocol; screening is not a release gate.",
+  "summary": {
+    "paired_mean": -0.0007041545653298023,
+    "wins": 2,
+    "paired_t_interval_95_descriptive_only": [
+      -0.010047129393302243,
+      0.008638820262642639
+    ],
+    "decision": "REJECT for submission: lower mean DTI than raw baseline, two of four fold wins, both learned arms below matched random-area control",
+    "caution": "Four spatial folds are not independent geological systems. Interval is descriptive, not proof of discovery. No private-label performance is known."
+  },
+  "pooled": {
+    "raw19": {
+      "tp": 12872.576850190288,
+      "fp": 282042.48504279926,
+      "fn": 48115.423149809714,
+      "dti": 0.11944111786085222
+    },
+    "restoration27": {
+      "tp": 12805.612636075803,
+      "fp": 281984.72244626353,
+      "fn": 48182.387363924194,
+      "dti": 0.11884728377719522
+    },
+    "random06": {
+      "tp": 22674.69360673069,
+      "fp": 297404.343963276,
+      "fn": 38313.30639326931,
+      "dti": 0.20100572571678946
+    }
+  }
+}

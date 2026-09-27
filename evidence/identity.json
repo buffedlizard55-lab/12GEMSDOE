@@ -1,0 +1,110 @@
+{
+  "checked_utc": "2026-09-27",
+  "scope": "published artifacts, not upload receipts",
+  "files": [
+    {
+      "name": "gems1",
+      "sha256": "7f00890a62878d612fb5eef67a9a364a2df819433dde74b6762ce4fc0fc4fe15",
+      "bytes": 570890,
+      "grid": [
+        "EPSG:32611",
+        [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        3292,
+        3730
+      ],
+      "valid_pixels": 5167373,
+      "range": [
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "name": "gems5",
+      "sha256": "7f00890a62878d612fb5eef67a9a364a2df819433dde74b6762ce4fc0fc4fe15",
+      "bytes": 570890,
+      "grid": [
+        "EPSG:32611",
+        [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        3292,
+        3730
+      ],
+      "valid_pixels": 5167373,
+      "range": [
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "name": "gems8",
+      "sha256": "b83ea0e7074882ceee31de89695281c00ade51f26a0a7048f628f60058755356",
+      "bytes": 1285731,
+      "grid": [
+        "EPSG:32611",
+        [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        3292,
+        3730
+      ],
+      "valid_pixels": 5167373,
+      "range": [
+        0.0,
+        0.949999988079071
+      ]
+    }
+  ],
+  "pairs": [
+    {
+      "a": "gems1",
+      "b": "gems5",
+      "same_grid": true,
+      "same_mask": true,
+      "pixel_equal": true,
+      "fraction_different": 0.0
+    },
+    {
+      "a": "gems1",
+      "b": "gems8",
+      "same_grid": true,
+      "same_mask": true,
+      "pixel_equal": false,
+      "fraction_different": 0.1089706510445443
+    },
+    {
+      "a": "gems5",
+      "b": "gems8",
+      "same_grid": true,
+      "same_mask": true,
+      "pixel_equal": false,
+      "fraction_different": 0.1089706510445443
+    }
+  ]
+}
