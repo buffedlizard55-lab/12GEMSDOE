@@ -1,0 +1,77 @@
+{
+  "generated_utc": "20260927T233347Z",
+  "slug": "r6-nms3-h28-texture",
+  "policy": {
+    "emission": "greedy NMS Chebyshev radius 2 (5x5), descending probability, deterministic tie-break",
+    "budget_fraction_of_valid": 0.02,
+    "emitted_pixels": 103347,
+    "valid_pixels": 5167373,
+    "candidates": "valid & ~catalogue",
+    "values": "1.0 on emitted pixels, 0.0 elsewhere inside footprint",
+    "preregistered_in": "docs/hypotheses-round6.md",
+    "gate_result": "H28 passes >=3/4 folds on BOTH dense and sparse protocols (dense 3/4 +0.00005, sparse 3/4 +0.0026)"
+  },
+  "model": {
+    "model": "HistGradientBoostingClassifier",
+    "model_parameters": {
+      "max_iter": 100,
+      "max_leaf_nodes": 15,
+      "early_stopping": false,
+      "random_state": 12027
+    },
+    "features": "first 25 channels of candidate-features-30.npy + H28 (mag_anom local variance 11px) channel 3 of round6_features.npy",
+    "training": {
+      "positives": 60988,
+      "sampled_negatives": 100000,
+      "class_weighting": "balanced total weight"
+    },
+    "round6_feature_sha256": "9ccc07d95d3128c3211df6c05633cc25d91a3712e41cd30d09bfc500b0f429eb",
+    "round6_build": "9ccc07d95d3128c3211df6c05633cc25d91a3712e41cd30d09bfc500b0f429eb"
+  },
+  "files": {
+    "primary_tif": {
+      "name": "12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.tif",
+      "bytes": 463877,
+      "validation": {
+        "sha256": "8721329b55c72635803cca27414f3d0ffe4705f48285de0dc7c29d6fd3eb90d3",
+        "valid_pixels": 5167373,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "outside_footprint": "NaN"
+    },
+    "fallback_tif": {
+      "name": "12GEMSDOE_r6-nms3-h28-texture_8721329b55c7_allfinite.tif",
+      "bytes": 406819,
+      "validation": {
+        "sha256": "699d9c7f6d136818af48ed65d357bcd6eca828e530c73c4d80c3a6cca4214b81",
+        "valid_pixels": 5167373,
+        "min": 0.0,
+        "max": 1.0,
+        "mask_equals_template": false,
+        "validator": "relaxed (grid/CRS/dtype/range; mask reported, not enforced)"
+      },
+      "outside_footprint": "0.0",
+      "use_if": "primary rejected with 'Predicted values must be in range [0, 1]'"
+    },
+    "zip": {
+      "name": "12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.zip",
+      "bytes": 387198,
+      "contents": [
+        "12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.tif"
+      ]
+    }
+  },
+  "suggested_note": "12GEMSDOE R6 | NMS-3 thin-trace + H28 mag texture variance (11px) on multi25+H28 GBM | 5x5 exclusion 2.0% mass 103347 px | sha256:8721329b55c7",
+  "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+  "labels_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+  "feature_cube_sha256": "fc746d927777f70bc799d3cf22f04d629edbc9f4ca503da1908b6cc9d5e91007",
+  "round6_feature_sha256": "9ccc07d95d3128c3211df6c05633cc25d91a3712e41cd30d09bfc500b0f429eb",
+  "holdout_evidence": [
+    "evidence/holdout_round6.json",
+    "evidence/round6-feature-build.json",
+    "evidence/round5-emission-probe.json"
+  ],
+  "drivendata_score": null,
+  "release_status": "Format-validated locally and holdout-validated (H28 passes 3/4 on both protocols). NOT scored by DrivenData; strongest-sibling-baseline gate still unsatisfied."
+}

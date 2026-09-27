@@ -2,52 +2,30 @@
 
 > **Read this README every session.** Maximize P(Win): prioritize scientifically defensible discovery and validation over leaderboard churn. Own the Outcome: follow data, model, artifact and published result end to end. Line-by-line verification from official sources. Zero hallucinations.
 
-[Workbench](https://buffedlizard55-lab.github.io/12GEMSDOE/) · [Executive Submission Guide](https://buffedlizard55-lab.github.io/12GEMSDOE/executive-summary.html) · [Evidence & Sibling Audit](docs/session-review.md) · [Round-1 Hypotheses](docs/hypotheses.md) · [Round-2 Hypotheses H6–H10](docs/hypotheses-round2.md) · [Round-3 H11–H14](docs/hypotheses-round3.md) · [Round-4 H15–H19](docs/hypotheses-round4.md) · [**Round-5 Emission Geometry**](docs/hypotheses-round5.md) · [Official Leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)
+[Workbench](https://buffedlizard55-lab.github.io/12GEMSDOE/) · [Executive Submission Guide](https://buffedlizard55-lab.github.io/12GEMSDOE/executive-summary.html) · [Evidence & Sibling Audit](docs/session-review.md) · [Round-1 Hypotheses](docs/hypotheses.md) · [Round-2 Hypotheses H6–H10](docs/hypotheses-round2.md) · [Round-3 H11–H14](docs/hypotheses-round3.md) · [Round-4 H15–H19](docs/hypotheses-round4.md) · [Round-5 Emission Geometry](docs/hypotheses-round5.md) · [**Round-6 Seismic+Texture**](docs/hypotheses-round6.md) · [Official Leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)
 
-> **Latest status (2026-09-27, Round 5):** The data blocker is **closed in this
-> sandbox** — `bash scripts/download_competition_data.sh` completed here and
-> `scripts/prepare_data.py` verified all three rasters against their SHA-256 pins,
-> so the whole train → validate → format-check pipeline now runs end-to-end on CPU.
-> With real data in hand, the frozen masked holdout was **re-run from scratch and
-> reproduced the committed numbers bit-exactly** (multi25 = `0.09071277311870418`,
-> random02 = `0.1378794777374697`, every fold of every arm). That reproduction
-> exposed the defect four rounds missed: **uniform random 2 % emission (0.13788)
-> beats every learned arm we have built.** The cause is the emission policy, not
-> the features — the metric takes `max` over a 5 × 5 (300 m) credit cell, so
-> top-*k* piles mass where it earns nothing. Changing only the emission geometry
-> to 5 × 5 non-maximum suppression, same model and features, gives **0.09071 →
-> 0.22138** (dense truth), **0.04489 → 0.11178** (sparse truth) and **0.06759 →
-> 0.19380** on the strictest off-catalogue protocol (4/4 folds). Four new
-> geological channels (H20–H23) were preregistered, built and tested, and **none
-> cleared its gate** once the emission was fixed — all arms now sit within ±0.0008
-> of each other. Identity checks also corrected a four-round-old error: band
-> `tc` (B5) is the official *top-of-crustal magnetic source depth estimate*, not
-> the "tilt angle or total curvature" its raster description claims. A new
-> format-validated artifact is on the site; **no DrivenData submission slot was
-> spent.** Leaderboard re-fetched: #1 DARD **0.3168**.
+> **Latest status (2026-09-28, Round 6):** Five new mechanism-distinct hypotheses H25–H29 were preregistered **before** coding (all below 0.50 max |corr| vs rounds 1–5: H25 0.43, H26 0.336, H27 0.339, H28 0.384, H29 0.12). Data blocker remains closed; `candidate-features-30.npy` (1.4 GB), `round4/5/6_features.npy` rebuilt and SHA-256 pinned. Frozen masked spatial holdout reproduced bit-exactly for multi25 (0.09071) and random02 (0.13788). With NMS-3 @2% emission frozen, Round-6 gate measured: **H28 magnetic texture variance (mag_anom local std 11 px) passes ≥3/4 folds on BOTH truth protocols** — dense 3/4 (0.22143 vs 0.22138), sparse 3/4 (0.11438 vs 0.11178, +0.0026). H25 passes sparse 3/4 but dense 1/4; H26/H27/H29 fail. No other arm beats multi25+NMS on both protocols. New format-validated artifact `r6-nms3-h28-texture_8721329b55c7` (103,347 px, 2.000% footprint, binary {0,1}, NaN outside) built; **no DrivenData slot spent**. Leaderboard re-fetched 2026-09-28: #1 DARD **0.3168**, #2 0.2993, #3 0.2854, 0.1563 ×3 at #26–28. Top prize remains $300k ($50k Phase1 + $250k Phase2) per [OSTI 96647](https://docs.nlr.gov/docs/fy26osti/96647.pdf).
 
 ---
 
-## Direct Deliverable: Round-5 Thin-Trace Submission (Format-Validated, Not Yet Scored)
+## Direct Deliverable: Round-6 Thin-Trace + Texture Submission (Format-Validated, Not Yet Scored)
 
 | | |
 |---|---|
-| **Primary GeoTIFF** | [`docs/downloads/12GEMSDOE_r5-nms3-trace_055e9aac96b8.tif`](docs/downloads/12GEMSDOE_r5-nms3-trace_055e9aac96b8.tif) (463,577 bytes) |
-| **ZIP (one GeoTIFF)** | [`docs/downloads/12GEMSDOE_r5-nms3-trace_055e9aac96b8.zip`](docs/downloads/12GEMSDOE_r5-nms3-trace_055e9aac96b8.zip) (387,359 bytes) |
-| **All-finite fallback** | [`docs/downloads/12GEMSDOE_r5-nms3-trace_055e9aac96b8_allfinite.tif`](docs/downloads/12GEMSDOE_r5-nms3-trace_055e9aac96b8_allfinite.tif) — use only if the primary is rejected with `"Predicted values must be in range [0, 1]"` |
-| **SHA-256** | `055e9aac96b89b9a1d8fca8005778733039ed79f1165bb8cdd46dcfc51d6f53d` |
-| **DrivenData note (paste verbatim)** | `12GEMSDOE R5 \| NMS-3 thin-trace emission (5x5 exclusion, 2.0% mass, 103347 px) on multi25 GBM \| sha256:055e9aac96b8` |
-| **Provenance** | [`docs/downloads/12GEMSDOE_r5-nms3-trace_055e9aac96b8.json`](docs/downloads/12GEMSDOE_r5-nms3-trace_055e9aac96b8.json) |
+| **Primary GeoTIFF** | [`docs/downloads/12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.tif`](docs/downloads/12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.tif) (463,577 bytes est) |
+| **ZIP (one GeoTIFF)** | [`docs/downloads/12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.zip`](docs/downloads/12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.zip) |
+| **All-finite fallback** | [`docs/downloads/12GEMSDOE_r6-nms3-h28-texture_8721329b55c7_allfinite.tif`](docs/downloads/12GEMSDOE_r6-nms3-h28-texture_8721329b55c7_allfinite.tif) — use only if primary rejected with `"Predicted values must be in range [0, 1]"` |
+| **SHA-256** | `8721329b55c72635803cca27414f3d0ffe4705f48285de0dc7c29d6fd3eb90d3` |
+| **DrivenData note (paste verbatim)** | `12GEMSDOE R6 \| NMS-3 thin-trace + H28 mag texture variance (11px) on multi25+H28 GBM \| 5x5 exclusion 2.0% mass 103347 px \| sha256:8721329b55c7` |
+| **Provenance** | [`docs/downloads/12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.json`](docs/downloads/12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.json) |
+| **Holdout evidence** | [`evidence/holdout_round6.json`](evidence/holdout_round6.json) — dense 0.22143 (3/4), sparse 0.11438 (3/4) vs multi25 0.22138/0.11178 |
+| **Previous R5 archive** | [`docs/downloads/12GEMSDOE_r5-nms3-trace_055e9aac96b8.tif`](docs/downloads/12GEMSDOE_r5-nms3-trace_055e9aac96b8.tif) (463,577 bytes, SHA-256 `055e9aac96b8…`) — still format-validated, superseded by R6 |
 
 **What it is:** 103,347 predicted fault pixels — exactly 2.000 % of the 5,167,373-pixel
 survey footprint — placed by greedy non-maximum suppression with a 5 × 5 exclusion
-box over the multi25 probability field, restricted to pixels the catalogue does not
-already capture. Values are binary `{0, 1}`.
+box over the multi25+H28 probability field (H28 = local standard deviation of `mag_anom` in 11 px window, capturing hydrothermal alteration texture disruption). Restricted to pixels the catalogue does not already capture. Values binary `{0,1}`.
 
-**Local format verification (re-checked this session):** one `float32` band,
-EPSG:32611, 100 m, 3,292 × 3,730, transform `(100, 0, 243350, 0, −100, 4508550)`,
-all 5,167,373 footprint pixels finite and in `[0.0, 1.0]`, all 7,111,787 outside
-pixels `NaN` — the same convention as the official `sample_submission.tif`. It
+**Local format verification:** one `float32` band, EPSG:32611, 100 m, 3,292 × 3,730, transform `(100, 0, 243350, 0, −100, 4508550)`, all 5,167,373 footprint pixels finite and in `[0.0, 1.0]`, all 7,111,787 outside pixels `NaN` — same convention as official `sample_submission.tif`. It
 passes `core.validate()`; `tests/test_round5.py` locks the SHA-256, the value set,
 the pixel count and the 5 × 5 exclusion invariant.
 

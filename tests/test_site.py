@@ -39,14 +39,18 @@ def test_static_links_and_submission_deliverable():
     guide = (root / 'docs/executive-summary.html').read_text()
     assert 'Download .TIF' in home and 'Download .TIF' in guide
 
-    # Round-5 primary deliverable must be the one the site hands out.
-    primary = '12GEMSDOE_r5-nms3-trace_055e9aac96b8.tif'
-    assert primary in home, 'index.html must link the Round-5 primary artifact'
-    assert primary in guide, 'executive-summary.html must link the Round-5 primary artifact'
+    # Round-6 primary deliverable must be the one the site hands out (supersedes R5).
+    primary = '12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.tif'
+    assert primary in home, 'index.html must link the Round-6 primary artifact'
+    assert primary in guide, 'executive-summary.html must link the Round-6 primary artifact'
     for name in (primary,
                  primary.replace('.tif', '.zip'),
                  primary.replace('.tif', '_allfinite.tif')):
         assert (root / 'docs/downloads' / name).is_file(), f'missing deliverable: {name}'
+
+    # Previous Round-5 archive stays downloadable.
+    r5_archive = '12GEMSDOE_r5-nms3-trace_055e9aac96b8.tif'
+    assert (root / 'docs/downloads' / r5_archive).is_file(), 'R5 archive must remain'
 
     # The superseded round-1..4 archive stays downloadable and referenced.
     archived = '12GEMSDOE_multiphysics_submission_06ca61e5.tif'
