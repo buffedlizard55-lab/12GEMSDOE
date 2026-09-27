@@ -76,8 +76,11 @@ def test_archived_result_and_holdout_gain():
     
     r = json.loads(evidence_screen.read_text())
     assert len(r['folds']) == 4
-    assert r['release_allowed'] is True
-    assert r['means']['multiphysics25'] > r['means']['raw19'], "Multi-Physics must beat baseline"
-    # Assert win on all 4 folds
-    for delta in r['paired_deltas_multiphysics25_vs_raw19']:
-        assert delta > 0, "Multi-Physics 25 must win every fold"
+    # This is deliberately retained as a historical *unmasked* diagnostic.
+    # It cannot authorize a new-fault submission because random06 wins.
+    assert r['release_allowed'] is False
+    assert r['status'] == 'legacy_unmasked_known_fault_diagnostic_not_submission_eligible'
+    assert r['means']['multiphysics25'] > r['means']['raw19'], "Historical comparison changed unexpectedly"
+    assert r['means']['random06'] > r['means']['multiphysics25']
+    assert r['archived_format_artifact']['format_validated_only'] is True
+    assert r['archived_format_artifact']['release_authorized'] is False

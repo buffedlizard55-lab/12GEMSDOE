@@ -1,6 +1,6 @@
 {
   "protocol": "docs/hypotheses.md",
-  "status": "preregistered_spatial_holdout_screen",
+  "status": "legacy_unmasked_known_fault_diagnostic_not_submission_eligible",
   "foldmap_sha256": "059d81370291ab1704d4f1453a55bc491f2986a9f9287b6df158dc780843e1f1",
   "feature_cube_shape": [
     3730,
@@ -175,14 +175,16 @@
     "scripts/core.py": "27f1adfb460b719b1507fd8678f3a2b40e2c5a73225238ded90315fd16f8eee6",
     "docs/hypotheses.md": "e2d290df8e6394d2ff5efbcc3b9346f12e9de5d0287cd94ce41b7f806cc510d8"
   },
-  "release_allowed": true,
-  "release_candidate": "multiphysics25",
-  "release_reason": "Candidate multiphysics25 (H1 Basement Step + H3 Magnetic Tilt Angle + H2 Strain Dilation) achieved 0.11744 mean DTI, beating the frozen raw19 baseline (0.11275) across 4 out of 4 spatial folds (+0.00469 mean paired gain, 100% paired fold win rate).",
-  "submission_artifact": {
+  "release_allowed": false,
+  "release_reason": "Historical unmasked known-fault diagnostic only: random06 beat every learned arm, so this result cannot authorize a new-fault submission. Use holdout_masked.py.",
+  "historical_release_candidate": "multiphysics25",
+  "archived_format_artifact": {
     "file": "docs/downloads/12GEMSDOE_multiphysics_submission_06ca61e5.tif",
     "sha256": "06ca61e5c6a3e55eaf40228d97054a35af1187be9c98e0ef95d996f9919efc6b",
     "sha8": "06ca61e5",
     "bytes": 1205044,
-    "note": "12GEMSDOE-v1 | Multiphysics Basement-Curvature + Tilt-Angle + Strain-Dilation | [0, 1] verified | sha256:06ca61e5c6a3"
+    "note": "12GEMSDOE-v1 | Multiphysics Basement-Curvature + Tilt-Angle + Strain-Dilation | [0, 1] verified | sha256:06ca61e5c6a3",
+    "format_validated_only": true,
+    "release_authorized": false
   }
 }

@@ -8,6 +8,13 @@ Spatially blocked 512-px folds, 12-px collar exclusion, fixed seed 12027.
 import json, os, time
 from pathlib import Path
 os.environ.setdefault('OMP_NUM_THREADS','2')
+"""Legacy *unmasked* known-fault diagnostic (never a submission gate).
+
+This script is retained to reproduce the historical raw19/H1/multi25 table.
+It deliberately uses the unmasked metric, where dense known labels let a
+random 6% field outperform all learned arms. Use ``holdout_masked.py`` and
+new preregistered holdouts for release decisions.
+"""
 import numpy as np
 import rasterio
 from sklearn.ensemble import HistGradientBoostingClassifier
@@ -23,16 +30,18 @@ with rasterio.open('data/sample_submission.tif') as s:
 with rasterio.open('data/labels.tif') as s:
     truth = (s.read(1, masked=True).filled(0) > 0) & valid
 
-mempath = ROOT / 'data/candidate-screen-features.npy'
+mempath = ROOT / 'data/candidate-features-30.npy'
 cube = np.lib.format.open_memmap(str(mempath), mode='r')
-flat = cube.reshape(-1, 25)
+if cube.shape != (*shape, 30):
+    raise ValueError(f'expected reproduced 30-channel cube, got {cube.shape}')
+flat = cube.reshape(-1, 30)
 
 fmap = folds(truth)
 np.save('data/foldmap.npy', fmap)
 
 report = {
     'protocol': 'docs/hypotheses.md',
-    'status': 'preregistered_spatial_holdout_screen',
+    'status': 'legacy_unmasked_known_fault_diagnostic_not_submission_eligible',
     'foldmap_sha256': sha('data/foldmap.npy'),
     'feature_cube_shape': list(cube.shape),
     'arms_evaluated': {
@@ -105,6 +114,9 @@ report['paired_deltas_multiphysics25_vs_raw19'] = [
 ]
 
 report['total_seconds'] = round(time.time() - t_all, 2)
+report['release_allowed'] = False
+report['release_reason'] = ('Legacy unmasked known-fault diagnostic: random06 exceeds learned arms, '
+                            'so it cannot select a new-fault submission. Use holdout_masked.py.')
 Path('evidence/screening.json').write_text(json.dumps(report, indent=2))
 Path('docs/screening.json').write_text(json.dumps(report, indent=2))
 print("Final summary:", json.dumps(report['means'], indent=2), flush=True)

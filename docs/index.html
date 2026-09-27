@@ -16,6 +16,7 @@
     <a href="session-review.md">Evidence Audit</a>
     <a href="hypotheses.md">Hypotheses</a>
     <a href="hypotheses-round2.md">Round-2 H6–H10</a>
+    <a href="hypotheses-round3.md">Round-3 H11–H14</a>
     <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener">Leaderboard ↗</a>
   </nav>
 </header>
@@ -27,9 +28,9 @@
 
   <!-- HERO CTA: DOWNLOAD READY SUBMISSION -->
   <section class="hero-cta">
-    <span class="badge">✓ Validated Submission Available</span>
-    <h2>Official Submission File (Multi-Physics 25 Model)</h2>
-    <p>Targeting unmapped blind faults via coupled crystalline basement curvature (H1), magnetic tilt-angle zero crossings (H3), and geodetic shear-strain dilation (H2). Beats the raw 19-band baseline on the leakage-free masked holdout (<strong>+0.00469 mean DTI, 3/4 folds</strong>, probe 0.0000). Strictly verified: EPSG:32611, 100 m resolution, 3,292 × 3,730, single float32 band, finite in [0.0, 0.95], strict NaN mask outside.</p>
+    <span class="badge">Format-validated candidate · research release gate pending</span>
+    <h2>Download Candidate GeoTIFF (Multi-Physics 25 Archive)</h2>
+    <p>The archived candidate targets blind faults using basement curvature (H1), magnetic tilt derivative (H3), and strain-dilation (H2). It beat raw19 on the leakage-free masked known-fault proxy (<strong>+0.00469 mean DTI, 3/4 folds</strong>, probe 0.0000), but no strongest sibling baseline has been reproduced and H11 failed its next gate. It is therefore <strong>not release-authorized</strong>. Format is locally verified against the official template: EPSG:32611, 100 m, 3,292 × 3,730, one float32 band, finite in [0.0, 0.95] in the footprint, NaN outside.</p>
 
     <div class="btn-row">
       <a class="button-primary" href="downloads/12GEMSDOE_multiphysics_submission_06ca61e5.tif" download="12GEMSDOE_multiphysics_submission_06ca61e5.tif">
@@ -61,16 +62,16 @@
   <div class="grid">
     <article class="card">
       <p class="eyebrow">Holdout Validation</p>
-      <div class="stat" style="color: var(--accent-green);">4 / 4</div>
-      <p>Masked-protocol folds won by Multi-Physics 25 vs baseline raw 19 (+0.00469 mean DTI, 3/4 folds, probe 0.0000).</p>
+      <div class="stat" style="color: var(--accent-green);">3 / 4</div>
+      <p>Masked-protocol folds won by Multi-Physics 25 vs raw19 (+0.00469 mean DTI; probe 0.0000). This is a proxy result, not a hidden-label score.</p>
       <div class="stat-sub">Round-2 leakage-free validation; round-1 unmasked 4/4 demoted to diagnostic</div>
     </article>
 
     <article class="card">
       <p class="eyebrow">Duplicate Root-Cause</p>
       <div class="stat" style="color: var(--accent-warn);">1 = 5</div>
-      <p>GEMSDOE1 and 5GEMSDOE published byte-for-byte identical files (SHA-256 <code>7f00890a</code>, 0 differing pixels). Three leaderboard rows sit at 0.1563 — three uploads of the same bytes.</p>
-      <div class="stat-sub">8GEMSDOE file is unique &amp; was never uploaded (corrected 2026-09-27)</div>
+      <p>GEMSDOE1 and 5GEMSDOE published byte-for-byte identical files (SHA-256 <code>7f00890a</code>, 0 differing pixels). If those were uploaded, the equal public score follows.</p>
+      <div class="stat-sub">Upload receipts are absent; the third 0.1563 row cannot be byte-attributed.</div>
     </article>
 
     <article class="card">
@@ -83,8 +84,8 @@
     <article class="card">
       <p class="eyebrow">Leaderboard Target</p>
       <div class="stat" style="color: var(--accent-gold);">0.3049</div>
-      <p>Current #1 score on DrivenData leaderboard. Our multi-physics lineament framework targets this benchmark.</p>
-      <div class="stat-sub">Phase 1 ($50k) + Phase 2 ($250k) pool</div>
+      <p>Leaderboard snapshot fetched 2026-09-27. This workbench targets a better validated model, not leaderboard churn.</p>
+      <div class="stat-sub">Rules say to use the competition website for the current timeline.</div>
     </article>
   </div>
 
@@ -93,9 +94,9 @@
   <div class="card">
     <p>Our line-by-line byte hash and pixel array comparison resolved the 0.1563 mystery:</p>
     <ul>
-      <li><strong>GEMSDOE1 and 5GEMSDOE were Byte-for-Byte Identical:</strong> Both published TIFF files have the exact same SHA-256 (<code>7f00890a62878d612fb5eef67a9a364a2df819433dde74b6762ce4fc0fc4fe15</code>) and size (570,890 bytes). 5GEMSDOE re-uploaded GEMSDOE1's <code>ens12</code> file under account <code>SDCF9</code>. Because the submission files were identical, DrivenData assigned them the identical score of <strong>0.1563</strong>.</li>
-      <li><strong>CORRECTED 2026-09-27 — 8GEMSDOE did not cause a 0.1563 tie:</strong> 8GEMSDOE's published file (<code>b83ea0e7…</code>) differs from the shared base at 563,092 pixels and is logged by 8GEMSDOE itself as <code>BUILT-UNIQUE-UNUPLOADED</code> with no score claimed. The third 0.1563 leaderboard row (<code>smashi34</code>) is a third upload of the shared <code>7f00890a</code> bytes. (DrivenData does not expose uploaded files, so receipt linkage is unverified — but identical bytes necessarily score identically.)</li>
-      <li><strong>Low Scores (0.0107 to 0.0343) in Other Repos:</strong> Caused by uncalibrated high area budgets (e.g. 6% binary mask = 310,000 pixels of 1.0) which triggered catastrophic false positive penalties on the sparse hidden test set.</li>
+      <li><strong>GEMSDOE1 and 5GEMSDOE publish Byte-for-Byte Identical artifacts:</strong> Both published TIFFs have SHA-256 <code>7f00890a62878d612fb5eef67a9a364a2df819433dde74b6762ce4fc0fc4fe15</code>, 570,890 bytes, and zero differing pixels. If these published bytes were submitted, their public scores must agree. The audit has no upload receipts, so it does not identify account uploads.</li>
+      <li><strong>CORRECTED 2026-09-27 — 8GEMSDOE did not establish a tie:</strong> 8GEMSDOE's published <code>b83ea0e7…</code> field differs from the shared base at 563,092 pixels; its own log says <code>BUILT-UNIQUE-UNUPLOADED</code>. The identity of the third 0.1563 upload is an unresolved irregularity, not an inference from four-decimal score rounding.</li>
+      <li><strong>Low Scores (0.0107 to 0.0343) in Other Repos:</strong> broad binary masks are consistent with the metric's false-positive penalty, but hidden labels and upload receipts are unavailable. This is a hypothesis to test, not a proven platform diagnosis.</li>
     </ul>
     <p><a href="session-review.md">Read the full machine-readable artifact comparison in session-review.md →</a></p>
   </div>
@@ -143,6 +144,9 @@
     </table>
   </div>
   <p><a href="hypotheses.md">Read complete equations, layer definitions, and literature citations →</a></p>
+
+  <h2>Round-3 Candidate Result: H11 Rejected</h2>
+  <div class="notice notice-warn"><p><strong>H11 drainage-deflection alignment did not clear its preregistered gate.</strong> On the frozen masked spatial holdout, multi25+H11 scored 0.08650 versus 0.09071 for multi25 (1/4 folds; −0.00421 mean; leakage probe 0.0000). No H11 artifact was packaged and no weekly slot was spent. H12–H14 require official external data whose transfers are blocked in this sandbox. <a href="hypotheses-round3.md">Review candidates, official sources, and the complete result →</a></p></div>
 
   <!-- ROUND-2 CANDIDATES -->
   <h2>Round-2 Candidates (H6–H10): New Mechanisms Only</h2>
@@ -223,7 +227,7 @@
       </tbody>
     </table>
   </div>
-  <p><strong>No weekly submission slot spent.</strong> Neither preregistered candidate beat the holdout best, so per the frozen rule nothing new is packaged. The standing <code>06ca61e5</code> file keeps format approval.</p>
+  <p><strong>No weekly submission slot spent.</strong> Neither preregistered candidate beat the holdout best, so per the frozen rule nothing new is packaged. The archived <code>06ca61e5</code> file remains locally format-validated but is not release-authorized.</p>
 
   <!-- SPATIALLY-BLOCKED HOLDOUT VALIDATION -->
   <h2>Round-1 Holdout Table (Historical Unmasked Diagnostic)</h2>

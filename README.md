@@ -2,20 +2,20 @@
 
 > **Read this README every session.** Maximize P(Win): prioritize scientifically defensible discovery and validation over leaderboard churn. Own the Outcome: follow data, model, artifact and published result end to end. Line-by-line verification from official sources. Zero hallucinations.
 
-[Workbench](https://buffedlizard55-lab.github.io/12GEMSDOE/) · [Executive Submission Guide](https://buffedlizard55-lab.github.io/12GEMSDOE/executive-summary.html) · [Evidence & Sibling Audit](docs/session-review.md) · [Round-1 Hypotheses](docs/hypotheses.md) · [Round-2 Hypotheses H6–H10](docs/hypotheses-round2.md) · [Official Leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)
+[Workbench](https://buffedlizard55-lab.github.io/12GEMSDOE/) · [Executive Submission Guide](https://buffedlizard55-lab.github.io/12GEMSDOE/executive-summary.html) · [Evidence & Sibling Audit](docs/session-review.md) · [Round-1 Hypotheses](docs/hypotheses.md) · [Round-2 Hypotheses H6–H10](docs/hypotheses-round2.md) · [Round-3 Candidate Register & H11 Result](docs/hypotheses-round3.md) · [Official Leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)
 
-> **Round-2 status (2026-09-27):** 5 new mechanism-distinct candidates (H6–H10) preregistered, built reproducibly (30-channel cube, `evidence/feature-build.json`), and validated on the leakage-free masked holdout (probe 0.0000) + terminal-truncation holdout. multi30 (−0.00183 vs multi25) and gated H6 both **failed their release gates — no submission slot spent**. Lead for round 3: short straight tip rays scored 0.2920 (2.6× random) on hidden terminals. Standing file `06ca61e5` keeps format approval; multi25 re-confirmed vs raw19 on the masked protocol (+0.00469, 3/4 folds).
+> **Latest status (2026-09-27):** All competition rasters were downloaded and checksum-verified from the pinned team bridge in this session. The Round-3 H11 drainage-deflection feature was preregistered before coding, built label-free, and tested once on the frozen masked spatial holdout. It **failed** the gate: multi25+H11 = 0.08650 vs multi25 = 0.09071 (1/4 fold wins; −0.00421 mean). No weekly slot and no H11 submission artifact were spent. Read [the complete H11 register and results](docs/hypotheses-round3.md).
 
 ---
 
-## Direct Deliverable: Approved Competition Submission
+## Direct Deliverable: Format-Validated Candidate (Release Gate Pending)
 
 - **GeoTIFF File:** [`docs/downloads/12GEMSDOE_multiphysics_submission_06ca61e5.tif`](docs/downloads/12GEMSDOE_multiphysics_submission_06ca61e5.tif) (1,205,044 bytes, 1.20 MB)
 - **ZIP File:** [`docs/downloads/12GEMSDOE_multiphysics_submission_06ca61e5.zip`](docs/downloads/12GEMSDOE_multiphysics_submission_06ca61e5.zip) (1,131,737 bytes, 1.13 MB)
 - **SHA-256 Hash:** `06ca61e5c6a3e55eaf40228d97054a35af1187be9c98e0ef95d996f9919efc6b`
 - **Pre-formatted DrivenData Note:**  
-  `12GEMSDOE-v1 | Multiphysics Basement-Curvature + Tilt-Angle + Strain-Dilation | [0, 1] verified | sha256:06ca61e5c6a3`
-- **Format Verification:** Single-band `float32`, EPSG:32611, 100 m resolution, 3,292 × 3,730, strictly finite and in $[0.0, 0.95]$ inside valid footprint (5,167,373 pixels), strict `NaN` outside footprint (7,111,787 pixels). Fully passes `core.validate()`.
+  `12GEMSDOE-v1 | Multiphysics Basement-Curvature + Tilt-Angle + Strain-Dilation | format-validated | sha256:06ca61e5c6a3`
+- **Format verification (local):** Single-band `float32`, EPSG:32611, 100 m resolution, 3,292 × 3,730, finite in $[0.0, 0.95]$ inside the 5,167,373-pixel template footprint and `NaN` outside the 7,111,787-pixel footprint. It passes `core.validate()` against the downloaded official template. This is not a claim that DrivenData has accepted or scored the file.
 
 ---
 
@@ -146,14 +146,13 @@ Go ahead and create a pull request and then merge the pull request onto the main
 
 1. **GEMSDOE1 & 5GEMSDOE are Byte-for-Byte Identical (0.0% Difference):**
    - Both published TIFF files share the identical SHA-256 hash: `7f00890a62878d612fb5eef67a9a364a2df819433dde74b6762ce4fc0fc4fe15` (570,890 bytes).
-   - 5GEMSDOE literally downloaded GEMSDOE1's `ens12` artifact and re-uploaded it under participant account `SDCF9`. DrivenData evaluated the exact same file, returning the exact same score of **0.1563**.
+   - The two repositories publish the same pinned `ens12` artifact. If those published bytes were the uploaded bytes, identical public-set scoring is necessary. **Upload receipts are not present in this audit**, so the audit does not assert who uploaded which file.
 2. **CORRECTED 2026-09-27: 8GEMSDOE's published file is unique and was never uploaded:**
    - The earlier claim (8GEMSDOE "unioned masked labels → same 0.1563") is withdrawn. Measured: `gems8.tif` (`b83ea0e7…`) differs from `gems1.tif` at 563,092 pixels (off-label correlation 0.076), and 8GEMSDOE's own README logs it as `BUILT-UNIQUE-UNUPLOADED` with no score claimed.
-   - The triple 0.1563 (`extradr19`, `SDCF9`, `smashi34`; verified on the [leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) 2026-09-27) is explained by three uploads of the same `7f00890a` bytes. DrivenData does not expose uploaded files, so receipt linkage stays unverified — but identical bytes necessarily score identically.
+   - Three public leaderboard rows showed 0.1563 in the 2026-09-27 snapshot. The byte audit establishes the GEMSDOE1/5 published duplicate, but **cannot attribute the third row without its upload receipt**. This is intentionally recorded as an irregularity, not inferred from score rounding.
    - Staff rulings used: pixel-exact catalogue mask ([11516/2](https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516/2), [11516/4](https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516/4)); "new fault" includes new geometry of existing systems ([11536/2](https://community.drivendata.org/t/where-do-you-draw-the-line/11536/2)).
-3. **Why Low Scores Occurred (0.0107 to 0.0343):**
-   - In 11GEMSDOE (0.0202) and 9GEMSDOE (0.0107), models emitted high binary area budgets (6.6% = 340,000 positive pixels). Against the sparse unmapped test faults, this generated over 300,000 false positive pixels, incurring massive penalty terms ($\alpha \cdot FP_w$) that collapsed DTI.
-   - 12GEMSDOE's standing file uses calibrated structural probability shaping: 224,173 positive pixels (4.34% of footprint), of which 163,185 are off-catalogue (3.16%); it differs from the shared artifact at 373,847 pixels (7.23%). Round-2 validation additionally moved holdout emission to binary top-2%, the leaderboard-winning density regime (leader ≈ 4–5× random coverage at 1–2% per 7GEMSDOE forensics).
+3. **Low-score interpretation is not platform-verified:** 9GEMSDOE and 11GEMSDOE reported 0.0107 and 0.0202. Their repositories describe broader binary masks; that is **consistent with** the DTI false-positive term, but neither hidden labels nor upload receipts are available here. It is a testable diagnosis, not a proven causal attribution.
+   - The 12GEMSDOE artifact has 224,173 positive pixels (4.34% of the template footprint), 163,185 of them off-catalogue, and differs from the shared file at 373,847 valid pixels (7.23%). Its format status is verified; private-label performance is unknown.
 
 ---
 
@@ -181,7 +180,7 @@ Protocol: 512-px spatial blocks, 12-px collar exclusion, fixed seed 12027, offic
 | **Fold 3** | 0.12309 | **0.12921** | 0.12916 | <span style="color:#34d399; font-weight:700;">+0.00607</span> |
 | **Mean DTI Score** | **0.11275** | **0.11695** | **0.11744** | <span style="color:#34d399; font-weight:800;">+0.00469 (100% Fold Win Rate)</span> |
 
-**Round-1 gate (historical diagnostic, demoted 2026-09-27):** Multi-Physics Candidate 25 won across 4 out of 4 spatial folds (+0.00469 mean DTI improvement) on the *unmasked* screen. Because that screen scored against dense known faults without the official pixel-exact mask (uniform random 6% beat every learned arm), it cannot rank discovery skill; the standing file keeps format approval and its skill gate is partially re-earned on the masked protocol (+0.00469, 3/4 folds, probe 0.0000), with sibling-baseline reproduction still outstanding. See [Round-2 hypotheses](docs/hypotheses-round2.md), [masked holdout results](docs/holdout_masked.json), [trace holdout](docs/holdout_trace.json), and [audit corrections](docs/session-review.md#6-round-2-audit-corrections--methodological-fixes-2026-09-27).
+**Round-1 gate (historical diagnostic, demoted 2026-09-27):** Multi-Physics Candidate 25 won across 4 out of 4 spatial folds (+0.00469 mean DTI improvement) on the *unmasked* screen. Because that screen scored against dense known faults without the official pixel-exact mask (uniform random 6% beat every learned arm), it cannot rank discovery skill. The archived TIFF is format-valid but **not release-authorized**: multi25 has a masked-protocol gain over raw19 (+0.00469, 3/4 folds, probe 0.0000), while reproduction of a strongest sibling baseline remains outstanding. H11 failed the next frozen test. See [Round 2](docs/hypotheses-round2.md), [Round 3](docs/hypotheses-round3.md), [masked results](docs/holdout_masked.json), and [audit corrections](docs/session-review.md#6-round-2-audit-corrections--methodological-fixes-2026-09-27).
 
 ---
 
@@ -198,14 +197,16 @@ python scripts/prepare_data.py
 # 3. Build the auditable 30-channel feature cube (19 raw + 6 round-1 + 5 round-2)
 python scripts/build_candidate_features.py
 
-# 4. Run the masked spatial holdout + trace holdout (no submission slot spent)
+# 4. Run leakage-safe validation (no submission slot spent)
 python scripts/holdout_masked.py
 python scripts/holdout_trace.py
+python scripts/build_h11_drainage_feature.py
+python scripts/holdout_round3_h11.py
 
-# 5. (Standing artifact only) regenerate/validate the official submission GeoTIFF
-python scripts/generate_submission_tif.py
+# 5. Generate a format-validated research GeoTIFF (this cannot authorize release)
+python scripts/generate_submission_tif.py --name multi25-repro
 
-# 5. Run the full test suite
+# 6. Run the full test suite
 pytest
 ```
 

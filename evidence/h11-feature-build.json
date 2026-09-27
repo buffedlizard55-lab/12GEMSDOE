@@ -1,0 +1,36 @@
+{
+  "built_by": "scripts/build_h11_drainage_feature.py",
+  "code_sha256": "bbdcf02168e9adc45589be833f50fc2ba9c00b91ab966f8839ef3baacfe806c3",
+  "output": {
+    "file": "data/h11_drainage_deflection.npy",
+    "sha256": "554cbd381755d6b09335d6ca939b3d4a5ccbf79265a7c16ead8030200d77248b",
+    "shape": [
+      3730,
+      3292
+    ],
+    "dtype": "float32"
+  },
+  "inputs": {
+    "training_features.tif": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+    "sample_submission.tif": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc"
+  },
+  "official_band_indices_1_based": {
+    "det_elev": 12,
+    "det_elev_slope": 19
+  },
+  "parameters": {
+    "scales_px": [
+      1.0,
+      2.0,
+      4.0
+    ],
+    "tangent_offset_px": 3,
+    "line_aggregation_pixels": 9,
+    "boundary_zero_pixels": 4
+  },
+  "within_footprint_median_imputation": {
+    "det_elev": -75.57621002197266,
+    "det_elev_slope": 3.7492629289627075
+  },
+  "labels_used": false
+}

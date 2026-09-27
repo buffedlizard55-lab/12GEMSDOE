@@ -1,0 +1,175 @@
+{
+  "protocol": "round3 preregistered masked spatial holdout; official pixel-exact catalogue mask on FP; binary top-2% emission; 512px blocks; 12px collar; seed 12027",
+  "preregistered_register": "docs/hypotheses-round3.md",
+  "budget": 0.02,
+  "h11_feature_sha256": "554cbd381755d6b09335d6ca939b3d4a5ccbf79265a7c16ead8030200d77248b",
+  "h11_feature_code_sha256": "bbdcf02168e9adc45589be833f50fc2ba9c00b91ab966f8839ef3baacfe806c3",
+  "core_sha256": "27f1adfb460b719b1507fd8678f3a2b40e2c5a73225238ded90315fd16f8eee6",
+  "script_sha256": "31116cabe899c1567398faa1fde6285fb852f12c2c3df0a4a0607ddded157a13",
+  "arms": {
+    "multi25": "Existing current holdout reference: GBM on 25 channels.",
+    "multi25_plus_h11": "Same GBM plus the label-free H11 feature.",
+    "h11_standalone": "Unsupervised H11 score emitted at same 2% budget.",
+    "random02": "Fixed-seed random equal-density control."
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "train_positive": 41865,
+      "train_negative": 100000,
+      "score_pixels": 1257920,
+      "score_positive": 17637,
+      "arms": {
+        "multi25": {
+          "tp": 1463.959452424196,
+          "fp": 21837.324993905,
+          "fn": 16173.040547575803,
+          "dti": 0.07799523784614522
+        },
+        "multi25_plus_h11": {
+          "tp": 1388.2071995530985,
+          "fp": 22051.98593987912,
+          "fn": 16248.792800446901,
+          "dti": 0.07385008441891723
+        },
+        "h11_standalone": {
+          "tp": 834.6607423880027,
+          "fp": 23400.35029626948,
+          "fn": 16802.339257612,
+          "dti": 0.04403008161679846
+        },
+        "random02": {
+          "tp": 2666.440539123871,
+          "fp": 24019.80901041413,
+          "fn": 14970.55946087613,
+          "dti": 0.1371142653675589
+        }
+      },
+      "leakage_probe_dti": 0.0,
+      "seconds": 33.64
+    },
+    {
+      "fold": 1,
+      "train_positive": 43563,
+      "train_negative": 100000,
+      "score_pixels": 1250187,
+      "score_positive": 15803,
+      "arms": {
+        "multi25": {
+          "tp": 1602.0983722293056,
+          "fp": 22286.23468349689,
+          "fn": 14200.901627770694,
+          "dti": 0.09196855603267882
+        },
+        "multi25_plus_h11": {
+          "tp": 1561.2502235762818,
+          "fp": 22433.4389299318,
+          "fn": 14241.749776423718,
+          "dti": 0.08951436172626016
+        },
+        "h11_standalone": {
+          "tp": 361.6860913143189,
+          "fp": 24271.500042070722,
+          "fn": 15441.31390868568,
+          "dti": 0.02058656297700094
+        },
+        "random02": {
+          "tp": 2570.398256733154,
+          "fp": 23896.93174527914,
+          "fn": 13232.601743266845,
+          "dti": 0.1433105185253473
+        }
+      },
+      "leakage_probe_dti": 0.0,
+      "seconds": 31.96
+    },
+    {
+      "fold": 2,
+      "train_positive": 45359,
+      "train_negative": 100000,
+      "score_pixels": 1230268,
+      "score_positive": 14147,
+      "arms": {
+        "multi25": {
+          "tp": 1073.8042612763168,
+          "fp": 22738.315014343123,
+          "fn": 13073.195738723683,
+          "dti": 0.06677877290135187
+        },
+        "multi25_plus_h11": {
+          "tp": 1078.418339467189,
+          "fp": 22822.78327585029,
+          "fn": 13068.581660532811,
+          "dti": 0.06699149189071231
+        },
+        "h11_standalone": {
+          "tp": 240.37686471509528,
+          "fp": 24112.180295509053,
+          "fn": 13906.623135284904,
+          "dti": 0.014848975170616719
+        },
+        "random02": {
+          "tp": 2326.515520008376,
+          "fp": 23595.251926394398,
+          "fn": 11820.484479991625,
+          "dti": 0.14098424901667247
+        }
+      },
+      "leakage_probe_dti": 0.0,
+      "seconds": 31.54
+    },
+    {
+      "fold": 3,
+      "train_positive": 46675,
+      "train_negative": 100000,
+      "score_pixels": 1428998,
+      "score_positive": 13401,
+      "arms": {
+        "multi25": {
+          "tp": 2016.0191482565413,
+          "fp": 24311.894143851852,
+          "fn": 11384.98085174346,
+          "dti": 0.1261085256946408
+        },
+        "multi25_plus_h11": {
+          "tp": 1853.5623554228252,
+          "fp": 24687.59956651931,
+          "fn": 11547.437644577174,
+          "dti": 0.11563781961140399
+        },
+        "h11_standalone": {
+          "tp": 466.91631461698853,
+          "fp": 27566.260890193917,
+          "fn": 12934.083685383011,
+          "dti": 0.02859703940048856
+        },
+        "random02": {
+          "tp": 2171.035662353061,
+          "fp": 27656.46013717223,
+          "fn": 11229.96433764694,
+          "dti": 0.13010887804030016
+        }
+      },
+      "leakage_probe_dti": 0.0,
+      "seconds": 32.11
+    }
+  ],
+  "mean_multi25": 0.09071277311870418,
+  "mean_multi25_plus_h11": 0.08649843941182342,
+  "mean_h11_standalone": 0.02701566479122617,
+  "mean_random02": 0.1378794777374697,
+  "paired_multi25_plus_h11_vs_multi25": [
+    -0.004145153427227988,
+    -0.002454194306418661,
+    0.00021271898936044142,
+    -0.010470706083236803
+  ],
+  "wins_multi25_plus_h11": 1,
+  "release_allowed": false,
+  "release_gate": {
+    "predeclared": "positive mean paired DTI and >=3/4 fold wins over multi25",
+    "passed": false,
+    "decision": "REJECT H11 as a submission upgrade; no weekly slot and no new submission artifact"
+  },
+  "total_seconds": 129.55
+}
