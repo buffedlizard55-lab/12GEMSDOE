@@ -1,6 +1,10 @@
 {
   "reviewed_utc": "2026-09-27",
   "round2_utc": "2026-09-27",
+  "round4_utc": "2026-09-27",
+  "round4_registers_read": ["GEMSDOE10/HYPOTHESES.md (incl. session-3 H19/H20/H21 results)", "11GEMSDOE/docs/HYPOTHESES.md (H1-H7 measured)", "7GEMSDOE/knowledge/session7/next_session.md"],
+  "round4_official_pages_retrieved": ["https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/ (snapshot: DARD 0.3168; 0.1563 x3)", "https://registry.opendata.aws/sentinel-2/ (L2A free/open, no-account S3; blocked in sandbox, verified 000)"],
+  "round4_band_identity_checks": ["tc vs computed tilt corr 0.0128 (independent)", "grad(tc) vs H3 grad(tilt) corr 0.0213", "B18 hg signed directional (-15.4..+12.9)", "B11 vg signed, zero-crossings defined"],
   "official_pages_retrieved": [
     "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
     "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",

@@ -1,0 +1,56 @@
+{
+  "built_by": "scripts/build_round4_features.py",
+  "preregistered_register": "docs/hypotheses-round4.md",
+  "code_sha256": "b711bc8e1ed19de5b7162e8fb7d6f84d494a705f4a4f2b7200d35a6832ed95b5",
+  "output": {
+    "file": "data/round4_features.npy",
+    "sha256": "6e3d48cc85d222fff2576607052fb7a977072b6ed8a87d37e1a775be1861ce15",
+    "shape": [
+      3730,
+      3292,
+      4
+    ],
+    "dtype": "float32",
+    "channels": {
+      "0": "H15 coincident multi-physics boundary alignment",
+      "1": "H16 strain-gradient block-boundary ridges",
+      "2": "H17 gravity VG zero-contour x |HG| coincidence",
+      "3": "H18 tc lineament topology"
+    }
+  },
+  "inputs": {
+    "training_features.tif": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+    "sample_submission.tif": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc"
+  },
+  "official_band_indices_1_based": {
+    "rtp": 2,
+    "tc": 6,
+    "geod_shearrate": 7,
+    "geod_dilaterate": 8,
+    "iso_grav_anom_vg": 11,
+    "iso_grav_anom": 13,
+    "depth_to_base_surf": 15,
+    "cond_surf": 17,
+    "iso_grav_anom_hg": 18
+  },
+  "parameters": {
+    "line_aggregation_pixels": 9,
+    "orientations": 4,
+    "h17_zero_window_pixels": 3,
+    "h17_density_window_pixels": 5,
+    "boundary_zero_pixels": 4,
+    "normalization": "robust [p50,p95]->[0,1] on valid footprint"
+  },
+  "within_footprint_median_imputation": {
+    "1": -137.22166442871094,
+    "5": 18.48169994354248,
+    "6": 9.699999809265137,
+    "7": 5.5,
+    "10": -0.07213491946458817,
+    "12": -7.26103401184082,
+    "14": 316.3645324707031,
+    "16": 2.885897636413574,
+    "17": 0.037620771676301956
+  },
+  "labels_used": false
+}
