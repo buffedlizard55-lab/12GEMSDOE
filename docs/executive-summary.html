@@ -16,6 +16,7 @@
     <a href="session-review.md">Evidence Audit</a>
     <a href="hypotheses.md">Hypotheses</a>
     <a href="hypotheses-round2.md">Round-2 H6–H10</a>
+    <a href="hypotheses-round3.md">Round-3 H11–H14</a>
     <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener">Leaderboard ↗</a>
   </nav>
 </header>
@@ -27,9 +28,9 @@
 
   <!-- PROMINENT DOWNLOAD CARD -->
   <section class="hero-cta">
-    <span class="badge">✓ Validated Submission Ready</span>
-    <h2>Download Approved Submission Artifact</h2>
-    <p>Multi-Physics 25 Model (H1 Concealed Basement Step + H3 Magnetic Tilt-Angle + H2 Strain Dilation). Fully verified against the competition raster template: 3,292 × 3,730, single-band float32, EPSG:32611, 100 m resolution, strictly finite and in [0.0, 0.95] inside survey footprint, NaN outside.</p>
+    <span class="badge">Format-validated archive · not release-authorized</span>
+    <h2>Download Candidate GeoTIFF</h2>
+    <p>Multi-Physics 25 archive (H1 Concealed Basement Step + H3 Magnetic Tilt-Angle + H2 Strain Dilation). It is locally verified against the downloaded template: 3,292 × 3,730, one float32 band, EPSG:32611, 100 m, finite in [0.0, 0.95] inside the footprint and NaN outside. It has not been accepted or scored by DrivenData in this evidence set; do not use a weekly slot until the project release gate is met.</p>
 
     <div class="btn-row">
       <a class="button-primary" href="downloads/12GEMSDOE_multiphysics_submission_06ca61e5.tif" download="12GEMSDOE_multiphysics_submission_06ca61e5.tif">
@@ -47,7 +48,7 @@
         <span id="copy-status" style="color: var(--accent-green); display: none; font-weight: 700;">✓ Copied to clipboard!</span>
       </div>
       <div class="note-input-group">
-        <input type="text" id="sub-note" class="note-input" readonly value="12GEMSDOE-v1 | Multiphysics Basement-Curvature + Tilt-Angle + Strain-Dilation | [0, 1] verified | sha256:06ca61e5c6a3">
+        <input type="text" id="sub-note" class="note-input" readonly value="12GEMSDOE-v1 | MultiPhysics25 archive | format-validated | sha256:06ca61e5c6a3">
         <button class="btn-copy" onclick="copyNote()">Copy Note</button>
       </div>
     </div>
@@ -58,7 +59,7 @@
   <ol>
     <li>
       <strong>Step 1: Download the Validated Artifact</strong><br>
-      Click the green <strong>"Download .TIF"</strong> button above (or download the single-GeoTIFF <code>.ZIP</code>). Save it to your local machine.
+      Click the green <strong>"Download .TIF"</strong> button above (or download the single-GeoTIFF <code>.ZIP</code>) and save it locally. The archive is file-format validated; release eligibility is separately documented on the workbench.
     </li>
     <li>
       <strong>Step 2: Sign In to DrivenData</strong><br>
@@ -76,7 +77,7 @@
     <li>
       <strong>Step 5: Paste the Submission Note</strong><br>
       Click <strong>"Copy Note"</strong> above and paste it into the <strong>"Note (optional)"</strong> box on DrivenData:
-      <br><code>12GEMSDOE-v1 | Multiphysics Basement-Curvature + Tilt-Angle + Strain-Dilation | [0, 1] verified | sha256:06ca61e5c6a3</code>
+      <br><code>12GEMSDOE-v1 | MultiPhysics25 archive | format-validated | sha256:06ca61e5c6a3</code>
       <br><small style="color:var(--text-muted)">This tags the submission uniquely with its model identity and SHA-256 hash so your team can track results on the leaderboard.</small>
     </li>
     <li>
@@ -88,14 +89,14 @@
   <!-- ERROR ROOT-CAUSE ANALYSIS -->
   <h2>Troubleshooting: The "Predicted values must be in range [0, 1]" Error</h2>
   <div class="notice notice-warn">
-    <h3>Root Cause of the Submission Form Rejection</h3>
-    <p>When previous submissions returned <code>Predicted values must be in range [0, 1]</code>, it was caused by one of three backend validation triggers:</p>
+    <h3>What the Error Does — and Does Not — Establish</h3>
+    <p>The rejected file and DrivenData parser log were not retained, so this generic message does <strong>not</strong> identify the past root cause. The official format page requires one float32 band with values in <code>[0, 1]</code>, the same CRS/resolution/bounds as training, and null or NaN outside the bounds. The checks below are local prevention checks, not an assertion about DrivenData’s parser.</p>
     <ul>
-      <li><strong>Non-Finite Values Inside Footprint:</strong> Any pixel inside the valid 5,167,373 survey footprint that evaluates to <code>NaN</code>, <code>+Inf</code>, or <code>-Inf</code> causes DrivenData's parser to reject the file with this generic error message.</li>
-      <li><strong>Finite Values Outside Footprint:</strong> If background pixels outside the survey boundary contain numbers (e.g. <code>0.0</code> or negative nodata like <code>-9999</code>) instead of strict <code>NaN</code>, the template mask comparison fails.</li>
-      <li><strong>Out-of-Bounds Probabilities:</strong> Any unclipped raw logits ($<0$ or $>1$) trigger immediate range rejection.</li>
+      <li><strong>Valid-footprint values:</strong> Check that every valid pixel is finite and in <code>[0, 1]</code>.</li>
+      <li><strong>Grid and mask:</strong> Check one band, float32 dtype, template CRS/shape/transform, and the project’s conservative NaN-outside convention. The official wording allows null or NaN outside bounds.</li>
+      <li><strong>Package:</strong> Upload one GeoTIFF directly or a ZIP containing exactly one GeoTIFF, as stated in the form.</li>
     </ul>
-    <p><strong>How 12GEMSDOE Eliminates This Error:</strong> Our strict automated validator (<code>scripts/core.py:validate()</code>) asserts before packaging that every single valid pixel is strictly finite and $\in [0.0, 0.95]$, and every background pixel is strictly <code>NaN</code>. This file passes all 17 conformance criteria.</p>
+    <p><strong>What is verified locally:</strong> <code>scripts/core.py:validate()</code> checks grid equality, one float32 band, finite in-range values inside the template mask, and NaN outside it. The archived file passes that local validator. DrivenData remains the final format arbiter.</p>
   </div>
 
   <!-- COMPETITION SPECIFICATIONS -->
@@ -137,8 +138,8 @@
         </tr>
         <tr>
           <td><strong>Masking Rule</strong></td>
-          <td>Strict <code>NaN</code> outside GeoDAWN survey footprint</td>
-          <td>Exactly 7,111,787 NaN pixels outside footprint</td>
+          <td>Null or <code>NaN</code> outside GeoDAWN survey bounds</td>
+          <td>Repository uses 7,111,787 NaN pixels outside footprint (conservative local convention)</td>
         </tr>
         <tr>
           <td><strong>Submission Limit</strong></td>
@@ -147,8 +148,8 @@
         </tr>
         <tr>
           <td><strong>Deadline</strong></td>
-          <td>Phase 1: December 3, 2026 11:59 PM UTC (5:00 PM ET)</td>
-          <td>Official OSTI 96647 Rules Document</td>
+          <td>See the live competition website</td>
+          <td>Rules PDF directs competitors to the competition website for the current timeline.</td>
         </tr>
       </tbody>
     </table>
@@ -157,9 +158,9 @@
   <h2>Audit of Team Historical Scores: Why 0.1563 Kept Occurring</h2>
   <p>The team previously observed identical <strong>0.1563</strong> public scores across multiple submissions. Our byte-level audit revealed:</p>
   <ul>
-    <li><strong>GEMSDOE1 &amp; 5GEMSDOE:</strong> The uploaded TIFF files were <strong>100% byte-for-byte identical</strong> (SHA-256: <code>7f00890a62878d612fb5eef67a9a364a2df819433dde74b6762ce4fc0fc4fe15</code>). 5GEMSDOE re-submitted GEMSDOE1's <code>ens12</code> file, resulting in identical scoring.</li>
-    <li><strong>CORRECTED 2026-09-27 — 8GEMSDOE:</strong> 8GEMSDOE's published file (<code>b83ea0e7…</code>) differs from the shared base at 563,092 pixels and is logged by 8GEMSDOE itself as <code>BUILT-UNIQUE-UNUPLOADED</code> with no score claimed. The third 0.1563 leaderboard row (<code>smashi34</code>) is a third upload of the shared <code>7f00890a</code> bytes. (Earlier versions of this page claimed a "masked-labels union" caused the tie — withdrawn; see <a href="session-review.md">session-review §1.2 and §6</a>.)</li>
-    <li><strong>12GEMSDOE Multi-Physics:</strong> A completely independent model and unique raster differing at 373,847 pixels (7.23% of valid footprint; off-label correlation 0.07). Multi-Physics 25 beats the raw-19 baseline on the leakage-free masked holdout (+0.00469 mean DTI, 3/4 folds, probe 0.0000). Round-2 candidates (H6–H10) were validated without spending a submission slot — see <a href="hypotheses-round2.md">round-2 results</a>.</li>
+    <li><strong>GEMSDOE1 &amp; 5GEMSDOE:</strong> The <em>published</em> TIFF files are <strong>100% byte-for-byte identical</strong> (SHA-256: <code>7f00890a62878d612fb5eef67a9a364a2df819433dde74b6762ce4fc0fc4fe15</code>). If those published bytes were uploaded, identical scoring follows; upload receipts are unavailable to this audit.</li>
+    <li><strong>CORRECTED 2026-09-27 — 8GEMSDOE:</strong> 8GEMSDOE's published file (<code>b83ea0e7…</code>) differs from the shared base at 563,092 pixels and its own log says <code>BUILT-UNIQUE-UNUPLOADED</code>. The third 0.1563 leaderboard row cannot be byte-attributed without an upload receipt. (The earlier “masked-labels union” explanation is withdrawn; see <a href="session-review.md">session review</a>.)</li>
+    <li><strong>12GEMSDOE Multi-Physics:</strong> A unique raster differing at 373,847 pixels (7.23% of valid footprint; off-label correlation 0.07). Multi-Physics 25 beats raw19 on the masked known-fault proxy (+0.00469 mean DTI, 3/4 folds, probe 0.0000), but is not release-authorized while the strongest sibling baseline is unreproduced. Round 2 and rejected Round 3 evidence is linked on the workbench.</li>
   </ul>
 </main>
 
