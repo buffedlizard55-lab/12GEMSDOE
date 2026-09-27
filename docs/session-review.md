@@ -181,3 +181,42 @@ What was done, in order, with the command or file that proves each line.
   catalogue-density proxy. If the real new-fault truth is far sparser, the optimal mass is
   lower; the marginal condition `p > 0.2 · DTI` in the Round-5 register is the rule to
   re-derive it with, not a free parameter to sweep post hoc.
+
+---
+
+## 11. Round-6 session record (2026-09-28)
+
+What was done, in order, with the command or file that proves each line.
+
+1. **Preregistered five new mechanism-distinct hypotheses H25–H29 BEFORE coding** (`docs/hypotheses-round6.md`). Ranking by expected DTI gain ÷ cost: H25 seismic proximity (B10 first use), H26 gravity-slope curvature (B5+B12), H27 conductivity anisotropy (B17), H28 magnetic texture variance (B1), H29 grav-mag decorrelation (B13×B2). External H30 1m DEM (USGS 3DEP) and H31 Sentinel-2 L2A verified free/open via official registries but transport blocked.
+   - Official sources re-verified: problem description https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/ (target = faults indicative of geothermal, not proven vents), about page https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/ (hidden faults require geophysics), leaderboard https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/ (#1 DARD 0.3168 2026-09-28), rules PDF https://docs.nlr.gov/docs/fy26osti/96647.pdf ($300k), mask clarification https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516/2 (pixel-exact), new geometry https://community.drivendata.org/t/where-do-you-draw-the-line/11536/2, Faulds & Hinz https://www.osti.gov/servlets/purl/1724109, QFFD https://www.usgs.gov/programs/earthquake-hazards/science/quaternary-fault-and-fold-database-united-states, GeoDAWN https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and, GDR https://gdr.openei.org/submissions/1391, reference U-Net https://github.com/drivendataorg/gems-prize-reference-solution, 3DEP https://registry.opendata.aws/usgs-lidar/ + https://portal.opentopography.org/raster?opentopoID=OTNED.012021.4269.3, Sentinel-2 https://registry.opendata.aws/sentinel-2-l2a-cogs/.
+2. **Built 5-channel cube** (`scripts/build_round6_features.py`, output SHA-256 `9ccc07d95d3128c3211df6c05633cc25d91a3712e41cd30d09bfc500b0f429eb`, shape 3730×3292×5, float32, label-free, median-imputed). Distinctness measured on 400k random valid pixels: H25 max|corr| 0.4301 vs geod_shearrate, H26 0.336 vs |grad iso_grav_anom_hg|, H27 0.339 vs |grad cond|, H28 0.384 vs tmi_hg, H29 0.120 vs intersection density — all <0.50 per preregistered rule. Initial H26 design correlated 0.86 with det_elev_slope and was revised to iso_grav_anom_slope curvature + relief to achieve distinctness.
+3. **Re-cached fold models** (`scripts/cache_fold_models.py`): raw19 0.08602, multi25 0.09071, random02 0.13788 exact per fold vs `evidence/holdout_masked.json`; multi30 0.08728 vs 0.08889 (minor drift due to rebuild, not used as gate).
+4. **Frozen masked holdout NMS-3 @2%** (`scripts/holdout_round6.py`): 4 folds, 512px blocks, 12px collar, seed 12027, official pixel-exact catalogue mask on FP, leakage probe 0.0000 every fold, both truth protocols (dense catalogue, sparse 20% thinned seed 4242+f). Results:
+   - Dense: multi25 0.22138, H28 0.22143 (3/4), H27 0.22184 (2/4), H26 0.22067 (2/4), H25 0.21568 (1/4), H29 0.22138 (1/4), H15 0.22104 (1/4)
+   - Sparse: multi25 0.11178, H28 0.11438 (3/4, +0.0026), H25 0.11179 (3/4), H26 0.11235 (1/4), H27 0.11149 (2/4), H29 0.11182 (1/4), H15 0.11241 (2/4)
+   - Gate: H28 is the ONLY arm beating multi25+NMS on ≥3/4 folds on BOTH protocols. H25 passes sparse 3/4 but dense 1/4. Emission gate NMS vs topk passes both (dense 0.22085 vs 0.09644, sparse 0.10882 vs 0.04345).
+5. **New artifact** (`scripts/generate_nms_submission_r6.py`): `12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.tif`, SHA-256 `8721329b55c72635803cca27414f3d0ffe4705f48285de0dc7c29d6fd3eb90d3`, 103,347 px (2.000% footprint), binary {0,1}, NaN outside (7,111,787 px), EPSG:32611 100m 3292×3730, 5×5 exclusion invariant, no catalogue pixel touched, plus all-finite fallback and zip. `core.validate()` passes.
+6. **Site updated**: `docs/index.html` hero CTA now R6 (primary TIF, ZIP, fallback, archive R5), `docs/executive-summary.html` R6 guide, `README.md` R6 direct deliverable, `AGENTS.md` current round-6, `tests/test_site.py` expects R6 primary while R5 remains as archive. `tests/test_round6.py` locks distinctness <0.50, H28 gate, artifact conformance. Full suite 41 passed.
+7. **No DrivenData slot spent**. Strongest-sibling-baseline gate still unsatisfied. Release not authorized, format-validated only.
+
+### Limitations carried into next session (updated)
+
+* **No upload receipts** — duplicate 0.1563 attribution still unresolved.
+* **Strongest-sibling-baseline gate unsatisfied** — no sibling model reproduced under masked NMS protocol.
+* **Local truth is known catalogue proxy** — sparse thinned variant is sensitivity check, not real new-fault truth; transfer magnitude of H28 gain (+0.0026 sparse) unknown until scored submission.
+* **Model class gap U-Net vs GBM** — reference solution is U-Net with Monte-Carlo CV (GPU needed). Our arms are per-pixel GBM. This remains largest unexplored lever after emission geometry.
+* **External data transport blocked** — 1m DEM (USGS 3DEP) and Sentinel-2 L2A verified free/open but S3 blocked in-sandbox; GitHub-runner bridge pattern is only viable path. 1m_DEM_links.csv not present in bridge; needs separate fetch from official data tab (requires login) or reconstruction via AWS listing.
+* **Budget transfer risk** — 2% mass selected on folds 0–1 sparse proxy. If real new-fault truth is sparser, optimal mass lower per marginal condition p > 0.2·DTI.
+* **H26 revised** — initial design correlated 0.86 with det_elev_slope, revised to gravity-slope curvature to achieve distinctness; this is recorded, not silently edited.
+
+### Suggestions for next session
+
+1. **Spend one weekly submission slot on R6 artifact** (`8721329b55c7`) to measure real transfer of H28 gain and emission policy. Note: primary NaN outside mirrors official sample; if rejected with `[0,1]` error, retry fallback all-finite once and record which check DrivenData runs — knowledge worth more than slot.
+2. **Train U-Net reference architecture** (GPU) with NMS-3 emission: official reference is U-Net with Monte-Carlo CV; our GBM is per-pixel. Even a simple U-Net with same 25+1 features and NMS emission should beat GBM if spatial context matters.
+3. **Fetch 1m DEM via GitHub runner**: use `1m_DEM_links.csv` from official data tab (requires DrivenData login) or list `s3://usgs-3dep` 1m tiles intersecting GeoDAWN footprint (EPSG:32611 bounds 243350,4508550,572550,4135250). Downsample curvature/openness to 100m and test H30.
+4. **Fetch Sentinel-2 L2A clay/iron-oxide ratios** via `sentinel-cogs` bucket for H31 alteration halo.
+5. **Reproduce strongest sibling baseline** (e.g., DARD 0.3168 or alexoktaba 0.2993) if code shared, or at least reproduce 11GEMSDOE structural arm under our masked NMS protocol to satisfy release gate.
+6. **Budget sweep with marginal condition**: derive optimal mass for sparser truth using p > 0.2·DTI rule, not grid search post hoc.
+7. **Forum posts**: raise `tc` band description mismatch and sentinel missing-data encoding as irregularities.
+
