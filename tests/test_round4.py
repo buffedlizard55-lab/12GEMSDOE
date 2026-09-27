@@ -59,12 +59,15 @@ def test_h15_rewards_aligned_fields_over_opposed_noise():
 
 def test_sidecar_labels_unused_when_built():
     p = ROOT / "evidence/round4-feature-build.json"
+    npy = ROOT / "data/round4_features.npy"
     if not p.exists():
         pytest.skip("round-4 features not built in this checkout")
     side = json.loads(p.read_text())
     assert side["labels_used"] is False
     assert side["preregistered_register"] == "docs/hypotheses-round4.md"
-    arr = np.load(ROOT / "data/round4_features.npy", mmap_mode="r")
+    if not npy.exists():
+        pytest.skip("git-ignored round-4 feature array absent (CI has no data/)")
+    arr = np.load(npy, mmap_mode="r")
     assert arr.shape[2] == 4 and np.isfinite(arr).all()
 
 
