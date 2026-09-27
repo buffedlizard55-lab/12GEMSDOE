@@ -1,0 +1,14 @@
+{
+  "sample_positive_pixels": 60988,
+  "sample_label_pixel_equality": true,
+  "sample_unique_valid_values": [
+    0.0,
+    1.0
+  ],
+  "actual_grid_writer_smoke_test": {
+    "sha256": "1e1c0bdb1e559dc620424d4f07041b2a9acab09b4d26440838275f6a3409773a",
+    "valid_pixels": 5167373,
+    "min": 0.0,
+    "max": 0.0
+  }
+}
