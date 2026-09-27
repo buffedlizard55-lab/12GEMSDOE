@@ -1,7 +1,7 @@
 # Research and audit log
 
 **Reviewed:** 2026-09-27 (UTC)  
-**Repository revision at review:** `c48589c` (initial commit; shallow checkout)  
+**Repository revision at review:** `c48589c` (initial commit; shallow checkout)
 **Purpose:** separate sourced facts, reported claims, hypotheses, and unverified items. This is a research backlog, not a claim that any candidate has improved results.
 
 ## 1. Scope and verified facts
