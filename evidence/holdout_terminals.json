@@ -1,0 +1,16 @@
+{
+  "protocol": "terminal-truncation (terminal quartile of half the >=12px components hidden); official mask semantics",
+  "script_sha256": "be0f2fbf567ee4aca3a3f2cc22b0837bbe722ad0ba70453518d15dd59b1eb9fc",
+  "truncated_components": 831,
+  "hidden_pixels": 6312,
+  "region_pixels": 1311891,
+  "h6_emitted": 95253,
+  "geo_emitted": 89723,
+  "rays_emitted": 30445,
+  "h6_gated_dti": 0.14722914863068964,
+  "geo_ungated_dti": 0.17729630730148882,
+  "straight_rays_dti": 0.2920284167756428,
+  "random_equal_mass_dti": 0.113326768201994,
+  "release_allowed": false,
+  "release_reason": "Screening only; no weekly slot spent."
+}

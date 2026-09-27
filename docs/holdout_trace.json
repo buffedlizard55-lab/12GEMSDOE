@@ -1,0 +1,166 @@
+{
+  "protocol": "trace-component holdout; near-field region 25px; official mask semantics; seed 12027",
+  "script_sha256": "34803e4af1a21304fcd6163fae7d375d456a9c6ff97a81469f525039dc60440b",
+  "folds": [
+    {
+      "fold": 0,
+      "hidden_components": 780,
+      "hidden_pixels": 15357,
+      "region_pixels": 1435092,
+      "h6_emitted": 69828,
+      "h6_diagnostics": {
+        "endpoints": 5077,
+        "components": 2419,
+        "tip_pixels": 65808,
+        "splay_pixels": 72869,
+        "bridge_pixels": 81646,
+        "gated_pixels": 101565,
+        "gated_in_region": 69828
+      },
+      "arms": {
+        "h6_geometric": {
+          "tp": 2827.310339133339,
+          "fp": 64912.55795853888,
+          "fn": 12529.689660866661,
+          "dti": 0.1094432530467543
+        },
+        "random_equal_mass": {
+          "tp": 5044.845942604578,
+          "fp": 65884.02676959967,
+          "fn": 10312.154057395423,
+          "dti": 0.19057740785229166
+        },
+        "train_dilation_3px": {
+          "tp": 2533.101996436186,
+          "fp": 156544.71184820938,
+          "fn": 12823.898003563814,
+          "dti": 0.057438440108774295
+        }
+      },
+      "seconds": 15.94
+    },
+    {
+      "fold": 1,
+      "hidden_components": 780,
+      "hidden_pixels": 15265,
+      "region_pixels": 1439946,
+      "h6_emitted": 69263,
+      "h6_diagnostics": {
+        "endpoints": 5083,
+        "components": 2419,
+        "tip_pixels": 66166,
+        "splay_pixels": 72723,
+        "bridge_pixels": 79940,
+        "gated_pixels": 101370,
+        "gated_in_region": 69263
+      },
+      "arms": {
+        "h6_geometric": {
+          "tp": 2930.1055581444944,
+          "fp": 64355.3894114938,
+          "fn": 12334.894441855506,
+          "dti": 0.11414913935336146
+        },
+        "random_equal_mass": {
+          "tp": 4953.427023066814,
+          "fp": 65368.403793615435,
+          "fn": 10311.572976933185,
+          "dti": 0.18851263497612183
+        },
+        "train_dilation_3px": {
+          "tp": 2473.7211844682606,
+          "fp": 154279.65643069067,
+          "fn": 12791.27881553174,
+          "dti": 0.05678533640925508
+        }
+      },
+      "seconds": 16.01
+    },
+    {
+      "fold": 2,
+      "hidden_components": 779,
+      "hidden_pixels": 15147,
+      "region_pixels": 1454380,
+      "h6_emitted": 69805,
+      "h6_diagnostics": {
+        "endpoints": 5117,
+        "components": 2420,
+        "tip_pixels": 66333,
+        "splay_pixels": 73080,
+        "bridge_pixels": 81300,
+        "gated_pixels": 102137,
+        "gated_in_region": 69805
+      },
+      "arms": {
+        "h6_geometric": {
+          "tp": 2935.456949857992,
+          "fp": 64734.86039175228,
+          "fn": 12211.543050142009,
+          "dti": 0.11443534465012864
+        },
+        "random_equal_mass": {
+          "tp": 4881.42586727728,
+          "fp": 65974.66983009197,
+          "fn": 10265.574132722719,
+          "dti": 0.18568448591625897
+        },
+        "train_dilation_3px": {
+          "tp": 2480.030728437624,
+          "fp": 153959.39626277794,
+          "fn": 12666.969271562375,
+          "dti": 0.057136343613664375
+        }
+      },
+      "seconds": 15.65
+    },
+    {
+      "fold": 3,
+      "hidden_components": 779,
+      "hidden_pixels": 15065,
+      "region_pixels": 1463116,
+      "h6_emitted": 68541,
+      "h6_diagnostics": {
+        "endpoints": 5110,
+        "components": 2420,
+        "tip_pixels": 66276,
+        "splay_pixels": 72996,
+        "bridge_pixels": 82302,
+        "gated_pixels": 102441,
+        "gated_in_region": 68541
+      },
+      "arms": {
+        "h6_geometric": {
+          "tp": 2856.7810953161734,
+          "fp": 63584.18287746176,
+          "fn": 12208.218904683827,
+          "dti": 0.11273714917901836
+        },
+        "random_equal_mass": {
+          "tp": 4886.8847509208545,
+          "fp": 64729.79142285812,
+          "fn": 10178.115249079146,
+          "dti": 0.18813557964646552
+        },
+        "train_dilation_3px": {
+          "tp": 2446.951193893558,
+          "fp": 156696.72729482345,
+          "fn": 12618.048806106442,
+          "dti": 0.055763677499459464
+        }
+      },
+      "seconds": 15.91
+    }
+  ],
+  "mean_h6_geometric": 0.11269122155731567,
+  "mean_random_equal_mass": 0.1882275270977845,
+  "mean_train_dilation_3px": 0.0567809494077883,
+  "paired_h6_vs_random": [
+    -0.08113415480553736,
+    -0.07436349562276037,
+    -0.07124914126613033,
+    -0.07539843046744715
+  ],
+  "total_seconds": 63.89,
+  "release_allowed": false,
+  "release_reason": "Screening only. H6 must beat the equal-mass random control on hidden components before any submission use; no weekly slot is spent here."
+}

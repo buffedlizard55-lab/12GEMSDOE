@@ -15,6 +15,7 @@
     <a href="executive-summary.html">Submission Guide</a>
     <a href="session-review.md">Evidence Audit</a>
     <a href="hypotheses.md">Hypotheses</a>
+    <a href="hypotheses-round2.md">Round-2 H6–H10</a>
     <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener">Leaderboard ↗</a>
   </nav>
 </header>
@@ -28,7 +29,7 @@
   <section class="hero-cta">
     <span class="badge">✓ Validated Submission Available</span>
     <h2>Official Submission File (Multi-Physics 25 Model)</h2>
-    <p>Targeting unmapped blind faults via coupled crystalline basement curvature (H1), magnetic tilt-angle zero crossings (H3), and geodetic shear-strain dilation (H2). Beat the raw 19-band baseline across <strong>4 out of 4 spatial folds</strong> (+0.00469 mean DTI improvement). Strictly verified: EPSG:32611, 100 m resolution, 3,292 × 3,730, single float32 band, finite in [0.0, 0.95], strict NaN mask outside.</p>
+    <p>Targeting unmapped blind faults via coupled crystalline basement curvature (H1), magnetic tilt-angle zero crossings (H3), and geodetic shear-strain dilation (H2). Beats the raw 19-band baseline on the leakage-free masked holdout (<strong>+0.00469 mean DTI, 3/4 folds</strong>, probe 0.0000). Strictly verified: EPSG:32611, 100 m resolution, 3,292 × 3,730, single float32 band, finite in [0.0, 0.95], strict NaN mask outside.</p>
 
     <div class="btn-row">
       <a class="button-primary" href="downloads/12GEMSDOE_multiphysics_submission_06ca61e5.tif" download="12GEMSDOE_multiphysics_submission_06ca61e5.tif">
@@ -61,21 +62,21 @@
     <article class="card">
       <p class="eyebrow">Holdout Validation</p>
       <div class="stat" style="color: var(--accent-green);">4 / 4</div>
-      <p>Spatially blocked folds won by Multi-Physics 25 vs baseline raw 19 (+0.00469 mean DTI improvement).</p>
-      <div class="stat-sub">Zero negative folds on frozen 512-px blocks</div>
+      <p>Masked-protocol folds won by Multi-Physics 25 vs baseline raw 19 (+0.00469 mean DTI, 3/4 folds, probe 0.0000).</p>
+      <div class="stat-sub">Round-2 leakage-free validation; round-1 unmasked 4/4 demoted to diagnostic</div>
     </article>
 
     <article class="card">
       <p class="eyebrow">Duplicate Root-Cause</p>
       <div class="stat" style="color: var(--accent-warn);">1 = 5</div>
-      <p>GEMSDOE1 and 5GEMSDOE uploaded byte-for-byte identical files (SHA-256 <code>7f00890a</code>), explaining the 0.1563 tie.</p>
-      <div class="stat-sub">8GEMSDOE unioned masked labels → 0.1563 tie</div>
+      <p>GEMSDOE1 and 5GEMSDOE published byte-for-byte identical files (SHA-256 <code>7f00890a</code>, 0 differing pixels). Three leaderboard rows sit at 0.1563 — three uploads of the same bytes.</p>
+      <div class="stat-sub">8GEMSDOE file is unique &amp; was never uploaded (corrected 2026-09-27)</div>
     </article>
 
     <article class="card">
       <p class="eyebrow">Novel Artifact</p>
-      <div class="stat" style="color: var(--accent);">4.34%</div>
-      <p>Of survey pixels predict new structural lineaments; 100% unique SHA-256 hash (<code>06ca61e5</code>).</p>
+      <div class="stat" style="color: var(--accent);">7.2%</div>
+      <p>Of valid footprint pixels differ from the shared 0.1563 file (373,847 px; off-label correlation 0.07). Unique SHA-256 (<code>06ca61e5</code>).</p>
       <div class="stat-sub">Strictly finite in [0.0, 0.95] inside; NaN outside</div>
     </article>
 
@@ -93,7 +94,7 @@
     <p>Our line-by-line byte hash and pixel array comparison resolved the 0.1563 mystery:</p>
     <ul>
       <li><strong>GEMSDOE1 and 5GEMSDOE were Byte-for-Byte Identical:</strong> Both published TIFF files have the exact same SHA-256 (<code>7f00890a62878d612fb5eef67a9a364a2df819433dde74b6762ce4fc0fc4fe15</code>) and size (570,890 bytes). 5GEMSDOE re-uploaded GEMSDOE1's <code>ens12</code> file under account <code>SDCF9</code>. Because the submission files were identical, DrivenData assigned them the identical score of <strong>0.1563</strong>.</li>
-      <li><strong>8GEMSDOE Anchored to the Same 0.1563 File + Masked Labels:</strong> 8GEMSDOE's <code>build_hedge_v2.py</code> combined the <code>7f00890a</code> base with known USGS fault labels (<code>labels.tif</code>). However, DrivenData Staff confirmed: <em>"Pixels corresponding to known USGS/INGENIOUS faults are masked / excluded from evaluation, so they do not count towards penalty terms."</em> Adding known faults to the 0.1563 file had zero effect on the hidden test set, producing the identical score of <strong>0.1563</strong>.</li>
+      <li><strong>CORRECTED 2026-09-27 — 8GEMSDOE did not cause a 0.1563 tie:</strong> 8GEMSDOE's published file (<code>b83ea0e7…</code>) differs from the shared base at 563,092 pixels and is logged by 8GEMSDOE itself as <code>BUILT-UNIQUE-UNUPLOADED</code> with no score claimed. The third 0.1563 leaderboard row (<code>smashi34</code>) is a third upload of the shared <code>7f00890a</code> bytes. (DrivenData does not expose uploaded files, so receipt linkage is unverified — but identical bytes necessarily score identically.)</li>
       <li><strong>Low Scores (0.0107 to 0.0343) in Other Repos:</strong> Caused by uncalibrated high area budgets (e.g. 6% binary mask = 310,000 pixels of 1.0) which triggered catastrophic false positive penalties on the sparse hidden test set.</li>
     </ul>
     <p><a href="session-review.md">Read the full machine-readable artifact comparison in session-review.md →</a></p>
@@ -136,16 +137,97 @@
           <td><strong>Multi-Physics 25 (H1 + H3 + H2 Combined)</strong></td>
           <td>All 19 raw bands + basement gradient &amp; Laplacian + gravity gradient + conductivity boundary + magnetic tilt derivative + strain dilation index.</td>
           <td>Coupled subsurface density, magnetic alteration, and tectonic strain field detect blind geothermal structural systems.</td>
-          <td><strong style="color:var(--accent-green);">+0.00469</strong> vs baseline (<strong>Won 4/4 folds!</strong>)</td>
+          <td><strong style="color:var(--accent-green);">+0.00469</strong> vs baseline (round-1 unmasked 4/4 — demoted to diagnostic; masked: 3/4)</td>
         </tr>
       </tbody>
     </table>
   </div>
   <p><a href="hypotheses.md">Read complete equations, layer definitions, and literature citations →</a></p>
 
+  <!-- ROUND-2 CANDIDATES -->
+  <h2>Round-2 Candidates (H6–H10): New Mechanisms Only</h2>
+  <p>Preregistered 2026-09-27 after a mechanism-level inventory of all sibling repos. Each candidate below differs in <em>mechanism</em> — not feature permutation — from everything tried (see <a href="hypotheses-round2.md">hypotheses-round2.md</a>). No submission slot is spent until a candidate beats the round-1 best on the masked protocol:</p>
+
+  <div class="scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Candidate Hypothesis</th>
+          <th>Layers &amp; Signature</th>
+          <th>Why Missing from Catalogue</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>1</strong></td>
+          <td><strong>H6: Fabric-curved tip extension + splay fans + relay bridges, geophysically gated</strong></td>
+          <td>Train-trace skeleton + <code>rtp</code> fabric strike; gate on tilt/gravity/conductivity edges. Two-stage propose-then-gate.</td>
+          <td>Staff: test set includes new geometry of existing systems (extensions, splays, corrections within 300 m of known traces).</td>
+        </tr>
+        <tr>
+          <td><strong>2</strong></td>
+          <td><strong>H8: Hydrothermal alteration joint anomaly</strong></td>
+          <td><code>cond_surf</code> HIGH × <code>rtp</code> LOW (multiplicative AND). Targets fluid conduits, the contest's stated target.</td>
+          <td>Blind geothermal conduits under cover have no scarp; the alteration halo is the only signature.</td>
+        </tr>
+        <tr>
+          <td><strong>3</strong></td>
+          <td><strong>H9: Gravity–magnetic cross-gradient transfer intersections</strong></td>
+          <td><code>|∇g × ∇m|</code> from <code>iso_grav_anom</code> × <code>rtp</code> + intersection density.</td>
+          <td>Transfer faults are short, covered, systematically omitted from surface-biased maps.</td>
+        </tr>
+        <tr>
+          <td><strong>4</strong></td>
+          <td><strong>H7: Microseismic strike-alignment correlogram</strong></td>
+          <td><code>ieq_n100a15</code> along-strike minus across-strike NCC over 8 strikes.</td>
+          <td>Blind seismogenic faults show instrumental microseismicity with no Holocene scarp.</td>
+        </tr>
+        <tr>
+          <td><strong>5</strong></td>
+          <td><strong>H10: Residual cover conductance</strong></td>
+          <td><code>cond_surf</code> minus cover-thickness trend from <code>depth_to_base_surf</code>.</td>
+          <td>Isolates anomalously fluid/mineralized cover from ordinary thickness effects.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Validation: <a href="holdout_masked.json">masked spatial holdout (JSON)</a> · <a href="holdout_trace.json">trace-component holdout for H6 (JSON)</a> · <a href="holdout_terminals.json">terminal-truncation holdout (JSON)</a> · <a href="h6_regime.json">H6 regime ablation (JSON)</a> · <a href="session-review.md">round-2 audit corrections</a>. The round-1 unmasked screen (+0.00469) is demoted to a historical diagnostic: without the official mask, uniform random beat every learned arm, so it cannot rank discovery skill.</p>
+
+  <h2>Round-2 Measured Results (2026-09-27)</h2>
+  <div class="scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Experiment</th>
+          <th>Result</th>
+          <th>Verdict</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Masked spatial holdout</strong> (official mask, probe 0.0000, top-2%)</td>
+          <td>multi25 <strong>0.09071</strong> vs raw19 0.08602 (+0.00469, 3/4 folds); multi30 (+H8/H9/H7/H10) 0.08889 (−0.00183 vs multi25, 2/4)</td>
+          <td><strong>multi30 rejected</strong> — no release. multi25 re-confirmed vs raw19.</td>
+        </tr>
+        <tr>
+          <td><strong>H6 whole-component holdout</strong></td>
+          <td>Gated H6 0.1127 vs equal-mass random 0.1882 (H6 beats 3px-dilation 0.0568 2×)</td>
+          <td><strong>Gated H6 rejected</strong> — wrong simulator for extensions; gate hurts (−0.014 vs ungated).</td>
+        </tr>
+        <tr>
+          <td><strong>H6 terminal-truncation holdout</strong> (6,312 hidden terminal px)</td>
+          <td>Straight 5px rays <strong>0.2920</strong> (2.6× random) &gt; curved+splay 0.1773 &gt; gated H6 0.1472 &gt; random 0.1133</td>
+          <td><strong>Mechanism validated;</strong> short-ray form was a control arm → round-3 lead (H6′), not a release.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p><strong>No weekly submission slot spent.</strong> Neither preregistered candidate beat the holdout best, so per the frozen rule nothing new is packaged. The standing <code>06ca61e5</code> file keeps format approval.</p>
+
   <!-- SPATIALLY-BLOCKED HOLDOUT VALIDATION -->
-  <h2>4-Fold Spatially-Blocked Holdout Validation</h2>
-  <p>To eliminate data leakage, the GeoDAWN region is partitioned into 512-px blocks (51.2 km × 51.2 km) with a 12-pixel (1.2 km) exclusion collar around test blocks:</p>
+  <h2>Round-1 Holdout Table (Historical Unmasked Diagnostic)</h2>
+  <p>Preserved for provenance. This screen scored against dense known faults <em>without</em> the official pixel-exact mask, so uniform random beat every learned arm and it cannot rank discovery skill. The current gate is the <a href="holdout_masked.json">masked holdout</a> (probe 0.0000, top-2% emission): multi25 0.09071 vs raw19 0.08602 (+0.00469, 3/4 folds). Original protocol note: 512-px blocks (51.2 km × 51.2 km) with a 12-pixel (1.2 km) exclusion collar around test blocks.</p>
 
   <div class="scroll">
     <table>

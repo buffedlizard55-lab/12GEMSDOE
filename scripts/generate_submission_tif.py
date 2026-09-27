@@ -33,9 +33,10 @@ with rasterio.open(TEMPLATE_PATH) as s:
 with rasterio.open(LABELS_PATH) as s:
     truth = (s.read(1, masked=True).filled(0) > 0) & valid
 
-print(f"Loading 25 candidate features from memmap ({shape})...")
+print(f"Loading {N_FEATURES} candidate features from memmap ({shape})...")
 cube = np.lib.format.open_memmap(str(MEMPATH), mode='r')
-flat = cube.reshape(-1, 25)
+assert cube.shape[2] >= N_FEATURES, cube.shape
+flat = cube.reshape(-1, cube.shape[2])  # memmap; callers slice [:, :25]
 
 # Balanced training on full valid footprint
 pos = np.flatnonzero(valid & truth)

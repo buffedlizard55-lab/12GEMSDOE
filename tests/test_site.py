@@ -2,8 +2,16 @@ import sys
 from pathlib import Path
 from html.parser import HTMLParser
 import json, hashlib, rasterio, numpy as np
+import pytest
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
 from core import validate
+
+
+def _needs_data(*paths):
+    for p in paths:
+        if not Path(p).is_file():
+            pytest.skip(f"requires git-ignored data file: {p} "
+                        "(run scripts/download_competition_data.sh)")
 
 class Links(HTMLParser):
     def __init__(self):
@@ -41,7 +49,8 @@ def test_submission_artifact_strict_conformance():
     root = Path(__file__).resolve().parents[1]
     tif_path = root / 'docs/downloads/12GEMSDOE_multiphysics_submission_06ca61e5.tif'
     template_path = root / 'data/sample_submission.tif'
-    
+    _needs_data(tif_path, template_path)
+
     # Run core.validate() on the actual artifact against template
     report = validate(tif_path, template_path)
     assert report['valid_pixels'] == 5167373
