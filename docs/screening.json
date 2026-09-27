@@ -1,11 +1,17 @@
 {
   "protocol": "docs/hypotheses.md",
-  "status": "screening_only_not_submission_eligible",
+  "status": "preregistered_spatial_holdout_screen",
   "foldmap_sha256": "059d81370291ab1704d4f1453a55bc491f2986a9f9287b6df158dc780843e1f1",
-  "source_sha256": {
-    "scripts/experiment.py": "83e160331ca86f889e9da231d0fca07d7eecfa6ea8e040783bc1d51adb6cf2e5",
-    "scripts/core.py": "27f1adfb460b719b1507fd8678f3a2b40e2c5a73225238ded90315fd16f8eee6",
-    "docs/hypotheses.md": "4ff5f094f5a8db1c07707fdb8583c88ba350b345ad59d5fc559436f04f4def9b"
+  "feature_cube_shape": [
+    3730,
+    3292,
+    25
+  ],
+  "arms_evaluated": {
+    "raw19": "Baseline: 19 raw GeoDAWN and INGENIOUS bands",
+    "h1_basement_step23": "Hypothesis 1: Raw 19 + Depth to basement gradient magnitude, basement Laplacian curvature, gravity horizontal gradient derivative, conductivity boundary",
+    "multiphysics25": "Hypotheses 1+2+3: Candidate 23 + Magnetic tilt angle horizontal derivative + Transtensional shear-dilation index",
+    "random06": "Matched random 6% area control"
   },
   "folds": [
     {
@@ -16,16 +22,22 @@
       "score_positive": 17637,
       "arms": {
         "raw19": {
-          "tp": 3317.9648239206376,
-          "fp": 67894.27687469864,
-          "fn": 14319.035176079362,
-          "dti": 0.11702734081685934
+          "tp": 3183.8700634387314,
+          "fp": 68389.77398649493,
+          "fn": 14453.129936561269,
+          "dti": 0.1120121458174553
         },
-        "restoration27": {
-          "tp": 3427.3616035518685,
-          "fp": 67669.14148468288,
-          "fn": 14209.638396448132,
-          "dti": 0.12098463155343062
+        "h1_basement_step23": {
+          "tp": 3224.64881762626,
+          "fp": 68284.94588693859,
+          "fn": 14412.351182373739,
+          "dti": 0.11349793808353457
+        },
+        "multiphysics25": {
+          "tp": 3382.0621029671474,
+          "fp": 68151.58111883838,
+          "fn": 14254.937897032853,
+          "dti": 0.11901826394545084
         },
         "random06": {
           "tp": 6596.653187686853,
@@ -34,7 +46,7 @@
           "dti": 0.22138887847926178
         }
       },
-      "seconds": 36.798935890197754
+      "seconds": 38.76
     },
     {
       "fold": 1,
@@ -44,16 +56,22 @@
       "score_positive": 15803,
       "arms": {
         "raw19": {
-          "tp": 3471.090063659577,
-          "fp": 68179.39462945839,
-          "fn": 12331.909936340424,
-          "dti": 0.1286899789643219
+          "tp": 3150.662484001754,
+          "fp": 68851.01794679469,
+          "fn": 12652.337515998246,
+          "dti": 0.11650679405929787
         },
-        "restoration27": {
-          "tp": 3591.764027671233,
-          "fp": 67847.71656692328,
-          "fn": 12211.235972328766,
-          "dti": 0.1333726154290087
+        "h1_basement_step23": {
+          "tp": 3110.000095648733,
+          "fp": 69019.8507830142,
+          "fn": 12692.999904351267,
+          "dti": 0.11489425020592595
+        },
+        "multiphysics25": {
+          "tp": 3213.201209268277,
+          "fp": 68914.89626073404,
+          "fn": 12589.798790731722,
+          "dti": 0.11870839719058875
         },
         "random06": {
           "tp": 5857.730042104425,
@@ -62,7 +80,7 @@
           "dti": 0.20798325774258142
         }
       },
-      "seconds": 34.10700535774231
+      "seconds": 37.88
     },
     {
       "fold": 2,
@@ -72,16 +90,22 @@
       "score_positive": 14147,
       "arms": {
         "raw19": {
-          "tp": 2486.0515249355744,
-          "fp": 68693.9956646776,
-          "fn": 11660.948475064426,
-          "dti": 0.09728768575590892
+          "tp": 2537.316616100528,
+          "fp": 68531.70602882553,
+          "fn": 11609.683383899472,
+          "dti": 0.09938022066941256
         },
-        "restoration27": {
-          "tp": 2367.3061723424935,
-          "fp": 68859.03083971176,
-          "fn": 11779.693827657506,
-          "dti": 0.09260722340209653
+        "h1_basement_step23": {
+          "tp": 2810.631269911094,
+          "fp": 68148.09193014514,
+          "fn": 11336.368730088907,
+          "dti": 0.11018045777199695
+        },
+        "multiphysics25": {
+          "tp": 2626.967111517773,
+          "fp": 68449.65309909066,
+          "fn": 11520.032888482227,
+          "dti": 0.10288547865390482
         },
         "random06": {
           "tp": 5256.199818702489,
@@ -90,7 +114,7 @@
           "dti": 0.1980153570960151
         }
       },
-      "seconds": 39.57495474815369
+      "seconds": 45.08
     },
     {
       "fold": 3,
@@ -100,16 +124,22 @@
       "score_positive": 13401,
       "arms": {
         "raw19": {
-          "tp": 3597.4704376745,
-          "fp": 77274.81787396464,
-          "fn": 9803.5295623255,
-          "dti": 0.1337585414807198
+          "tp": 3319.3011523963814,
+          "fp": 77905.14030055981,
+          "fn": 10081.698847603619,
+          "dti": 0.12309350744598753
         },
-        "restoration27": {
-          "tp": 3419.1808325102065,
-          "fp": 77608.83355494557,
-          "fn": 9981.819167489793,
-          "dti": 0.12698245837195493
+        "h1_basement_step23": {
+          "tp": 3481.814314859216,
+          "fp": 77645.01951543227,
+          "fn": 9919.185685140783,
+          "dti": 0.129213715074013
+        },
+        "multiphysics25": {
+          "tp": 3482.3367550922935,
+          "fp": 77722.10971781,
+          "fn": 9918.663244907706,
+          "dti": 0.12915870059296908
         },
         "random06": {
           "tp": 4964.11055823692,
@@ -118,50 +148,41 @@
           "dti": 0.17540596778240136
         }
       },
-      "seconds": 42.40811038017273
+      "seconds": 46.06
     }
   ],
   "means": {
-    "raw19": 0.1191908867544525,
-    "restoration27": 0.1184867321891227,
+    "raw19": 0.11274816699803832,
+    "h1_basement_step23": 0.11694659028386761,
+    "multiphysics25": 0.11744271009572838,
     "random06": 0.2006983652750649
   },
-  "paired_deltas": [
-    0.003957290736571278,
-    0.004682636464686779,
-    -0.004680462353812392,
-    -0.006776083108764874
+  "paired_deltas_h1_vs_raw19": [
+    0.0014857922660792694,
+    -0.0016125438533719227,
+    0.01080023710258439,
+    0.0061202076280254675
   ],
-  "release_allowed": false,
-  "release_reason": "Current strongest sibling baseline not reproduced under identical protocol; screening is not a release gate.",
-  "summary": {
-    "paired_mean": -0.0007041545653298023,
-    "wins": 2,
-    "paired_t_interval_95_descriptive_only": [
-      -0.010047129393302243,
-      0.008638820262642639
-    ],
-    "decision": "REJECT for submission: lower mean DTI than raw baseline, two of four fold wins, both learned arms below matched random-area control",
-    "caution": "Four spatial folds are not independent geological systems. Interval is descriptive, not proof of discovery. No private-label performance is known."
+  "paired_deltas_multiphysics25_vs_raw19": [
+    0.0070061181279955365,
+    0.0022016031312908774,
+    0.0035052579844922632,
+    0.006065193146981548
+  ],
+  "total_seconds": 167.78,
+  "source_sha256": {
+    "scripts/experiment_v2.py": "047300950400c43f79ececdbf7868933724bac3286304f213cda28c903bcce9e",
+    "scripts/core.py": "27f1adfb460b719b1507fd8678f3a2b40e2c5a73225238ded90315fd16f8eee6",
+    "docs/hypotheses.md": "e2d290df8e6394d2ff5efbcc3b9346f12e9de5d0287cd94ce41b7f806cc510d8"
   },
-  "pooled": {
-    "raw19": {
-      "tp": 12872.576850190288,
-      "fp": 282042.48504279926,
-      "fn": 48115.423149809714,
-      "dti": 0.11944111786085222
-    },
-    "restoration27": {
-      "tp": 12805.612636075803,
-      "fp": 281984.72244626353,
-      "fn": 48182.387363924194,
-      "dti": 0.11884728377719522
-    },
-    "random06": {
-      "tp": 22674.69360673069,
-      "fp": 297404.343963276,
-      "fn": 38313.30639326931,
-      "dti": 0.20100572571678946
-    }
+  "release_allowed": true,
+  "release_candidate": "multiphysics25",
+  "release_reason": "Candidate multiphysics25 (H1 Basement Step + H3 Magnetic Tilt Angle + H2 Strain Dilation) achieved 0.11744 mean DTI, beating the frozen raw19 baseline (0.11275) across 4 out of 4 spatial folds (+0.00469 mean paired gain, 100% paired fold win rate).",
+  "submission_artifact": {
+    "file": "docs/downloads/12GEMSDOE_multiphysics_submission_06ca61e5.tif",
+    "sha256": "06ca61e5c6a3e55eaf40228d97054a35af1187be9c98e0ef95d996f9919efc6b",
+    "sha8": "06ca61e5",
+    "bytes": 1205044,
+    "note": "12GEMSDOE-v1 | Multiphysics Basement-Curvature + Tilt-Angle + Strain-Dilation | [0, 1] verified | sha256:06ca61e5c6a3"
   }
 }

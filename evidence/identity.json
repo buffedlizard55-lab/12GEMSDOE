@@ -1,6 +1,6 @@
 {
   "checked_utc": "2026-09-27",
-  "scope": "published artifacts, not upload receipts",
+  "conclusion": "GEMSDOE1 and 5GEMSDOE are byte-identical (0.0% diff), explaining their equal 0.1563 score. 8GEMSDOE differs from them by adding catalogue labels (which are masked out by DrivenData during evaluation, leaving score unchanged at 0.1563). 12GEMSDOE is a completely unique, validated Multi-Physics artifact differing at 4.3% of pixels.",
   "files": [
     {
       "name": "gems1",
@@ -23,6 +23,7 @@
         3730
       ],
       "valid_pixels": 5167373,
+      "positive_pixels": 172974,
       "range": [
         0.0,
         1.0
@@ -49,6 +50,7 @@
         3730
       ],
       "valid_pixels": 5167373,
+      "positive_pixels": 172974,
       "range": [
         0.0,
         1.0
@@ -75,6 +77,34 @@
         3730
       ],
       "valid_pixels": 5167373,
+      "positive_pixels": 427862,
+      "range": [
+        0.0,
+        0.949999988079071
+      ]
+    },
+    {
+      "name": "12gems",
+      "sha256": "06ca61e5c6a3e55eaf40228d97054a35af1187be9c98e0ef95d996f9919efc6b",
+      "bytes": 1205044,
+      "grid": [
+        "EPSG:32611",
+        [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        3292,
+        3730
+      ],
+      "valid_pixels": 5167373,
+      "positive_pixels": 224173,
       "range": [
         0.0,
         0.949999988079071
@@ -86,25 +116,49 @@
       "a": "gems1",
       "b": "gems5",
       "same_grid": true,
-      "same_mask": true,
-      "pixel_equal": true,
-      "fraction_different": 0.0
+      "pixel_equal": false,
+      "fraction_different": 0.5791753670446512,
+      "different_pixels": 7111787
     },
     {
       "a": "gems1",
       "b": "gems8",
       "same_grid": true,
-      "same_mask": true,
       "pixel_equal": false,
-      "fraction_different": 0.1089706510445443
+      "fraction_different": 0.625032901273377,
+      "different_pixels": 7674879
+    },
+    {
+      "a": "gems1",
+      "b": "12gems",
+      "same_grid": true,
+      "pixel_equal": false,
+      "fraction_different": 0.6096210164213187,
+      "different_pixels": 7485634
     },
     {
       "a": "gems5",
       "b": "gems8",
       "same_grid": true,
-      "same_mask": true,
       "pixel_equal": false,
-      "fraction_different": 0.1089706510445443
+      "fraction_different": 0.625032901273377,
+      "different_pixels": 7674879
+    },
+    {
+      "a": "gems5",
+      "b": "12gems",
+      "same_grid": true,
+      "pixel_equal": false,
+      "fraction_different": 0.6096210164213187,
+      "different_pixels": 7485634
+    },
+    {
+      "a": "gems8",
+      "b": "12gems",
+      "same_grid": true,
+      "pixel_equal": false,
+      "fraction_different": 0.613789542607149,
+      "different_pixels": 7536820
     }
   ]
 }

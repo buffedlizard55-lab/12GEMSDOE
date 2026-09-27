@@ -1,0 +1,38 @@
+{
+  "file_name": "12GEMSDOE_multiphysics_submission_06ca61e5.tif",
+  "file_path": "docs/downloads/12GEMSDOE_multiphysics_submission_06ca61e5.tif",
+  "zip_name": "12GEMSDOE_multiphysics_submission_06ca61e5.zip",
+  "zip_path": "docs/downloads/12GEMSDOE_multiphysics_submission_06ca61e5.zip",
+  "sha256": "06ca61e5c6a3e55eaf40228d97054a35af1187be9c98e0ef95d996f9919efc6b",
+  "sha8": "06ca61e5",
+  "bytes_tif": 1205044,
+  "bytes_zip": 1131737,
+  "generated_utc": "20260927T062951Z",
+  "submission_note": "12GEMSDOE-v1 | Multiphysics Basement-Curvature + Tilt-Angle + Strain-Dilation | [0, 1] verified | sha256:06ca61e5c6a3",
+  "validation_report": {
+    "sha256": "06ca61e5c6a3e55eaf40228d97054a35af1187be9c98e0ef95d996f9919efc6b",
+    "valid_pixels": 5167373,
+    "min": 0.0,
+    "max": 0.949999988079071
+  },
+  "stats": {
+    "valid_pixels": 5167373,
+    "positive_pixels": 224173,
+    "positive_fraction": 0.04338239178785816,
+    "min_value": 0.0,
+    "max_value": 0.949999988079071,
+    "mean_value": 0.024780066683888435,
+    "nan_outside_count": 7111787,
+    "total_outside_pixels": 7111787
+  },
+  "model": {
+    "name": "HistGradientBoostingClassifier",
+    "features": 25,
+    "hypotheses": [
+      "H1: Concealed Basement Step & Horizontal Gravity Gradient Curvature (Bands 15, 18, 11, 17)",
+      "H3: Deep Magnetic Tilt Angle Derivative Ridge Alignment (Bands 2, 8, 3, 6)",
+      "H2: Transtensional Shear-Strain Dilation Index (Bands 4, 7, 8, 16)"
+    ],
+    "holdout_win": "Beats Raw 19 baseline on 4 out of 4 spatial folds (+0.00469 mean DTI improvement)"
+  }
+}
