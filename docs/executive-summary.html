@@ -15,6 +15,7 @@
     <a href="executive-summary.html" class="active">Submission Guide</a>
     <a href="session-review.md">Evidence Audit</a>
     <a href="hypotheses.md">Hypotheses</a>
+    <a href="hypotheses-round2.md">Round-2 H6–H10</a>
     <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener">Leaderboard ↗</a>
   </nav>
 </header>
@@ -157,8 +158,8 @@
   <p>The team previously observed identical <strong>0.1563</strong> public scores across multiple submissions. Our byte-level audit revealed:</p>
   <ul>
     <li><strong>GEMSDOE1 &amp; 5GEMSDOE:</strong> The uploaded TIFF files were <strong>100% byte-for-byte identical</strong> (SHA-256: <code>7f00890a62878d612fb5eef67a9a364a2df819433dde74b6762ce4fc0fc4fe15</code>). 5GEMSDOE re-submitted GEMSDOE1's <code>ens12</code> file, resulting in identical scoring.</li>
-    <li><strong>8GEMSDOE:</strong> Took the same 0.1563 base file and unioned it with known USGS labels (<code>labels.tif</code>). However, DrivenData Staff explicitly confirmed on the forum that <em>known USGS faults are masked out of evaluation</em>. Unioning known faults added zero true positives and zero false positives on the hidden test set, yielding the exact same score of 0.1563.</li>
-    <li><strong>12GEMSDOE Multi-Physics:</strong> A completely independent model and unique raster differing at 224,173 pixels (4.34% of the survey area). It beat the raw 19 baseline on 4 out of 4 spatial folds (+0.00469 mean DTI improvement).</li>
+    <li><strong>CORRECTED 2026-09-27 — 8GEMSDOE:</strong> 8GEMSDOE's published file (<code>b83ea0e7…</code>) differs from the shared base at 563,092 pixels and is logged by 8GEMSDOE itself as <code>BUILT-UNIQUE-UNUPLOADED</code> with no score claimed. The third 0.1563 leaderboard row (<code>smashi34</code>) is a third upload of the shared <code>7f00890a</code> bytes. (Earlier versions of this page claimed a "masked-labels union" caused the tie — withdrawn; see <a href="session-review.md">session-review §1.2 and §6</a>.)</li>
+    <li><strong>12GEMSDOE Multi-Physics:</strong> A completely independent model and unique raster differing at 373,847 pixels (7.23% of valid footprint; off-label correlation 0.07). Multi-Physics 25 beats the raw-19 baseline on the leakage-free masked holdout (+0.00469 mean DTI, 3/4 folds, probe 0.0000). Round-2 candidates (H6–H10) were validated without spending a submission slot — see <a href="hypotheses-round2.md">round-2 results</a>.</li>
   </ul>
 </main>
 

@@ -8,7 +8,7 @@ for f in m['files']:
 def get(p):
  dest=root/p['name'];
  if dest.exists() and hashlib.sha256(dest.read_bytes()).hexdigest()==p['sha256']: return
- cmd=['gh','api',f'repos/buffedlizard55-lab/GEMSDOE/contents/data/bridge/{p["name"]}?ref={rev}','-H','Accept: application/vnd.github.raw+json']
+ cmd=['gh','api',f'repos/buffedlizard55-lab/GEMSDOE/contents/data/bridge/{p["name"]}?ref={rev}','-H','Accept: application/vnd.github.raw']
  with dest.open('wb') as o:subprocess.run(cmd,stdout=o,check=True)
  assert hashlib.sha256(dest.read_bytes()).hexdigest()==p['sha256'],p
  print('verified',p['name'],flush=True)

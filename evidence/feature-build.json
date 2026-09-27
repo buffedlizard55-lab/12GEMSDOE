@@ -1,0 +1,55 @@
+{
+  "built_by": "scripts/build_candidate_features.py",
+  "code_sha256": "67dccb28863018225960010fb6f5174a675da4e425c112d2377783edb957cbd7",
+  "inputs": {
+    "training_features": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+    "sample_submission": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc"
+  },
+  "output": {
+    "file": "data/candidate-features-30.npy",
+    "shape": [
+      3730,
+      3292,
+      30
+    ],
+    "dtype": "float32"
+  },
+  "channels": {
+    "0-18": "raw 19 bands (median-imputed)",
+    "19": "|grad depth_to_base_surf|",
+    "20": "laplacian depth_to_base_surf",
+    "21": "|grad iso_grav_anom_hg|",
+    "22": "|grad cond_surf|",
+    "23": "|grad tilt|, tilt=atan2(tmi_vg,max(|tmi_hg|,eps))",
+    "24": "TDI=sqrt(max(shear,0)*max(dilate,0))*(1+ieq)",
+    "25": "H8 joint alteration zplus(cond)*zplus(-rtp)",
+    "26": "H9 cross-gradient |gx_g*gy_m-gy_g*gx_m| / median",
+    "27": "H9 intersection density mean(cross>p90) 5px",
+    "28": "H7 seismic strike-alignment max(along-across NCC)",
+    "29": "H10 residual cover conductance"
+  },
+  "median_imputation": {
+    "0": -57.68793487548828,
+    "1": -137.22166442871094,
+    "2": 13.155465126037598,
+    "3": 19.90778923034668,
+    "4": 0.10218460857868195,
+    "5": 18.481700897216797,
+    "6": 9.699999809265137,
+    "7": 5.5,
+    "8": -0.008997071534395218,
+    "9": 622.7999877929688,
+    "10": -0.07213491946458817,
+    "11": -75.57621002197266,
+    "12": -7.26103401184082,
+    "13": -124.8157730102539,
+    "14": 316.3645324707031,
+    "15": 755.7000122070312,
+    "16": 2.885897636413574,
+    "17": 0.037620771676301956,
+    "18": 3.749262809753418
+  },
+  "template_valid_pixels": 5167373,
+  "pixels_with_any_band_nan_inside_template": 3073,
+  "labels_used": false
+}

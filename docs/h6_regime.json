@@ -1,0 +1,71 @@
+{
+  "protocol": "claimed-regime (hidden truth within 20px of train endpoints) + gate ablation; seed 12027",
+  "script_sha256": "e6607ed98ab014759bb8a5c83adc11d45ef50551a76c9f82d064c3f5390a10cc",
+  "folds": [
+    {
+      "fold": 0,
+      "hidden_pixels": 15357,
+      "regime_pixels": 11991,
+      "regime_share": 0.7808165657354952,
+      "h6_emitted": 69828,
+      "geo_only_emitted": 69019,
+      "full_h6_dti": 0.1094432530467543,
+      "regime_h6_dti": 0.12217873009428162,
+      "regime_random_dti": 0.1676468791907832,
+      "regime_geo_only_dti": 0.13440719579988172
+    },
+    {
+      "fold": 1,
+      "hidden_pixels": 15265,
+      "regime_pixels": 11922,
+      "regime_share": 0.7810022928267278,
+      "h6_emitted": 69263,
+      "geo_only_emitted": 68828,
+      "full_h6_dti": 0.11414913935336146,
+      "regime_h6_dti": 0.12742526261837658,
+      "regime_random_dti": 0.16557583483218852,
+      "regime_geo_only_dti": 0.14266853543263014
+    },
+    {
+      "fold": 2,
+      "hidden_pixels": 15147,
+      "regime_pixels": 12166,
+      "regime_share": 0.8031953522149601,
+      "h6_emitted": 69805,
+      "geo_only_emitted": 69379,
+      "full_h6_dti": 0.11443534465012864,
+      "regime_h6_dti": 0.12616470431616253,
+      "regime_random_dti": 0.16434992239395063,
+      "regime_geo_only_dti": 0.1403337220306135
+    },
+    {
+      "fold": 3,
+      "hidden_pixels": 15065,
+      "regime_pixels": 11924,
+      "regime_share": 0.791503484898772,
+      "h6_emitted": 68541,
+      "geo_only_emitted": 68652,
+      "full_h6_dti": 0.11273714917901836,
+      "regime_h6_dti": 0.12514705998247033,
+      "regime_random_dti": 0.16549689416902352,
+      "regime_geo_only_dti": 0.14008502429711528
+    }
+  ],
+  "mean_regime_share": 0.7891294239189888,
+  "mean_full_h6_dti": 0.11269122155731567,
+  "mean_regime_h6_dti": 0.12522893925282277,
+  "mean_regime_random_dti": 0.16576738264648647,
+  "mean_regime_geo_only_dti": 0.13937361939006015,
+  "paired_regime_h6_vs_random": [
+    -0.04546814909650157,
+    -0.038150572213811934,
+    -0.0381852180777881,
+    -0.04034983418655319
+  ],
+  "paired_regime_gated_vs_geo": [
+    -0.0122284657056001,
+    -0.015243272814253556,
+    -0.014169017714450977,
+    -0.014937964314644947
+  ]
+}

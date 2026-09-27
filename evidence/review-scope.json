@@ -1,9 +1,12 @@
 {
   "reviewed_utc": "2026-09-27",
+  "round2_utc": "2026-09-27",
   "official_pages_retrieved": [
     "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
     "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
-    "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516"
+    "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516",
+    "https://community.drivendata.org/t/where-do-you-draw-the-line/11536",
+    "https://community.drivendata.org/t/how-were-the-new-test-faults-identified-data-sources-and-fault-types/11527"
   ],
   "literature_search_only_not_full_pdf_review": [
     "https://pubs.usgs.gov/of/2002/ofr-02-0400/ofr-02-0400.pdf",
@@ -11,6 +14,7 @@
   ],
   "github_recursive_trees_retrieved": ["GEMSDOE", "GEMSDOE2", "GEMSDOE3", "GEMSDOE4", "5GEMSDOE", "6GEMSDOE", "7GEMSDOE", "8GEMSDOE", "11GEMSDOE"],
   "github_tree_not_found": ["9GEMSDOE", "10GEMSDOE"],
+  "round2_registers_read": ["11GEMSDOE/docs/HYPOTHESES.md", "7GEMSDOE/README.md", "7GEMSDOE/knowledge/session7/next_session.md", "GEMSDOE3/REVIEW.md", "GEMSDOE3/configs/gapfinder.json", "GEMSDOE10/HYPOTHESES.md", "8GEMSDOE/scripts/build_hedge_v2.py", "8GEMSDOE/README.md"],
   "source_code_downloaded_for_local_inspection": ["GEMSDOE", "5GEMSDOE", "8GEMSDOE", "11GEMSDOE"],
-  "limitations": ["Not every downloaded source line has a formal verification proof.", "Tree inspection is not full code review.", "Official reference repository tree was inspected; no claim of server-metric implementation parity.", "Scientific literature snippets establish precedent only; proposed mechanisms remain unvalidated hypotheses.", "Original repeated request is condensed, not verbatim, in README."]
+  "limitations": ["Not every downloaded source line has a formal verification proof.", "Tree inspection is not full code review.", "Official reference repository tree was inspected; no claim of server-metric implementation parity.", "Scientific literature snippets establish precedent only; proposed mechanisms remain unvalidated hypotheses.", "Original repeated request is condensed, not verbatim, in README.", "Round-2 novelty claims are bounded by the registers/trees listed above, not an exhaustive audit of every sibling experiment.", "GEMSDOE2 0.1560-vs-0.1563 same-bytes discrepancy is unresolved.", "Upload-receipt linkage (which bytes each account uploaded) is unverifiable: DrivenData does not expose uploaded files."]
 }
