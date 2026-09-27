@@ -2,20 +2,60 @@
 
 > **Read this README every session.** Maximize P(Win): prioritize scientifically defensible discovery and validation over leaderboard churn. Own the Outcome: follow data, model, artifact and published result end to end. Line-by-line verification from official sources. Zero hallucinations.
 
-[Workbench](https://buffedlizard55-lab.github.io/12GEMSDOE/) · [Executive Submission Guide](https://buffedlizard55-lab.github.io/12GEMSDOE/executive-summary.html) · [Evidence & Sibling Audit](docs/session-review.md) · [Round-1 Hypotheses](docs/hypotheses.md) · [Round-2 Hypotheses H6–H10](docs/hypotheses-round2.md) · [Round-3 H11–H14](docs/hypotheses-round3.md) · [Round-4 H15–H19](docs/hypotheses-round4.md) · [Official Leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)
+[Workbench](https://buffedlizard55-lab.github.io/12GEMSDOE/) · [Executive Submission Guide](https://buffedlizard55-lab.github.io/12GEMSDOE/executive-summary.html) · [Evidence & Sibling Audit](docs/session-review.md) · [Round-1 Hypotheses](docs/hypotheses.md) · [Round-2 Hypotheses H6–H10](docs/hypotheses-round2.md) · [Round-3 H11–H14](docs/hypotheses-round3.md) · [Round-4 H15–H19](docs/hypotheses-round4.md) · [**Round-5 Emission Geometry**](docs/hypotheses-round5.md) · [Official Leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)
 
-> **Latest status (2026-09-27, Round 4):** Five candidates H15–H19 were preregistered before coding ([register](docs/hypotheses-round4.md)); H19 (Sentinel-2 alteration) deferred — source verified free/open but S3 blocked in-sandbox. The PRIMARY **H15 coincident multi-physics boundary alignment passed as a research signal**: multi25+H15 = 0.09364 vs multi25 = 0.09071 (**+0.00293, 3/4 folds**, probe 0.0000). H16/H17 not passing; H18 rejected (0/4); H10 harmful all folds (−0.00490, drop it); H6′ spatial arm proven degenerate-by-construction while its terminal mechanism re-validated at 2.80× random. **No H15 GeoTIFF was built and no weekly slot was spent** — the strongest-sibling-baseline gate is still outstanding. Leaderboard re-fetched: #1 DARD **0.3168**.
+> **Latest status (2026-09-27, Round 5):** The data blocker is **closed in this
+> sandbox** — `bash scripts/download_competition_data.sh` completed here and
+> `scripts/prepare_data.py` verified all three rasters against their SHA-256 pins,
+> so the whole train → validate → format-check pipeline now runs end-to-end on CPU.
+> With real data in hand, the frozen masked holdout was **re-run from scratch and
+> reproduced the committed numbers bit-exactly** (multi25 = `0.09071277311870418`,
+> random02 = `0.1378794777374697`, every fold of every arm). That reproduction
+> exposed the defect four rounds missed: **uniform random 2 % emission (0.13788)
+> beats every learned arm we have built.** The cause is the emission policy, not
+> the features — the metric takes `max` over a 5 × 5 (300 m) credit cell, so
+> top-*k* piles mass where it earns nothing. Changing only the emission geometry
+> to 5 × 5 non-maximum suppression, same model and features, gives **0.09071 →
+> 0.22138** (dense truth), **0.04489 → 0.11178** (sparse truth) and **0.06759 →
+> 0.19380** on the strictest off-catalogue protocol (4/4 folds). Four new
+> geological channels (H20–H23) were preregistered, built and tested, and **none
+> cleared its gate** once the emission was fixed — all arms now sit within ±0.0008
+> of each other. Identity checks also corrected a four-round-old error: band
+> `tc` (B5) is the official *top-of-crustal magnetic source depth estimate*, not
+> the "tilt angle or total curvature" its raster description claims. A new
+> format-validated artifact is on the site; **no DrivenData submission slot was
+> spent.** Leaderboard re-fetched: #1 DARD **0.3168**.
 
 ---
 
-## Direct Deliverable: Format-Validated Candidate (Release Gate Pending)
+## Direct Deliverable: Round-5 Thin-Trace Submission (Format-Validated, Not Yet Scored)
 
-- **GeoTIFF File:** [`docs/downloads/12GEMSDOE_multiphysics_submission_06ca61e5.tif`](docs/downloads/12GEMSDOE_multiphysics_submission_06ca61e5.tif) (1,205,044 bytes, 1.20 MB)
-- **ZIP File:** [`docs/downloads/12GEMSDOE_multiphysics_submission_06ca61e5.zip`](docs/downloads/12GEMSDOE_multiphysics_submission_06ca61e5.zip) (1,131,737 bytes, 1.13 MB)
-- **SHA-256 Hash:** `06ca61e5c6a3e55eaf40228d97054a35af1187be9c98e0ef95d996f9919efc6b`
-- **Pre-formatted DrivenData Note:**  
-  `12GEMSDOE-v1 | Multiphysics Basement-Curvature + Tilt-Angle + Strain-Dilation | format-validated | sha256:06ca61e5c6a3`
-- **Format verification (local):** Single-band `float32`, EPSG:32611, 100 m resolution, 3,292 × 3,730, finite in $[0.0, 0.95]$ inside the 5,167,373-pixel template footprint and `NaN` outside the 7,111,787-pixel footprint. It passes `core.validate()` against the downloaded official template. This is not a claim that DrivenData has accepted or scored the file.
+| | |
+|---|---|
+| **Primary GeoTIFF** | [`docs/downloads/12GEMSDOE_r5-nms3-trace_055e9aac96b8.tif`](docs/downloads/12GEMSDOE_r5-nms3-trace_055e9aac96b8.tif) (463,577 bytes) |
+| **ZIP (one GeoTIFF)** | [`docs/downloads/12GEMSDOE_r5-nms3-trace_055e9aac96b8.zip`](docs/downloads/12GEMSDOE_r5-nms3-trace_055e9aac96b8.zip) (387,359 bytes) |
+| **All-finite fallback** | [`docs/downloads/12GEMSDOE_r5-nms3-trace_055e9aac96b8_allfinite.tif`](docs/downloads/12GEMSDOE_r5-nms3-trace_055e9aac96b8_allfinite.tif) — use only if the primary is rejected with `"Predicted values must be in range [0, 1]"` |
+| **SHA-256** | `055e9aac96b89b9a1d8fca8005778733039ed79f1165bb8cdd46dcfc51d6f53d` |
+| **DrivenData note (paste verbatim)** | `12GEMSDOE R5 \| NMS-3 thin-trace emission (5x5 exclusion, 2.0% mass, 103347 px) on multi25 GBM \| sha256:055e9aac96b8` |
+| **Provenance** | [`docs/downloads/12GEMSDOE_r5-nms3-trace_055e9aac96b8.json`](docs/downloads/12GEMSDOE_r5-nms3-trace_055e9aac96b8.json) |
+
+**What it is:** 103,347 predicted fault pixels — exactly 2.000 % of the 5,167,373-pixel
+survey footprint — placed by greedy non-maximum suppression with a 5 × 5 exclusion
+box over the multi25 probability field, restricted to pixels the catalogue does not
+already capture. Values are binary `{0, 1}`.
+
+**Local format verification (re-checked this session):** one `float32` band,
+EPSG:32611, 100 m, 3,292 × 3,730, transform `(100, 0, 243350, 0, −100, 4508550)`,
+all 5,167,373 footprint pixels finite and in `[0.0, 1.0]`, all 7,111,787 outside
+pixels `NaN` — the same convention as the official `sample_submission.tif`. It
+passes `core.validate()`; `tests/test_round5.py` locks the SHA-256, the value set,
+the pixel count and the 5 × 5 exclusion invariant.
+
+**What it is not:** it has no DrivenData score. The standing
+strongest-sibling-baseline gate is still unsatisfied, so it is not
+"release-authorized"; spending a weekly slot is a human decision. The superseded
+round-1..4 archive `06ca61e5` remains downloadable for comparison.
+
 
 ---
 
@@ -184,6 +224,93 @@ Protocol: 512-px spatial blocks, 12-px collar exclusion, fixed seed 12027, offic
 
 ---
 
+## Round 5 — Emission Geometry, Corrected Layer Identity, and Four New Candidates
+
+Full register: [`docs/hypotheses-round5.md`](docs/hypotheses-round5.md). Preregistered
+before the feature code; identity checks and the emission diagnostic ran first and
+are reported verbatim in the register.
+
+### 5.1 Reproduction first (no hallucination check on our own repo)
+
+`scripts/cache_fold_models.py` re-trained the frozen masked-holdout arms and matched
+`evidence/holdout_masked.json` **exactly on every fold of every arm**:
+
+| Arm | Reproduced mean DTI | Committed | Exact per fold |
+|---|---|---|---|
+| raw19 | 0.08602428869798472 | 0.08602 | yes |
+| multi25 | 0.09071277311870418 | 0.09071 | yes |
+| multi30 | 0.08888636948563039 | 0.08889 | yes |
+| random02 | 0.1378794777374697 | 0.13788 | yes |
+
+`multi25_h15` also reproduced the Round-4 value 0.09364 in `holdout_round5.py`, and
+`build_round4_features.py` / `build_candidate_features.py` regenerated their committed
+sidecars byte-identically.
+
+### 5.2 The defect: top-*k* emission wastes most of its mass
+
+The official metric credits a truth pixel with `max` over its 5 × 5 (300 m) cell, so a
+second prediction inside that cell adds false-positive mass and **zero** true-positive
+credit. Every round 1–4 arm used top-*k* by probability. Fixing only the emission
+geometry — greedy non-maximum suppression, Chebyshev radius 2, deterministic
+tie-break — with the identical model and features:
+
+| Protocol (frozen masked spatial holdout, mean of 4 folds) | top-*k* @ 2 % | NMS-3 @ 2 % | Ratio |
+|---|---:|---:|---:|
+| Dense truth (truth = full catalogue) | 0.09071 | **0.22138** | 2.44× |
+| Sparse truth (20 % of truth components, seed 4242+f) | 0.04489 | **0.11178** | 2.49× |
+| Off-catalogue candidates only (strictest real-scoring analogue) | 0.06759 | **0.19380** | 2.87× (4/4 folds) |
+
+Coverage at identical emitted mass (≈23 k px/fold): top-*k* credits 7.6–15.0 % of truth
+pixels, NMS-3 credits 24.6–29.1 %. Evidence:
+[`round5-emission-probe.json`](docs/round5-emission-probe.json),
+[`round5-offcatalogue-check.json`](docs/round5-offcatalogue-check.json),
+[`holdout_round5.json`](docs/holdout_round5.json).
+
+### 5.3 Corrected layer identity: `tc` (B5) is a depth surface, not a tilt angle
+
+Measured on the official raster: `tc` is **strictly positive**, median **18.479**, max
+**88.57**, and correlates **−0.0012** with |tilt angle| computed from B8/B2. A tilt
+angle is bounded by ±π/2 radians. The official problem description lists "the
+**top-of-crustal magnetic source depth estimate**" among the supplied magnetics. Rounds
+1–4 followed the raster band description ("Tilt angle or total curvature"), which is why
+H18 (`tc` lineaments) was rejected 0/4 folds. Evidence:
+[`round5-identity-checks.json`](docs/round5-identity-checks.json) (C3).
+
+Also settled by C2: `iso_grav_anom_slope` (B4) is **not** the magnitude of a gradient
+whose component is `iso_grav_anom_hg` (B17) — |B17| exceeds B4 at 387,553/400,000
+sampled pixels — so no orthogonal gravity-gradient component is recoverable.
+
+### 5.4 Four new geological candidates — preregistered, built, tested, not adopted
+
+| Rank | Candidate | Layers | Signature | Gate result (with NMS-3 emission fixed) |
+|---|---|---|---|---|
+| 2 | **H20 magnetic-basement relief step** | `tc` (B5) | ‖∇(smooth₅ tc)‖ | 2/4 dense, 2/4 sparse — **not adopted** |
+| 3 | **H21 two-depth-surface step coincidence** | `tc` (B5) × `depth_to_base_surf` (B14) | axial agreement of the two gradient directions × min of the two robust edge strengths | 0/4 dense, 2/4 sparse — **not adopted** |
+| 4 | **H22 local singularity exponent** | `tc` (B5) | \|α − 2\| from log-mean vs log-window over w = 1…16 (Cheng-style multifractal singularity) | 3/4 dense, 2/4 sparse — **not adopted** (best of the four) |
+| 5 | **H23 asymmetric-step (monocline) detector** | `depth_to_base_surf` (B14) | \|f − b\| / (\|f − c\| + \|b − c\|) along 4 axes — step polarity, which every symmetric gradient/curvature transform ignores | 2/4 dense, 2/4 sparse — **not adopted** |
+
+All four are mechanism-distinct from every round-1..4 channel (max |corr| 0.153 /
+0.342 / 0.388 / 0.014 per `evidence/round5-identity-checks.json` C4). With the emission policy fixed, **all arms land within ±0.0008
+(dense) and ±0.0018 (sparse) of the multi25 reference** — an order of magnitude below
+the emission effect. That is the actionable finding: the decision layer, not the
+feature list, is where the score is being lost.
+
+### 5.5 Irregularities flagged for manual review
+
+1. **`tc` band description contradicts the official layer list** (§5.3). Worth a forum post.
+2. **`training_features.tif` missing data is the float32 most-negative sentinel
+   `−3.4028235e+38`, not NaN** (C1). An unmasked read puts `−3.4e+38` into model inputs
+   and output rasters — a sufficient cause of the `"Predicted values must be in range
+   [0, 1]"` rejection. Band `tc` alone carries 3,073 sentinel pixels inside the footprint.
+3. **The dense-catalogue local protocol is an inverted selector** (random 2 % beats every
+   learned arm). Rounds 1–4 rankings measured on it are weak evidence; recorded, not
+   silently reinterpreted.
+4. **GEMSDOE2 0.1560 vs 0.1563** remains unresolved; still no upload receipts anywhere.
+5. **The official reference solution is a U-Net with Monte-Carlo CV** (verified from
+   `drivendataorg/gems-prize-reference-solution` README), while every arm here is a
+   per-pixel GBM. The model-class gap is the largest unexplored lever after emission
+   geometry, and it needs a GPU.
+
 ## Reproduce Locally (CPU)
 
 ```bash
@@ -203,10 +330,19 @@ python scripts/holdout_trace.py
 python scripts/build_h11_drainage_feature.py
 python scripts/holdout_round3_h11.py
 
-# 5. Generate a format-validated research GeoTIFF (this cannot authorize release)
-python scripts/generate_submission_tif.py --name multi25-repro
+# 5. Round 5: cache the frozen fold models (also reproduces the round-2 numbers),
+#    then measure emission geometry and run the preregistered gate
+python scripts/cache_fold_models.py
+python scripts/round5_identity_checks.py
+python scripts/build_round5_features.py
+python scripts/round5_emission_probe.py
+python scripts/round5_offcatalogue_check.py
+python scripts/holdout_round5.py
 
-# 6. Run the full test suite
+# 6. Generate the Round-5 format-validated submission GeoTIFF (cannot authorize release)
+python scripts/generate_nms_submission.py
+
+# 7. Run the full test suite
 pytest
 ```
 

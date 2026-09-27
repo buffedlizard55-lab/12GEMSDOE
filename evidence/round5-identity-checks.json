@@ -1,0 +1,356 @@
+{
+  "generated_utc": "2026-09-27",
+  "script": "scripts/round5_identity_checks.py",
+  "inputs": {
+    "training_features": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+    "sample_submission": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc"
+  },
+  "labels_used": false,
+  "C1_sentinel_audit": {
+    "sentinel_float32_min": -3.4028234663852886e+38,
+    "bands": {
+      "mag_anom": {
+        "sentinel_pixels_total": 7113308,
+        "sentinel_pixels_inside_footprint": 3061,
+        "nan_after_masked_read_inside_footprint": 3061,
+        "unmasked_min": -3.4028234663852886e+38
+      },
+      "rtp": {
+        "sentinel_pixels_total": 7113308,
+        "sentinel_pixels_inside_footprint": 3061,
+        "nan_after_masked_read_inside_footprint": 3061,
+        "unmasked_min": -3.4028234663852886e+38
+      },
+      "tmi_hg": {
+        "sentinel_pixels_total": 7113308,
+        "sentinel_pixels_inside_footprint": 3061,
+        "nan_after_masked_read_inside_footprint": 3061,
+        "unmasked_min": -3.4028234663852886e+38
+      },
+      "geod_2ndinv": {
+        "sentinel_pixels_total": 7113308,
+        "sentinel_pixels_inside_footprint": 3061,
+        "nan_after_masked_read_inside_footprint": 3061,
+        "unmasked_min": -3.4028234663852886e+38
+      },
+      "iso_grav_anom_slope": {
+        "sentinel_pixels_total": 7113308,
+        "sentinel_pixels_inside_footprint": 3061,
+        "nan_after_masked_read_inside_footprint": 3061,
+        "unmasked_min": -3.4028234663852886e+38
+      },
+      "tc": {
+        "sentinel_pixels_total": 7113320,
+        "sentinel_pixels_inside_footprint": 3073,
+        "nan_after_masked_read_inside_footprint": 3073,
+        "unmasked_min": -3.4028234663852886e+38
+      },
+      "geod_shearrate": {
+        "sentinel_pixels_total": 7113308,
+        "sentinel_pixels_inside_footprint": 3061,
+        "nan_after_masked_read_inside_footprint": 3061,
+        "unmasked_min": -3.4028234663852886e+38
+      },
+      "geod_dilaterate": {
+        "sentinel_pixels_total": 7113308,
+        "sentinel_pixels_inside_footprint": 3061,
+        "nan_after_masked_read_inside_footprint": 3061,
+        "unmasked_min": -3.4028234663852886e+38
+      },
+      "tmi_vg": {
+        "sentinel_pixels_total": 7113308,
+        "sentinel_pixels_inside_footprint": 3061,
+        "nan_after_masked_read_inside_footprint": 3061,
+        "unmasked_min": -3.4028234663852886e+38
+      },
+      "deq_n100a15": {
+        "sentinel_pixels_total": 7113308,
+        "sentinel_pixels_inside_footprint": 3061,
+        "nan_after_masked_read_inside_footprint": 3061,
+        "unmasked_min": -3.4028234663852886e+38
+      },
+      "iso_grav_anom_vg": {
+        "sentinel_pixels_total": 7113308,
+        "sentinel_pixels_inside_footprint": 3061,
+        "nan_after_masked_read_inside_footprint": 3061,
+        "unmasked_min": -3.4028234663852886e+38
+      },
+      "det_elev": {
+        "sentinel_pixels_total": 7113308,
+        "sentinel_pixels_inside_footprint": 3061,
+        "nan_after_masked_read_inside_footprint": 3061,
+        "unmasked_min": -3.4028234663852886e+38
+      },
+      "iso_grav_anom": {
+        "sentinel_pixels_total": 7113308,
+        "sentinel_pixels_inside_footprint": 3061,
+        "nan_after_masked_read_inside_footprint": 3061,
+        "unmasked_min": -3.4028234663852886e+38
+      },
+      "tmi": {
+        "sentinel_pixels_total": 7113308,
+        "sentinel_pixels_inside_footprint": 3061,
+        "nan_after_masked_read_inside_footprint": 3061,
+        "unmasked_min": -3.4028234663852886e+38
+      },
+      "depth_to_base_surf": {
+        "sentinel_pixels_total": 7113308,
+        "sentinel_pixels_inside_footprint": 3061,
+        "nan_after_masked_read_inside_footprint": 3061,
+        "unmasked_min": -3.4028234663852886e+38
+      },
+      "ieq_n100a15": {
+        "sentinel_pixels_total": 7113308,
+        "sentinel_pixels_inside_footprint": 3061,
+        "nan_after_masked_read_inside_footprint": 3061,
+        "unmasked_min": -3.4028234663852886e+38
+      },
+      "cond_surf": {
+        "sentinel_pixels_total": 7113308,
+        "sentinel_pixels_inside_footprint": 3061,
+        "nan_after_masked_read_inside_footprint": 3061,
+        "unmasked_min": -3.4028234663852886e+38
+      },
+      "iso_grav_anom_hg": {
+        "sentinel_pixels_total": 7113308,
+        "sentinel_pixels_inside_footprint": 3061,
+        "nan_after_masked_read_inside_footprint": 3061,
+        "unmasked_min": -3.4028234663852886e+38
+      },
+      "det_elev_slope": {
+        "sentinel_pixels_total": 7113308,
+        "sentinel_pixels_inside_footprint": 3061,
+        "nan_after_masked_read_inside_footprint": 3061,
+        "unmasked_min": -3.4028234663852886e+38
+      }
+    },
+    "declared_nodata": -3.4028234663852886e+38,
+    "any_band_with_sentinel_inside_footprint": true,
+    "unmasked_read_min_over_all_bands": -3.4028234663852886e+38,
+    "conclusion": "training_features.tif stores missing data as the float32 most-negative sentinel (-3.4028235e+38); it is suppressed only by rasterio's masked read. Any prediction pipeline that reads the stack unmasked propagates -3.4e+38 into the output raster, which fails a [0,1] range check."
+  },
+  "C2_gravity_slope_vs_hg": {
+    "corr_slope_abs_hg": 0.7998441761347688,
+    "pixels_where_slope_lt_abs_hg": 387553,
+    "pixels_compared": 400000,
+    "abs_hg_over_slope_percentiles_p1_p50_p99": [
+      0.3216720790117469,
+      13.079628790385541,
+      28.320610828489365
+    ],
+    "slope_range_inside_core": [
+      0.0013825353235006332,
+      0.6517290472984314
+    ],
+    "hg_range_inside_core": [
+      -15.441243171691895,
+      12.856057167053223
+    ],
+    "conclusion": "iso_grav_anom_slope and iso_grav_anom_hg are NOT the magnitude and a component of one gradient field (|hg| exceeds slope almost everywhere), so no orthogonal component is recoverable; they are independently scaled products. Round-5 hypotheses must not assume otherwise."
+  },
+  "C3_tc_identity": {
+    "tc_range_inside_core": [
+      2.9534237384796143,
+      88.56654357910156
+    ],
+    "tc_median_inside_core": 18.479049682617188,
+    "tc_all_positive_inside_core": true,
+    "tilt_angle_bound_radians": [
+      -1.5707963267948966,
+      1.5707963267948966
+    ],
+    "corr_tc_depth_to_base_surf": 0.20687313202936602,
+    "corr_tc_rtp": -0.09349592504545653,
+    "corr_tc_abs_tilt": -0.0011600480534062882,
+    "lag1_autocorr_tc": 1.0,
+    "lag1_autocorr_rtp": 0.9999999999999998,
+    "official_feature_list_quote": "Magnetics including reduced-to-pole magnetic anomaly, total magnetic intensity, the vertical and horizontal slope of total magnetic intensity, and the top-of-crustal magnetic source depth estimate -- DrivenData competition 306, problem description, 'Provided features'",
+    "raster_band_description": "tc - Tilt angle or total curvature - magnetic field derivative for edge detection",
+    "conclusion": "tc is strictly positive with median 18.5 and maximum 88.6, which is inconsistent with a tilt angle (bounded by +/-pi/2 radians) and is consistent with a depth-to-source estimate in km, matching the official feature list. Rounds 1-4 treated tc as a curvature/edge field (H18, rejected 0/4 folds) following the raster description."
+  },
+  "C4_distinctness": {
+    "subsample_pixels": 400000,
+    "subsample_seed": 12027,
+    "rule": "max |corr| against every round-1..4 channel; <0.50 treated as distinct",
+    "candidates": {
+      "H20_magnetic_basement_step": {
+        "max_abs_corr_channel": "r12_ch05",
+        "max_abs_corr": 0.1527
+      },
+      "H21_two_depth_step_coincidence": {
+        "max_abs_corr_channel": "r12_ch19",
+        "max_abs_corr": 0.3419
+      },
+      "H22_singularity_tc": {
+        "max_abs_corr_channel": "r12_ch05",
+        "max_abs_corr": 0.3878
+      },
+      "H23_step_asymmetry_dtb": {
+        "max_abs_corr_channel": "r12_ch19",
+        "max_abs_corr": 0.0141
+      }
+    },
+    "detail": {
+      "H20_magnetic_basement_step": {
+        "max_abs_corr_channel": "r12_ch05",
+        "max_abs_corr": 0.1527,
+        "all": {
+          "r12_ch00": 0.0381,
+          "r12_ch01": 0.0175,
+          "r12_ch02": 0.0301,
+          "r12_ch03": 0.0346,
+          "r12_ch04": -0.0303,
+          "r12_ch05": 0.1527,
+          "r12_ch06": 0.0242,
+          "r12_ch07": 0.0328,
+          "r12_ch08": 0.005,
+          "r12_ch09": 0.0099,
+          "r12_ch10": -0.0191,
+          "r12_ch11": 0.1151,
+          "r12_ch12": 0.0747,
+          "r12_ch13": 0.0358,
+          "r12_ch14": -0.1105,
+          "r12_ch15": 0.0421,
+          "r12_ch16": -0.0273,
+          "r12_ch17": -0.0231,
+          "r12_ch18": 0.1463,
+          "r12_ch19": -0.0766,
+          "r12_ch20": 0.0192,
+          "r12_ch21": 0.0113,
+          "r12_ch22": 0.0028,
+          "r12_ch23": 0.0194,
+          "r12_ch24": 0.0439,
+          "r12_ch25": -0.0277,
+          "r12_ch26": 0.0282,
+          "r12_ch27": 0.0348,
+          "r12_ch28": 0.0026,
+          "r12_ch29": -0.0293,
+          "r4_ch0": 0.02,
+          "r4_ch1": 0.0225,
+          "r4_ch2": 0.0063,
+          "r4_ch3": 0.1464
+        }
+      },
+      "H21_two_depth_step_coincidence": {
+        "max_abs_corr_channel": "r12_ch19",
+        "max_abs_corr": 0.3419,
+        "all": {
+          "r12_ch00": -0.0518,
+          "r12_ch01": -0.0323,
+          "r12_ch02": -0.0285,
+          "r12_ch03": -0.0249,
+          "r12_ch04": 0.2359,
+          "r12_ch05": 0.0994,
+          "r12_ch06": -0.0307,
+          "r12_ch07": 0.0153,
+          "r12_ch08": -0.0106,
+          "r12_ch09": -0.0125,
+          "r12_ch10": 0.0265,
+          "r12_ch11": -0.1019,
+          "r12_ch12": -0.176,
+          "r12_ch13": -0.0401,
+          "r12_ch14": 0.213,
+          "r12_ch15": -0.0102,
+          "r12_ch16": -0.0128,
+          "r12_ch17": -0.004,
+          "r12_ch18": -0.0571,
+          "r12_ch19": 0.3419,
+          "r12_ch20": 0.0046,
+          "r12_ch21": 0.0738,
+          "r12_ch22": -0.0004,
+          "r12_ch23": -0.0013,
+          "r12_ch24": -0.009,
+          "r12_ch25": -0.0062,
+          "r12_ch26": 0.0325,
+          "r12_ch27": 0.0354,
+          "r12_ch28": -0.0009,
+          "r12_ch29": -0.0065,
+          "r4_ch0": 0.1308,
+          "r4_ch1": 0.0028,
+          "r4_ch2": 0.0341,
+          "r4_ch3": 0.0883
+        }
+      },
+      "H22_singularity_tc": {
+        "max_abs_corr_channel": "r12_ch05",
+        "max_abs_corr": 0.3878,
+        "all": {
+          "r12_ch00": -0.0063,
+          "r12_ch01": -0.004,
+          "r12_ch02": -0.0138,
+          "r12_ch03": -0.0055,
+          "r12_ch04": 0.0083,
+          "r12_ch05": 0.3878,
+          "r12_ch06": -0.0018,
+          "r12_ch07": -0.0087,
+          "r12_ch08": 0.005,
+          "r12_ch09": 0.0017,
+          "r12_ch10": -0.0041,
+          "r12_ch11": 0.0124,
+          "r12_ch12": -0.026,
+          "r12_ch13": -0.0039,
+          "r12_ch14": 0.0243,
+          "r12_ch15": -0.0065,
+          "r12_ch16": -0.0052,
+          "r12_ch17": -0.006,
+          "r12_ch18": -0.0225,
+          "r12_ch19": 0.0194,
+          "r12_ch20": -0.005,
+          "r12_ch21": 0.0077,
+          "r12_ch22": 0.002,
+          "r12_ch23": 0.0068,
+          "r12_ch24": -0.0066,
+          "r12_ch25": 0.0002,
+          "r12_ch26": -0.0131,
+          "r12_ch27": -0.0157,
+          "r12_ch28": 0.0032,
+          "r12_ch29": -0.0045,
+          "r4_ch0": -0.0059,
+          "r4_ch1": -0.0032,
+          "r4_ch2": -0.0003,
+          "r4_ch3": 0.253
+        }
+      },
+      "H23_step_asymmetry_dtb": {
+        "max_abs_corr_channel": "r12_ch19",
+        "max_abs_corr": 0.0141,
+        "all": {
+          "r12_ch00": -0.002,
+          "r12_ch01": -0.0011,
+          "r12_ch02": -0.0016,
+          "r12_ch03": -0.0023,
+          "r12_ch04": 0.0108,
+          "r12_ch05": 0.0024,
+          "r12_ch06": -0.0015,
+          "r12_ch07": -0.003,
+          "r12_ch08": -0.0018,
+          "r12_ch09": 0.0009,
+          "r12_ch10": -0.0024,
+          "r12_ch11": -0.0068,
+          "r12_ch12": -0.002,
+          "r12_ch13": -0.0021,
+          "r12_ch14": 0.0028,
+          "r12_ch15": -0.0035,
+          "r12_ch16": 0.001,
+          "r12_ch17": -0.0002,
+          "r12_ch18": -0.0079,
+          "r12_ch19": 0.0141,
+          "r12_ch20": 0.0079,
+          "r12_ch21": -0.0011,
+          "r12_ch22": -0.0027,
+          "r12_ch23": 0.0008,
+          "r12_ch24": -0.0037,
+          "r12_ch25": 0.0007,
+          "r12_ch26": 0.0026,
+          "r12_ch27": 0.0019,
+          "r12_ch28": -0.0005,
+          "r12_ch29": 0.0033,
+          "r4_ch0": -0.0052,
+          "r4_ch1": -0.0107,
+          "r4_ch2": -0.0048,
+          "r4_ch3": 0.003
+        }
+      }
+    }
+  }
+}

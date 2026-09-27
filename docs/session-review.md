@@ -120,3 +120,64 @@ Five candidates H15–H19 were preregistered in [the Round-4 register](hypothese
 - **Round-2 limitation closed:** no single multi30 channel passes alone (best H9x +0.00124 1/4, H7 +0.00120 2/4); H8 volatile (2/4, mean −0.00103); **H10 harmful on all 4 folds (−0.00490)** — drop from future bundles.
 - **H6′ spatial arm degenerate by construction** (paired 0.00000 exact): 5 px rays from endpoints ≥13 px from any test region can never enter it (verified 0/4 folds), and the 3 px virgin exclusion never binds across the 12 px collar. Lesson recorded: no sub-collar train-trace geometry can be tested on the collar-separated spatial holdout. The terminal simulator reproduces Round 2 bit-for-bit on the mechanism arm (rays 0.2920284167756428 exact; 2.80× the correctly-massed random control 0.10447), prospectively re-validating short straight tip rays with no release eligibility attached.
 - **Leaderboard (re-fetched 2026-09-27):** #1 DARD **0.3168** (was 0.3049); 0.1563 × 3 (#26–28 `extradr19`, `SDCF9`, `smashi34`), corroborating the same-bytes diagnosis pattern without proving upload linkage. Sibling intelligence adopted: GEMSDOE10 H21 catalogue-diff decisive negative (labels *are* the current public catalogue), H20 10 m DEM released (+0.014), H19 thin-emission rejected, 11GEMSDOE-H1 strain coherence rejected, 7GEMSDOE-H9 radiometrics closed — none re-proposed here.
+
+---
+
+## 10. Round-5 session record (2026-09-27)
+
+What was done, in order, with the command or file that proves each line.
+
+1. **Data blocker closed.** `bash scripts/download_competition_data.sh` fetched all five
+   `training_features.tif` parts plus `existing_faults.tif` and `example_submission.tif`
+   from the pinned team bridge via the GitHub Contents API (revision
+   `cceebbdcf9a7d2890bb0665defcb54dfc66ae452`) and `scripts/prepare_data.py` verified all
+   three canonical rasters against their SHA-256 pins. `data/` stays git-ignored.
+   **Correction to the previous sessions' standing note:** data placement is no longer a
+   blocker in this environment; the earlier "run this on any unrestricted machine"
+   instruction is superseded.
+2. **Bit-exact reproduction of the frozen holdout** (`scripts/cache_fold_models.py`):
+   raw19 `0.08602428869798472`, multi25 `0.09071277311870418`, multi30
+   `0.08888636948563039`, random02 `0.1378794777374697` — every fold of every arm matches
+   `evidence/holdout_masked.json` exactly. `build_candidate_features.py` and
+   `build_round4_features.py` also regenerated their committed sidecars byte-identically
+   (`git status` clean after each run).
+3. **The reproduction exposed the defect.** random02 (0.13788) beats every learned arm on
+   the protocol that gated rounds 2–4. Diagnosed analytically from the official metric
+   (TP is a per-truth-pixel `max` over a 5 × 5 cell) and then measured
+   (`scripts/round5_emission_probe.py`): 5 × 5 NMS emission beats top-*k* by 2.44×
+   (dense), 2.49× (sparse) and 2.87× (off-catalogue, 4/4 folds).
+4. **Identity checks before hypotheses** (`scripts/round5_identity_checks.py`): the
+   float32 most-negative sentinel in `training_features.tif` (C1); B4/B17 are not a
+   magnitude/component pair (C2); `tc` is a depth surface, not a tilt angle (C3); all four
+   new candidates are mechanism-distinct (C4).
+5. **Four geological candidates preregistered, built, tested, not adopted**
+   (`docs/hypotheses-round5.md`, `scripts/build_round5_features.py`,
+   `scripts/holdout_round5.py`). With the emission policy fixed, every arm is within
+   ±0.0008 (dense) / ±0.0018 (sparse) of the multi25 reference. Leakage probe 0.0000 on
+   every fold of every protocol.
+6. **New format-validated artifact** (`scripts/generate_nms_submission.py`):
+   `12GEMSDOE_r5-nms3-trace_055e9aac96b8.tif`, SHA-256
+   `055e9aac96b89b9a1d8fca8005778733039ed79f1165bb8cdd46dcfc51d6f53d`, 103,347 emitted
+   pixels (2.000 % of the footprint), binary `{0, 1}`, NaN outside, plus an all-finite
+   fallback variant and a single-GeoTIFF zip. `core.validate()` passes; `pytest` is green
+   at 36 tests.
+7. **No DrivenData submission slot was spent**, and no claim in this document attributes a
+   leaderboard score to an artifact.
+
+### Limitations carried into the next session
+
+* **No upload receipts exist**, so the byte-level duplicate finding for GEMSDOE1/5 still
+  cannot be tied to a specific account's upload.
+* **The strongest-sibling-baseline gate is still unsatisfied**: no sibling model has been
+  reproduced under our protocol, so nothing here is "release-authorized".
+* **Local truth is the known catalogue**, used as a proxy for expert-mapped new faults.
+  The 20 %-thinned variant is a sensitivity check, not a reproduction of the real truth.
+  Transfer magnitude of the emission gain is unknown until one scored submission.
+* **Model class**: the official reference solution is a U-Net with Monte-Carlo CV; every
+  arm here is a per-pixel GBM. Training one needs a GPU (this sandbox is 2 CPU).
+* **External data** (3DEP 1 m/10 m DEMs, Sentinel-2, ComCat) is still unreachable from
+  this sandbox; the GitHub-runner bridge pattern is the only demonstrated transport.
+* **Budget transfer risk**: the 2 % emission mass was selected on folds 0–1 of a
+  catalogue-density proxy. If the real new-fault truth is far sparser, the optimal mass is
+  lower; the marginal condition `p > 0.2 · DTI` in the Round-5 register is the rule to
+  re-derive it with, not a free parameter to sweep post hoc.

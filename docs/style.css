@@ -254,6 +254,11 @@ p { max-width: 900px; color: var(--text); font-size: 1.05rem; }
   border: 1px solid #6b4c1b;
   border-left: 5px solid var(--accent-warn);
 }
+.notice-ok {
+  background: #16211a;
+  border: 1px solid #2f6b41;
+  border-left: 5px solid var(--accent-green);
+}
 .notice h3, .notice-warn h3 {
   margin-top: 0;
   font-size: 1.2rem;
