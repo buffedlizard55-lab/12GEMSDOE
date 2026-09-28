@@ -21,6 +21,8 @@
     <a href="hypotheses-round5.md">Round-5 Emission Geometry</a>
     <a href="hypotheses-round6.md">Round-6 Seismic+Texture</a>
     <a href="hypotheses-round7.md">Round-7 DEM Scarp</a>
+    <a href="hypotheses-round8.md">Round-8 Register</a>
+    <a href="sibling-audit.md">Sibling Audit</a>
     <a href="knowledge-base.md">Knowledge Base</a>
     <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener">Leaderboard ↗</a>
   </nav>
@@ -118,16 +120,37 @@
     </article>
   </div>
 
+  <!-- ROUND 8 RESULT -->
+  <h2>Round 8: Every Lever Tested, None Authorised — No Slot Spent</h2>
+  <div class="notice notice-warn"><p><strong>The frozen Round-8 gate did not pass, so no new artifact was packaged and no weekly submission slot was spent.</strong> Round 7's file remains the submission. The harness first reproduced the Round-7 incumbent to full float64 precision (<code>abs_diff = 0.0</code> on both protocols), so the numbers below are directly comparable: <strong>H39</strong> (11 USGS 3DEP <em>1 m</em> lidar scarp descriptors, fetched and hash-pinned from public-domain USGS tiles) improved the dense protocol 4/4 folds (0.24586 → 0.25326) but reached only 2/4 on the sparse protocol, inside the noise — catalogue-shaped skill, not new-fault skill, so the pre-registered rule rejected it. <strong>H38</strong> (emission mass from the metric's own marginal rule) split the protocols in sign: 3.2 % mass gives <strong>+0.031 dense and −0.010 sparse</strong>, and the only mass change ever measured against the real board (the 0.1563 → 0.1560 pair, +10,668 pixels, −0.0003) tracks the sparse curve, not the dense one. <strong>H40</strong> (graded emission) lost 0.171 dense — negative, as the register predicted. <strong>H37</strong> (catalogue base layer) dominates only in protocols whose truth <em>is</em> the catalogue (+0.515 dense) and is paid nothing on the real board (staff ruling 11516 + the sibling <code>max(ens12, catalogue)</code> artifact matching the score of the file it was derived from): retired from the strategy list, kept as a control. Leakage probe 0.0000 on every fold of all four protocols. <a href="hypotheses-round8.md">Round-8 register &amp; results →</a> · <a href="holdout_round8.json">holdout_round8.json →</a></p></div>
+
   <!-- WHY 0.1563 HAPPENED AUDIT SECTION -->
   <h2>Why Group Submissions Repeatedly Scored 0.1563</h2>
   <div class="card">
-    <p>Our line-by-line byte hash and pixel array comparison resolved the 0.1563 mystery:</p>
+    <p>Resolved from bytes and hashes, not from four-decimal score rounding
+      (<a href="sibling-audit.md">full audit →</a>):</p>
     <ul>
-      <li><strong>GEMSDOE1 and 5GEMSDOE publish Byte-for-Byte Identical artifacts:</strong> Both published TIFFs have SHA-256 <code>7f00890a62878d612fb5eef67a9a364a2df819433dde74b6762ce4fc0fc4fe15</code>, 570,890 bytes, and zero differing pixels. If these published bytes were submitted, their public scores must agree. The audit has no upload receipts, so it does not identify account uploads.</li>
-      <li><strong>CORRECTED 2026-09-27 — 8GEMSDOE did not establish a tie:</strong> 8GEMSDOE's published <code>b83ea0e7…</code> field differs from the shared base at 563,092 pixels; its own log says <code>BUILT-UNIQUE-UNUPLOADED</code>. The identity of the third 0.1563 upload is an unresolved irregularity, not an inference from four-decimal score rounding.</li>
-      <li><strong>Low Scores (0.0107 to 0.0343) in Other Repos:</strong> broad binary masks are consistent with the metric's false-positive penalty, but hidden labels and upload receipts are unavailable. This is a hypothesis to test, not a proven platform diagnosis.</li>
+      <li><strong>GEMSDOE1 and 5GEMSDOE hand out byte-for-byte the same file:</strong> both sites link
+        <code>data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif</code>, SHA-256
+        <code>7f00890a…</code>, 570,890 bytes, 172,974 positive pixels, zero differing pixels — and that
+        exact file is committed in <strong>six places across five repositories</strong> (GEMSDOE, 5GEMSDOE ×2,
+        GEMSDOE2, GEMSDOE3 <code>legacy/</code>, GEMSDOE4). One fixed public test set can give one file only
+        one score. The audit finds no upload receipts, so it is evidence about files, not about accounts.</li>
+      <li><strong>The 0.1560 row is now measured, not guessed:</strong> the 5GEMSDOE anchor ledger holds the
+        scored-file table. GEMSDOE2's dual-family union (<code>f68e590f…</code>) added 10,668 pixels to the
+        0.1563 file — 1,238 of them on masked catalogue pixels, 9,430 chargeable — and moved the public score
+        by <strong>−0.0003</strong> (0.1563 → 0.1560). Marginal mass in this family is at break-even, which is
+        the metric's own prediction at DTI ≈ 0.156.</li>
+      <li><strong>The live board now shows three rows at 0.1563:</strong> #26 extradr19, #27 SDCF9, #28 smashi34
+        (2026-09-28 read). The ledger's own attributions for the latter two were 0.1152 and 0.1560 on
+        2026-09-25, so those accounts have re-submitted since. Rows at 0.1152 / 0.1193 / 0.0830 belong to the
+        same project family's earlier arms.</li>
+      <li><strong>Still irregular, still flagged:</strong> no upload receipts exist anywhere in this
+        organisation, so byte → account attribution beyond the ledger's CERTAIN rows is inference; and the
+        official sample submission is itself the catalogue (<code>sample_submission.tif</code> is bit-for-bit
+        <code>labels.tif &gt; 0</code>), so "copy the template" predicts only masked pixels.</li>
     </ul>
-    <p><a href="session-review.md">Read the full machine-readable artifact comparison in session-review.md →</a></p>
+    <p><a href="sibling-audit.md">Read the byte-level audit →</a> · <a href="session-review.md">evidence audit →</a></p>
   </div>
 
   <!-- GEOLOGICAL HYPOTHESES & EVIDENCE -->

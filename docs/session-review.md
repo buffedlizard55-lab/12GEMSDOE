@@ -254,3 +254,77 @@ What was done, in order, with the command or file that proves each line.
 5. **H34 strike-integrated line contrast** on B3/B18/B19 + `dem10_hgm50_max` (12 orientations, 15/25 px baselines, flank subtraction).
 6. **Budget sweep under the marginal rule** for the R7 field (1.5 %, 2 %, 2.5 %, 3 %) on folds 0–1 sparse only, confirm on 2–3.
 7. **Forum posts** on the `tc` description and sentinel encoding; **account-ownership check** for the 0.1563 trio before any upload.
+
+## 13. Round-8 session record (2026-09-28): mass, lidar, graded — and a gate that failed
+
+**Frozen run.** `scripts/holdout_round8.py` (preregistered in `docs/hypotheses-round8.md`
+before it was executed) reproduced the Round-7 incumbent inside the harness to full float64
+precision — `abs_diff = 0.0` on both catalogue protocols (dense 0.24585785851004457, sparse
+0.12731614329756302) — then scored four levers on the frozen protocol plus two new offset
+diagnostics. Evidence: `evidence/holdout_round8.json` (docs copy identical).
+
+| Lever | dense | sparse | offset 1–3 px | offset 4–6 px | verdict |
+|---|---|---|---|---|---|
+| R7 incumbent, NMS @2 % | 0.24586 | 0.12732 | 0.21247 | 0.20266 | reference |
+| H39 lidar11 arm @2 % | 0.25326 (4/4) | 0.13018 (2/4) | 0.21772 | 0.20802 | fails (sparse 2/4) |
+| H38 mass 3.2 % | 0.27705 (4/4) | 0.11705 (0/4) | 0.23933 | — | split, rejected |
+| H38 mass 5 % | 0.27995 (3/4) | 0.09821 (0/4) | 0.24124 | — | split, rejected |
+| H38 mass 8 % | 0.25106 (3/4) | 0.07332 (0/4) | 0.21393 | — | split, rejected |
+| H40 graded τ=0.02 | −0.17100 | −0.11028 | — | — | negative |
+| H37 catalogue base @2 % | +0.51466 | +0.24990 | +0.20927 | +0.09980 | control only |
+
+1. **Gate failed → no artifact, no slot.** The pre-registered rule required a lever to beat the
+   incumbent on ≥3/4 folds with a positive mean on **both** catalogue protocols. None did.
+   `release_allowed = false`; `docs/downloads/` contains no `12GEMSDOE_r8-*` file (a test now
+   enforces that).
+2. **Why the mass sweep is not a win.** The dense protocol pays for re-tracing the catalogue;
+   the sparse protocol charges the same pixels as false positives. The one real-board
+   measurement of marginal mass — the sibling ledger's 0.1563 → 0.1560 pair: +10,668 emitted
+   pixels, 9,430 chargeable, −0.0003 — tracks the *sparse* elasticity, not the dense one. Mass
+   is a coin-flip whose sign depends on the hidden truth's density.
+3. **H39 is the best ranking gain and still not sufficient.** The 1 m USGS 3DEP lidar scarp
+   descriptors (public domain; product built on GitHub runners by sibling 7GEMSDOE, fetched
+   through the GitHub API and re-hashed here — `evidence/lidar-fetch.json`, SHA-256
+   `d580bb8b…`) improved the dense protocol on 4/4 folds (+0.0074 mean) but only 2/4 on sparse
+   (+0.0015, −0.0003, +0.0112, −0.0010). Reading: the lidar adds catalogue-shaped detail, not
+   new-fault-shaped detail at this budget. It stays the leading candidate for a round in which
+   the sparse criterion itself can be validated against a scored upload.
+4. **H37 retired from strategy.** Staff ruling 11516 (known faults masked, "it should not
+   matter") plus the sister artifact `max(ens12, catalogue)` matching the score of the file it
+   extends (inference flagged: no receipt). Its +0.51 dense appears only because that protocol's
+   truth *is* the catalogue.
+5. **H40 negative on the record** (−0.171 dense): graded mass loses to binary NMS at equal
+   threshold, because a kernel-weighted truth pixel is usually satisfied by one binary neighbour.
+6. **Answers delivered to the standing questions.** `docs/sibling-audit.md` proves from bytes
+   that GEMSDOE and 5GEMSDOE hand out the same file (`7f00890a…`, committed in six places across
+   five repositories; 48 artifacts / 11 duplicate groups overall) and measures the 0.1560 gap;
+   `evidence/metric-algebra.json` turns each public score into a coverage locus and fixes the
+   marginal rule at `0.2·D/(1−0.2·D)` = 0.0323 at DTI 0.1563.
+
+### Limitations carried into next session (updated)
+
+* **The sparse protocol is itself a proxy.** H39's dense/sparse split is the round's central
+  ambiguity; only a scored upload (or a published scoring detail) can settle it.
+* **No upload receipts anywhere in the group**, so byte → account attribution beyond the
+  sibling ledger's CERTAIN rows remains inference (three rows at 0.1563 on the live board).
+* **1 m lidar provenance is second-hand**: the descriptor *product* is hash-pinned and grid-
+  verified here, but the reduction code lives in 7GEMSDOE and was not re-executed; its tile
+  inventory is OCR-recovered, not the login-walled `1m_DEM_links.csv`.
+* **`strike` is circular** and was fed to the model linearly (no sin/cos expansion) — a known
+  weakness of the H39 arm.
+* **No U-Net / no spatial-context model this repo**: the sibling anchor (D5) puts CNN-vs-GBM
+  spatial context at ≈ +0.04 on the real board, the largest single known effect we cannot
+  yet reproduce here.
+
+### Suggestions for next session
+
+1. **Settle H39 with one scored upload** of the lidar arm pinned to the same budget, and record
+   the receipt — the dense/sparse disagreement cannot be resolved by more proxies.
+2. **Build the spatial-context arm** (H33 U-Net on a GitHub runner; 19 + 12 + 11 channels,
+   Tversky loss, NMS-3 emission; bridge per-fold probabilities back via an `ext/*` tag).
+3. **Re-examine the sparse protocol**: thin by *distance* rather than by component, and check
+   whether its elasticity matches the measured real-board pair (−0.0003 for +10,668 px).
+4. **H35 GeoDAWN radiometrics** via the runner bridge (ScienceBase 657e1d85d34e23d3533209f7);
+   preregister before building.
+5. **Keep the 2 % budget** until a scored measurement says otherwise; treat the marginal rule as
+   a cap, not a target.
