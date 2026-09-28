@@ -62,12 +62,20 @@ class TableParser(HTMLParser):
         self.tables, self._table, self._row, self._cell = [], None, None, None
         self._hrefs = []
 
+    def _flush_row(self):
+        if self._row is not None and self._table is not None and self._row:
+            self._table.append(self._row)
+        self._row = None
+
     def handle_starttag(self, tag, attrs):
         if tag == "table":
             self._table = []
         elif tag == "tr" and self._table is not None:
+            self._flush_row()          # closes an implicit <thead><th>… row if one is open
             self._row = []
-        elif tag in ("td", "th") and self._row is not None:
+        elif tag in ("td", "th") and self._table is not None:
+            if self._row is None:      # DrivenData emits <thead><th>… without a <tr>
+                self._row = []
             self._cell, self._hrefs = [], []
         elif tag == "a" and self._cell is not None:
             href = dict(attrs).get("href")
@@ -79,11 +87,10 @@ class TableParser(HTMLParser):
             text = re.sub(r"\s+", " ", "".join(self._cell)).strip()
             self._row.append((text, list(self._hrefs)))
             self._cell = None
-        elif tag == "tr" and self._row is not None and self._table is not None:
-            if self._row:
-                self._table.append(self._row)
-            self._row = None
+        elif tag in ("tr", "thead", "tbody", "tfoot") and self._table is not None:
+            self._flush_row()
         elif tag == "table" and self._table is not None:
+            self._flush_row()
             self.tables.append(self._table)
             self._table = None
 
@@ -92,7 +99,13 @@ class TableParser(HTMLParser):
             self._cell.append(data)
 
 
-FLOAT_RE = re.compile(r"^-?\d+\.\d{2,}$")
+FLOAT_RE = re.compile(r"(?<![\d.])-?\d+\.\d{3,}(?![\d.])")   # a score like 0.3168 anywhere in the cell
+RANK_RE = re.compile(r"^#?\s*(\d{1,4})\s*\.?$")               # "1", "#1", "1."
+
+
+def _rank(text):
+    m = RANK_RE.match(text)
+    return int(m.group(1)) if m else None
 
 
 def parse_rows_loose(html: str) -> list[dict]:
@@ -105,14 +118,15 @@ def parse_rows_loose(html: str) -> list[dict]:
         for r in table:
             texts = [c[0] for c in r]
             hrefs = [h for c in r for h in c[1]]
-            rank = next((int(x) for x in texts if re.fullmatch(r"\d{1,4}", x)), None)
-            score = next((float(x) for x in texts if FLOAT_RE.match(x)), None)
-            if rank is None or score is None:
+            rank = next((_rank(x) for x in texts if _rank(x) is not None), None)
+            score_m = next((FLOAT_RE.search(x) for x in texts if FLOAT_RE.search(x)), None)
+            if rank is None or score_m is None:
                 continue
+            score = float(score_m.group(0))
             profile = next((h for h in hrefs if "/users/" in h), None)
             name = profile.rstrip("/").split("/")[-1] if profile else next(
                 (x for x in texts if x and not re.fullmatch(r"[\d.,:%\- ]+", x)), "?")
-            ints = [int(x) for x in texts if re.fullmatch(r"\d{1,4}", x)]
+            ints = [_rank(x) for x in texts if _rank(x) is not None]
             row = {"rank": rank, "name": name, "display": name, "score": score}
             if profile:
                 row["profile"] = profile
@@ -153,8 +167,9 @@ def parse_leaderboard_strict(html: str) -> list[dict]:
                 continue
             try:
                 rank = int(re.sub(r"[^0-9]", "", r[col["rank"]][0]))
-                score = float(r[col["score"]][0])
-            except (ValueError, KeyError):
+                sm = FLOAT_RE.search(r[col["score"]][0])
+                score = float(sm.group(0)) if sm else float(r[col["score"]][0])
+            except (ValueError, KeyError, AttributeError):
                 continue
             name_cell = r[col["name"]] if "name" in col else ("", [])
             profile = next((h for h in name_cell[1] if "/users/" in h), None)
@@ -258,10 +273,11 @@ def main(argv=None) -> int:
                 if frows:
                     rows, source = frows, frag_url
                     break
+                body = frag.lower().find("<tbody")
                 fragment_log[-1]["diagnostics"] = {
                     "n_tables": frag.lower().count("<table"), "n_tr": frag.lower().count("<tr"),
                     "n_td": frag.lower().count("<td"), "n_users_links": frag.count("/users/"),
-                    "head": frag[:1500],
+                    "first_body_row": frag[body:body + 2500] if body >= 0 else None,
                 }
             except Exception as exc:  # noqa: BLE001
                 fragment_log.append({"url": frag_url, "error": f"{type(exc).__name__}: {exc}"})
