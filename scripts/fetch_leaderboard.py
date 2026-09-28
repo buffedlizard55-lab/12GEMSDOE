@@ -145,21 +145,26 @@ def parse_leaderboard(html: str) -> list[dict]:
 def parse_leaderboard_strict(html: str) -> list[dict]:
     p = TableParser()
     p.feed(html)
+    def is_score(h):
+        return any(k in h for k in ("score", "tversky", "dti", "metric", "best public", "best private"))
+
     for table in p.tables:
         header = [c[0].lower() for c in table[0]]
-        if not any("rank" in h for h in header) or not any("score" in h for h in header):
+        if not any("rank" in h or h == "#" for h in header) or not any(is_score(h) for h in header):
             continue
         col = {}
         for i, h in enumerate(header):
-            if "rank" in h and "rank" not in col:
+            if ("rank" in h or h == "#") and "rank" not in col:
                 col["rank"] = i
-            elif "score" in h and "score" not in col:
+            elif is_score(h) and "score" not in col:
                 col["score"] = i
             elif "submission" in h and "last" in h:
                 col["last_submission"] = i
             elif "submission" in h and "submissions" not in col:
                 col["submissions"] = i
-            elif "name" in h or "team" in h or "user" in h:
+            elif any(k in h for k in ("participant", "name", "user")):
+                col["name"] = i            # preferred name column (overrides a hidden "team members" cell)
+            elif "team" in h:
                 col.setdefault("name", i)
         rows = []
         for r in table[1:]:
@@ -272,6 +277,8 @@ def main(argv=None) -> int:
                     Path(args.dump).with_suffix(".fragment.html").write_text(frag)
                 if frows:
                     rows, source = frows, frag_url
+                    body = frag.lower().find("<tbody")
+                    fragment_log[-1]["sample_row_html"] = frag[body:body + 1500] if body >= 0 else None
                     break
                 body = frag.lower().find("<tbody")
                 fragment_log[-1]["diagnostics"] = {
