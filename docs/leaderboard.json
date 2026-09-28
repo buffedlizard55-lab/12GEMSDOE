@@ -1,0 +1,297 @@
+{
+  "status": "manual-snapshot",
+  "error": null,
+  "source_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+  "source": "manual snapshot read from the leaderboard page by the session agent (partial: ranks 31-32, 35-47, 49 omitted; submission counts only where noted)",
+  "fetched_utc": "2026-09-28T00:00:00+00:00",
+  "metric": "public DW-Tversky (DTI), higher is better; scored only on expert-labelled new faults; catalogue pixels masked",
+  "n_rows": 34,
+  "top5_cutoff_score": 0.2806,
+  "rows": [
+    {
+      "rank": 1,
+      "name": "DARD",
+      "display": "DARD",
+      "score": 0.3168,
+      "submissions": 11
+    },
+    {
+      "rank": 2,
+      "name": "alexoktaba",
+      "display": "alexoktaba",
+      "score": 0.2993
+    },
+    {
+      "rank": 3,
+      "name": "HardcoreTechGod",
+      "display": "HardcoreTechGod",
+      "score": 0.2854
+    },
+    {
+      "rank": 4,
+      "name": "mzoorob",
+      "display": "mzoorob",
+      "score": 0.2843
+    },
+    {
+      "rank": 5,
+      "name": "joeyfezster",
+      "display": "joeyfezster",
+      "score": 0.2806
+    },
+    {
+      "rank": 6,
+      "name": "GrigorSargsyan",
+      "display": "GrigorSargsyan",
+      "score": 0.2742
+    },
+    {
+      "rank": 7,
+      "name": "exposed",
+      "display": "exposed",
+      "score": 0.2439
+    },
+    {
+      "rank": 8,
+      "name": "xiaofanhu",
+      "display": "xiaofanhu",
+      "score": 0.2367
+    },
+    {
+      "rank": 9,
+      "name": "hiii12345",
+      "display": "hiii12345",
+      "score": 0.2262
+    },
+    {
+      "rank": 10,
+      "name": "ad3002",
+      "display": "ad3002",
+      "score": 0.2235
+    },
+    {
+      "rank": 11,
+      "name": "tchu",
+      "display": "tchu",
+      "score": 0.222
+    },
+    {
+      "rank": 12,
+      "name": "oshbocker",
+      "display": "oshbocker",
+      "score": 0.2185
+    },
+    {
+      "rank": 13,
+      "name": "moongrega",
+      "display": "moongrega",
+      "score": 0.218
+    },
+    {
+      "rank": 14,
+      "name": "Batik Shirt Brothers",
+      "display": "Batik Shirt Brothers",
+      "score": 0.1956
+    },
+    {
+      "rank": 15,
+      "name": "jgaines",
+      "display": "jgaines",
+      "score": 0.1933
+    },
+    {
+      "rank": 16,
+      "name": "hudsonenterprises",
+      "display": "hudsonenterprises",
+      "score": 0.1907
+    },
+    {
+      "rank": 17,
+      "name": "doegemsDrivendata",
+      "display": "doegemsDrivendata",
+      "score": 0.1847,
+      "submissions": 5
+    },
+    {
+      "rank": 18,
+      "name": "ndavis7",
+      "display": "ndavis7",
+      "score": 0.1797
+    },
+    {
+      "rank": 19,
+      "name": "nsabaj",
+      "display": "nsabaj",
+      "score": 0.1744
+    },
+    {
+      "rank": 20,
+      "name": "kpomazi",
+      "display": "kpomazi",
+      "score": 0.1722
+    },
+    {
+      "rank": 21,
+      "name": "Scotty77",
+      "display": "Scotty77",
+      "score": 0.1682
+    },
+    {
+      "rank": 22,
+      "name": "dmitry_v",
+      "display": "dmitry_v",
+      "score": 0.1672
+    },
+    {
+      "rank": 23,
+      "name": "hall4jm",
+      "display": "hall4jm",
+      "score": 0.1642
+    },
+    {
+      "rank": 24,
+      "name": "VictorCallejas",
+      "display": "VictorCallejas",
+      "score": 0.1629
+    },
+    {
+      "rank": 25,
+      "name": "fishnchips",
+      "display": "fishnchips",
+      "score": 0.1587
+    },
+    {
+      "rank": 26,
+      "name": "extradr19",
+      "display": "extradr19",
+      "score": 0.1563,
+      "submissions": 3
+    },
+    {
+      "rank": 27,
+      "name": "SDCF9",
+      "display": "SDCF9",
+      "score": 0.1563,
+      "submissions": 2
+    },
+    {
+      "rank": 28,
+      "name": "smashi34",
+      "display": "smashi34",
+      "score": 0.1563,
+      "submissions": 2
+    },
+    {
+      "rank": 29,
+      "name": "Aero",
+      "display": "Aero",
+      "score": 0.15
+    },
+    {
+      "rank": 30,
+      "name": "GeoTrace",
+      "display": "GeoTrace",
+      "score": 0.1498
+    },
+    {
+      "rank": 33,
+      "name": "wbg1",
+      "display": "wbg1",
+      "score": 0.1461
+    },
+    {
+      "rank": 34,
+      "name": "kbrodt",
+      "display": "kbrodt",
+      "score": 0.1456
+    },
+    {
+      "rank": 48,
+      "name": "smrtdoog5",
+      "display": "smrtdoog5",
+      "score": 0.1193
+    },
+    {
+      "rank": 50,
+      "name": "DBbun",
+      "display": "DBbun",
+      "score": 0.1119
+    }
+  ],
+  "watched": {
+    "DARD": {
+      "why": "leader at last manual check (0.3168, 2026-09-28)",
+      "rank": 1,
+      "score": 0.3168,
+      "submissions": 11
+    },
+    "alexoktaba": {
+      "why": "#2 at last manual check",
+      "rank": 2,
+      "score": 0.2993,
+      "submissions": null
+    },
+    "HardcoreTechGod": {
+      "why": "#3 at last manual check",
+      "rank": 3,
+      "score": 0.2854,
+      "submissions": null
+    },
+    "mzoorob": {
+      "why": "#4 at last manual check",
+      "rank": 4,
+      "score": 0.2843,
+      "submissions": null
+    },
+    "joeyfezster": {
+      "why": "#5 at last manual check (Phase-1 top-5 cutoff)",
+      "rank": 5,
+      "score": 0.2806,
+      "submissions": null
+    },
+    "GrigorSargsyan": {
+      "why": "#6 at last manual check",
+      "rank": 6,
+      "score": 0.2742,
+      "submissions": null
+    },
+    "doegemsDrivendata": {
+      "why": "name suggests organizer reference U-Net (0.1847); NOT verified",
+      "rank": 17,
+      "score": 0.1847,
+      "submissions": 5
+    },
+    "extradr19": {
+      "why": "0.1563 = group ens12 artifact score? ownership NOT verified",
+      "rank": 26,
+      "score": 0.1563,
+      "submissions": 3
+    },
+    "SDCF9": {
+      "why": "0.1563, same value as extradr19; ownership NOT verified",
+      "rank": 27,
+      "score": 0.1563,
+      "submissions": 2
+    },
+    "smashi34": {
+      "why": "0.1563, same value as extradr19; ownership NOT verified",
+      "rank": 28,
+      "score": 0.1563,
+      "submissions": 2
+    },
+    "wbg1": {
+      "why": "0.1461 = 7GEMSDOE README claim; ownership NOT verified",
+      "rank": 33,
+      "score": 0.1461,
+      "submissions": null
+    },
+    "smrtdoog5": {
+      "why": "0.1193 = GEMSDOE3 README claim; ownership NOT verified",
+      "rank": 48,
+      "score": 0.1193,
+      "submissions": null
+    }
+  },
+  "caveat": "Public leaderboard only. Phase-1 prizes are decided on this board; Phase-2 uses an expanded expert-reviewed truth set. Account ownership in `watched` is NOT verified.",
+  "note": "Seed snapshot written by hand on 2026-09-28. Replaced automatically by .github/workflows/leaderboard-feed.yml on its first successful run."
+}

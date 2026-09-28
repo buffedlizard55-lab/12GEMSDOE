@@ -20,6 +20,8 @@
     <a href="hypotheses-round4.md">Round-4 H15–H19</a>
     <a href="hypotheses-round5.md">Round-5 Emission Geometry</a>
     <a href="hypotheses-round6.md">Round-6 Seismic+Texture</a>
+    <a href="hypotheses-round7.md">Round-7 DEM Scarp</a>
+    <a href="knowledge-base.md">Knowledge Base</a>
     <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener">Leaderboard ↗</a>
   </nav>
 </header>
@@ -31,20 +33,23 @@
 
   <!-- HERO CTA: DOWNLOAD READY SUBMISSION -->
   <section class="hero-cta">
-    <span class="badge">Round-6 candidate · H28 passes 3/4 on both protocols · format-validated · not yet scored</span>
-    <h2>Download Submission GeoTIFF — Round-6 Thin-Trace + Magnetic Texture</h2>
-    <p><strong>103,347 predicted fault pixels (exactly 2.000 % of the survey footprint)</strong>, laid down by non-maximum suppression with a 5 × 5 exclusion box — no two predictions inside one 300 m credit cell. Model: multi25 + H28 (magnetic anomaly local variance 11 px, capturing hydrothermal alteration texture disruption). On frozen masked holdout NMS-3 @2%: dense truth <strong>0.22138 → 0.22143 (3/4 folds)</strong>, sparse truth <strong>0.11178 → 0.11438 (3/4 folds, +0.0026)</strong>. H28 is the only Round-6 arm that beats multi25+NMS on ≥3/4 folds on BOTH protocols. Format verified against official <code>sample_submission.tif</code>: EPSG:32611, 100 m, 3,292 × 3,730, one float32 band, values in [0.0,1.0] inside 5,167,373-pixel footprint, NaN outside. <strong>No DrivenData score exists for this file and no weekly slot was spent.</strong> Previous R5 artifact archived.</p>
+    <span class="badge">Round-7 candidate · H32 passes 4/4 folds on both protocols · format-validated · not yet scored</span>
+    <h2>Download Submission GeoTIFF — Round-7 Thin-Trace + 10 m DEM Scarp Signature</h2>
+    <p><strong>103,347 predicted fault pixels (exactly 2.000 % of the survey footprint)</strong>, laid down by non-maximum suppression with a 5 × 5 exclusion box — no two predictions inside one 300 m credit cell. Model: multi25 + H28 + <strong>H32</strong> (12 label-free channels from the USGS 3DEP 1/3″ ≈10 m DEM: slope, horizontal gradient at 20/50/200 m, micro-relief, curvature and <em>one-sided scarp asymmetry</em> per 100 m cell). On the frozen masked holdout, NMS-3 @2 %: dense truth <strong>0.22143 → 0.24586 (+0.0244, 4/4 folds)</strong>, sparse truth <strong>0.11438 → 0.12732 (+0.0129, 4/4 folds)</strong> versus the Round-6 incumbent — the largest gain of any arm in this repository's history, and the first one that is not noise-level. Only 10 % of its pixels coincide with the R6 file. Format verified against official <code>sample_submission.tif</code>: EPSG:32611, 100 m, 3,292 × 3,730, one float32 band, values in [0.0, 1.0] inside the 5,167,373-pixel footprint, NaN outside, zero catalogue pixels. <strong>No DrivenData score exists for this file and no weekly slot was spent.</strong> Uses external public-domain USGS elevation data (provenance below). Previous R6 and R5 artifacts archived.</p>
 
     <div class="btn-row">
-      <a class="button-primary" href="downloads/12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.tif" download="12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.tif">
+      <a class="button-primary" href="downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.tif" download="12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.tif">
         <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download .TIF (R6, 453 KB)
+        Download .TIF (R7, 459 KB)
       </a>
-      <a class="button-secondary" href="downloads/12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.zip" download="12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.zip">
-        Download .ZIP (R6)
+      <a class="button-secondary" href="downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.zip" download="12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.zip">
+        Download .ZIP (R7)
       </a>
-      <a class="button-secondary" href="downloads/12GEMSDOE_r6-nms3-h28-texture_8721329b55c7_allfinite.tif" download="12GEMSDOE_r6-nms3-h28-texture_8721329b55c7_allfinite.tif">
-        All-finite fallback R6
+      <a class="button-secondary" href="downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62_allfinite.tif" download="12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62_allfinite.tif">
+        All-finite fallback R7
+      </a>
+      <a class="button-secondary" href="downloads/12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.tif" download="12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.tif">
+        Archive R6 .TIF
       </a>
       <a class="button-secondary" href="downloads/12GEMSDOE_r5-nms3-trace_055e9aac96b8.tif" download="12GEMSDOE_r5-nms3-trace_055e9aac96b8.tif">
         Archive R5 .TIF
@@ -61,10 +66,18 @@
         <span id="copy-status" style="color: var(--accent-green); display: none; font-weight: 700;">✓ Copied to clipboard!</span>
       </div>
       <div class="note-input-group">
-        <input type="text" id="sub-note" class="note-input" readonly value="12GEMSDOE R6 | NMS-3 thin-trace + H28 mag texture variance (11px) on multi25+H28 GBM | 5x5 exclusion 2.0% mass 103347 px | sha256:8721329b55c7">
+        <input type="text" id="sub-note" class="note-input" readonly value="12GEMSDOE R7 | NMS-3 thin-trace on multi25+H28+H32 GBM; H32 = 12 USGS 3DEP 10 m DEM scarp channels (slope/gradient/micro-relief/one-sided asymmetry per 100 m cell) | 5x5 exclusion 2.0% mass 103347 px | sha256:0c9199f14e62">
         <button class="btn-copy" onclick="copyNote()">Copy Note</button>
       </div>
     </div>
+  </section>
+
+  <!-- LIVE LEADERBOARD FEED -->
+  <section class="card" id="lb-card">
+    <p class="eyebrow">Live Public Leaderboard Feed</p>
+    <p id="lb-status">Loading <code>leaderboard.json</code>… (auto-refreshed every 6 h by <code>.github/workflows/leaderboard-feed.yml</code>; if this text stays, open <a href="leaderboard.json">leaderboard.json</a> directly or the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener">official page ↗</a>.)</p>
+    <div class="scroll"><table id="lb-table" style="display:none"><thead><tr><th>Rank</th><th>Account</th><th>Score</th><th>Subs</th><th>Watch reason</th></tr></thead><tbody></tbody></table></div>
+    <p class="stat-sub">Top 6 + watched accounts. Account ownership of the 0.1563 / 0.1461 / 0.1193 rows is <strong>not verified</strong>. Phase-1 prizes go to the top 5 of this board; Phase-2 uses an expanded expert truth set.</p>
   </section>
 
   <!-- KEY AUDIT & PERFORMANCE METRICS -->
@@ -93,15 +106,15 @@
     <article class="card">
       <p class="eyebrow">Round-5 Effect: Emission Geometry</p>
       <div class="stat" style="color: var(--accent-green);">2.5–2.9×</div>
-      <p>Same model, same features, only the emission changed: 5 × 5 non-maximum suppression instead of top-<em>k</em>. Dense truth 0.0907 → 0.2214; sparse truth 0.0449 → 0.1118; off-catalogue 0.0676 → 0.1938. Round-6 adds H28 magnetic texture: dense 0.22138 → 0.22143 (3/4), sparse 0.11178 → 0.11438 (3/4).</p>
-      <div class="stat-sub">Emission = 2.5× gain; H28 = only R6 arm to pass both protocols; no slot spent.</div>
+      <p>Same model, same features, only the emission changed: 5 × 5 non-maximum suppression instead of top-<em>k</em>. Dense truth 0.0907 → 0.2214; sparse truth 0.0449 → 0.1118; off-catalogue 0.0676 → 0.1938. Round-6 adds H28 magnetic texture: dense 0.22138 → 0.22143 (3/4, mean +0.00005 — noise-level), sparse 0.11178 → 0.11438 (3/4). Round-7 adds H32 10 m DEM scarp channels: dense 0.22143 → <strong>0.24586</strong> (4/4), sparse 0.11438 → <strong>0.12732</strong> (4/4).</p>
+      <div class="stat-sub">Emission = 2.5× gain; H32 = first material feature gain; no slot spent.</div>
     </article>
 
     <article class="card">
       <p class="eyebrow">Leaderboard Target</p>
       <div class="stat" style="color: var(--accent-gold);">0.3168</div>
-      <p>Re-fetched this session from the official leaderboard: #1 DARD 0.3168, #2 0.2993, #3 0.2854. Three rows still tie at exactly 0.1563 (#26–28).</p>
-      <div class="stat-sub">Time-stamped snapshot 2026-09-27, not a live claim.</div>
+      <p>Re-fetched 2026-09-28 from the official leaderboard: #1 DARD 0.3168 (11 subs), #2 alexoktaba 0.2993, #3 HardcoreTechGod 0.2854, #5 cutoff 0.2806. Three rows still tie at exactly 0.1563 (#26–28).</p>
+      <div class="stat-sub">Time-stamped snapshot 2026-09-28 (re-fetched this session), not a live claim — see live feed above.</div>
     </article>
   </div>
 
@@ -184,6 +197,14 @@
     <p>Mechanism, quantified: at the same emitted mass (≈23 k px per fold) top-<em>k</em> credits 7.6–15.0 % of truth pixels while NMS-3 credits 24.6–29.1 % — a per-fold coverage gain of 1.9–3.2× for the same false-positive bill. Evidence: <a href="round5-emission-probe.json">emission probe (JSON)</a> · <a href="round5-offcatalogue-check.json">off-catalogue check (JSON)</a> · <a href="holdout_round5.json">Round-5 gate (JSON)</a>.</p>
   </div>
   
+  <h2>Round-7: Sub-100 m Topography — the First Material Feature Gain</h2>
+  <div class="notice notice-ok"><p><strong>H32 sub-100 m scarp signature cleared its preregistered gate on every fold of both protocols</strong> (<a href="hypotheses-round7.md">register</a>, written before code). Twelve label-free channels per 100 m cell from the USGS 3DEP 1/3 arc-second (~10 m) DEM — built on a GitHub runner by sibling GEMSDOE10 (tag <code>ext/dem10-36343078537</code>), re-hashed here tile-by-tile and channel-by-channel (<a href="../evidence/dem10-fetch.json">dem10-fetch.json</a>). Frozen masked holdout, NMS-3 @2 %, leakage probe 0.0000 every fold: <strong>dense 0.24586 vs incumbent 0.22143 (+0.0244, 4/4)</strong>; <strong>sparse 0.12732 vs 0.11438 (+0.0129, 4/4)</strong>. The reference arms reproduced Round-6 to the last digit (multi25 0.22138 / 0.11178). Ablation without H28: 0.24658 / 0.12706 — H28 is irrelevant either way; the preregistered primary is shipped. Artifact <code>12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.tif</code>; no DrivenData slot spent. Evidence: <a href="holdout_round7.json">holdout_round7.json</a> · <a href="../evidence/round7-feature-build.json">round7-feature-build.json</a>.</p></div>
+  <div class="card">
+    <p><strong>What is actually new — and what is not.</strong> The distinctness table was a surprise: 10 m slope and gradient aggregated to 100 m correlate <strong>0.80–0.97</strong> with the supplied <code>det_elev_slope</code> (B19), i.e. the sponsor's slope band was evidently already computed from high-resolution topography. The genuinely new content is the <em>one-sided</em> scarp asymmetry (<code>onesided</code> 0.26, <code>onesided3</code> 0.18, <code>steep_ratio_max</code> 0.41 max |corr|). The distinct-only arm with just those three channels still wins 4/4 on both protocols (dense +0.0139, sparse +0.0076) — so more than half the gain is scarp <em>shape</em>, not slope magnitude. This was recorded in the register as an amendment <em>before</em> the gate ran.</p>
+    <p><strong>Why H32 should catch faults missing from USGS/INGENIOUS:</strong> a 1–10 m fault scarp is a step over 20–100 m — sub-pixel on the 100 m grid but a resolved one-sided gradient ridge at 10 m. The catalogue is stated to be incomplete, most Great Basin quadrangles were mapped before lidar, and the organizers themselves ship <code>1m_DEM_links.csv</code>, pointing at high-resolution topography as the data class experts use. Null hypotheses: shorelines of pluvial Lake Lahontan, terraces, roads and canal banks are also 1–10 m steps — the holdout gain is measured on catalogue traces, not on the hidden expert truth.</p>
+    <p><strong>Other Round-7 candidates (registered, not scored):</strong> H33 spatial-context U-Net on CPU (reference solution scores 0.1847 publicly; PyTorch CPU wheel unreachable from this sandbox — runner job planned); H34 strike-integrated line contrast over 1.5–2.5 km baselines; H35 GeoDAWN radiometrics K/eTh/eU/TC (<a href="https://www.sciencebase.gov/catalog/item/657e1d85d34e23d3533209f7" target="_blank" rel="noopener">ScienceBase, public domain ↗</a>, runner bridge needed); H36 USGS SGMC bedrock faults (not locally validatable). Verified-facts ledger: <a href="knowledge-base.md">knowledge-base.md</a>.</p>
+  </div>
+
   <h2>Round-6: Seismic Proximity, Gravity Curvature, Conductivity Fabric, Magnetic Texture</h2>
   <div class="notice notice-ok"><p><strong>Five new mechanism-distinct candidates H25–H29 preregistered before coding</strong> (<a href="hypotheses-round6.md">register</a>). All below 0.50 max |corr| vs rounds 1–5: H25 0.4301 vs shear, H26 0.336 vs |grad iso_grav_hg|, H27 0.339 vs |grad cond|, H28 0.384 vs tmi_hg, H29 0.120 vs intersection density. Frozen masked holdout, NMS-3 @2%, both truth protocols, leakage probe 0.0000 every fold. <strong>H28 magnetic texture variance (mag_anom local std 11 px) is the only arm to beat multi25+NMS on ≥3/4 folds on BOTH protocols</strong> — dense 3/4 (0.22143 vs 0.22138), sparse 3/4 (0.11438 vs 0.11178, +0.0026). H25 passes sparse 3/4 but dense 1/4; others fail. New artifact <code>12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.tif</code> packaged; no DrivenData slot spent. Evidence: <a href="holdout_round6.json">holdout_round6.json</a> · <a href="../evidence/round6-feature-build.json">feature-build.json</a>.</p></div>
   <div class="card">
@@ -385,6 +406,35 @@
 </footer>
 
 <script>
+(function () {
+  var status = document.getElementById('lb-status');
+  var table = document.getElementById('lb-table');
+  if (!status || !table || !window.fetch) return;
+  fetch('leaderboard.json', {cache: 'no-store'}).then(function (r) { return r.json(); }).then(function (f) {
+    var rows = f.rows || [];
+    var watched = f.watched || {};
+    var show = rows.filter(function (r) { return r.rank <= 6 || watched[r.name]; });
+    var tb = table.querySelector('tbody'); tb.innerHTML = '';
+    show.forEach(function (r) {
+      var tr = document.createElement('tr');
+      var why = watched[r.name] ? watched[r.name].why : '';
+      [r.rank, r.name, Number(r.score).toFixed(4), (r.submissions == null ? '—' : r.submissions), why].forEach(function (v) {
+        var td = document.createElement('td'); td.textContent = v; tr.appendChild(td);
+      });
+      tb.appendChild(tr);
+    });
+    table.style.display = show.length ? '' : 'none';
+    var when = f.fetched_utc || '?';
+    var st = f.status || '?';
+    status.innerHTML = 'Status: <strong>' + st + '</strong> · fetched ' + when + ' UTC · ' + (f.n_rows || 0) + ' rows · top-5 cutoff ' +
+      (f.top5_cutoff_score == null ? '?' : Number(f.top5_cutoff_score).toFixed(4)) +
+      (st === 'manual-snapshot' ? ' · <em>seed snapshot typed by the agent; replaced by the first successful Actions run</em>' : '') +
+      (f.error ? ' · last error: <code>' + String(f.error).slice(0, 120) + '</code>' : '') +
+      ' · <a href="leaderboard.json">raw JSON</a>';
+  }).catch(function (e) {
+    status.textContent = 'Could not load leaderboard.json in this viewer (' + e + '). Open the official leaderboard instead.';
+  });
+})();
 function copyNote() {
   const note = document.getElementById('sub-note');
   navigator.clipboard.writeText(note.value).then(() => {

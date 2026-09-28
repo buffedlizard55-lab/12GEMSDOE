@@ -220,3 +220,37 @@ What was done, in order, with the command or file that proves each line.
 6. **Budget sweep with marginal condition**: derive optimal mass for sparser truth using p > 0.2·DTI rule, not grid search post hoc.
 7. **Forum posts**: raise `tc` band description mismatch and sentinel missing-data encoding as irregularities.
 
+
+## 12. Round-7 session record (2026-09-28)
+
+What was done, in order, with the command or file that proves each line.
+
+1. **Data placement autonomously reproduced** (`scripts/download_competition_data.py` → `scripts/prepare_data.py` → feature builds). Deterministic rebuild of `candidate-features-30.npy` gives SHA-256 `7eb403a2…` — identical to the Round-5 manifest, **not** to the Round-6 manifest (`fc746d92…`). Diff is confined to channel 29 (H10, used only by `multi30`), so no `multi25` gate is affected; the Round-5/6 sidecars (`round5/6-feature-build.json`) were regenerated in the correct order (r4 → r5 → r6) and only their `r12_ch29` correlations changed. Flagged as an irregularity in the register §5.3.
+2. **Previous-session next steps executed first**: the GitHub-runner bridge for external data was found already built by sibling GEMSDOE10 (tag `ext/dem10-36343078537`, `STATUS.txt build=success run=36343078537`): 13 label-free 10 m-DEM scarp channels from 12 official USGS 3DEP 1/3″ tiles, per-tile SHA-256 pinned. `scripts/fetch_dem10_channels.py` pulled them through the GitHub API (the only egress this sandbox has), verified the tag commit, template SHA `2176d08e…`, footprint count 5,167,373 and every channel hash → `evidence/dem10-fetch.json` (all `fetched-verified`, `labels_used: false`).
+3. **Preregistered H32–H36 BEFORE coding** (`docs/hypotheses-round7.md`), ranked by expected gain ÷ cost: H32 sub-100 m scarp signature (data in hand), H33 CPU U-Net spatial-context learner (deferred: PyTorch not installable here), H34 strike-integrated line contrast (Round-8), H35 GeoDAWN radiometrics K/eTh/eU/TC (ScienceBase 657e1d85…, public domain, runner bridge needed), H36 SGMC bedrock faults (not locally validatable). Gate tightened: ≥3/4 folds **and** positive mean paired gain on both protocols, because Round-6 had passed on 3/4 folds with a mean dense gain of +0.00005.
+4. **Built the 12-channel cube** (`scripts/build_round7_features.py`, SHA-256 `4fcbb375…`, `valid_frac` dropped as constant). Distinctness on 400k random valid pixels: slope/gradient/micro-relief channels 0.80–0.97 vs `det_elev_slope` (B19); `steep_ratio_max` 0.41, `onesided` 0.26, `onesided3` 0.18. Recorded as a **register amendment before the gate ran**: the distinct-only arm `dem3` replaced the planned "core subset"; expected gain revised down.
+5. **Frozen masked holdout, NMS-3 @2 %** (`scripts/holdout_round7.py`, 13.6 min): reference arms reproduced Round-6 exactly (multi25 0.22138/0.11178; multi25+H28 0.22143/0.11438). **H32 primary `multi25_h28_dem12`: dense 0.24586 (+0.02443 vs incumbent, 4/4), sparse 0.12732 (+0.01294, 4/4)**; ablation `multi25_dem12` 0.24658/0.12706 (4/4, 4/4); distinct-only `multi25_h28_dem3` 0.23533/0.12194 (4/4, 4/4). Leakage probe 0.0000 on every fold. `gate.passed = true` (`evidence/holdout_round7.json`).
+6. **New artifact** (`scripts/generate_nms_submission_r7.py`, refuses to run unless the gate passed): `12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.tif`, SHA-256 `0c9199f14e625d7b2539a0a045803b74d6494ce568d185abecc193fe7e93c6f2`, 103,347 px (2.000 %), binary {0,1}, NaN outside, 0 catalogue pixels, 5×5 exclusion invariant; only 10,230 emitted pixels shared with R6 (186,234 differing pixels) — a genuinely different submission. Manifest carries the external-data declaration (tiles + hashes).
+7. **Site / docs**: hero CTA on `index.html` and `executive-summary.html` now hand out R7 (R6/R5 archived); the guide's step 4/5 — which still named the R5 file and the Round-1 note — fixed; new live leaderboard card reading `docs/leaderboard.json`; new `docs/knowledge-base.md` (verified-facts ledger with sources and dates); README status/deliverable/reproduce sections, AGENTS.md brief updated.
+8. **Leaderboard feed**: `scripts/fetch_leaderboard.py` (stdlib only, parser unit-tested on synthetic HTML) + `.github/workflows/leaderboard-feed.yml` (every 6 h + manual dispatch) commits `docs/leaderboard.json` and dated snapshots to `evidence/leaderboard/`. The seed feed is a hand-typed snapshot (status `manual-snapshot`); the live path can only be exercised on GitHub-hosted runners.
+9. **Tests**: `tests/test_round7.py` (7 tests: register, provenance sidecar, distinctness honesty, holdout report + reference reproduction, memmap↔vector identity, parser, artifact conformance) + `tests/test_site.py` updated; full suite **48 passed**.
+10. **No DrivenData slot spent.** Release still not "authorized" under the standing strongest-sibling-baseline rule; spending a slot is a human decision.
+
+### Limitations carried into next session (updated)
+
+* **Holdout truth is the catalogue proxy.** H32's +0.024/+0.013 is measured on held-out *catalogue* traces; the hidden truth is expert-mapped new faults whose sources staff will not disclose. If experts mapped from lidar, H32 should transfer well; if the new faults are geophysics-only, it may not. Unknown until a slot is spent.
+* **`det_elev_slope` overlap.** Nine of twelve DEM channels are near-duplicates of B19; the repo does not claim them as new information. Whether the sponsor derived B19 from 10 m/30 m topography is unverified.
+* **Sibling-built channels.** The DEM reduction code lives in GEMSDOE10; this repo verified hashes and template alignment, not that code line by line.
+* **Leaderboard feed unexercised on the network.** Parser tested only on synthetic HTML; the first Actions run must be checked (`gh run list --workflow leaderboard-feed.yml`). If DrivenData's table markup differs, the feed will record `parse-failed` and the workflow fails visibly.
+* **No upload receipts; strongest-sibling-baseline gate unsatisfied; U-Net model-class gap; 1 m DEM / Sentinel-2 / GeoDAWN radiometrics need the runner bridge** — unchanged from §11.
+* **Budget frozen at 2 %.** With a sharper probability field the marginal condition p > 0.2·DTI may favour a different mass; not re-swept (preregistration kept the budget fixed for comparability).
+
+### Suggestions for next session
+
+1. **Decide on spending one slot on R7 (`0c9199f14e62`)** — first artifact with a material holdout gain; the transfer measurement is worth more than any further proxy result. Record upload receipt + score in the knowledge base.
+2. **Verify the leaderboard feed's first run** (`gh workflow run leaderboard-feed.yml`, then `gh run watch`); fix the parser against the real markup if `parse-failed`.
+3. **H33 U-Net on a GitHub runner** (CPU, 6 h job limit): same fold masks, 19+12 channels, Tversky loss, NMS-3 emission on the averaged field; bridge per-fold probability vectors back via an `ext/*` tag and score them with `holdout_round7.py`'s DTI code.
+4. **H35 GeoDAWN radiometrics** via the runner bridge (ScienceBase item 657e1d85d34e23d3533209f7): K, eTh, eU, TC grids → K/eTh ratio anomaly, |∇TC| lineaments; preregister first.
+5. **H34 strike-integrated line contrast** on B3/B18/B19 + `dem10_hgm50_max` (12 orientations, 15/25 px baselines, flank subtraction).
+6. **Budget sweep under the marginal rule** for the R7 field (1.5 %, 2 %, 2.5 %, 3 %) on folds 0–1 sparse only, confirm on 2–3.
+7. **Forum posts** on the `tc` description and sentinel encoding; **account-ownership check** for the 0.1563 trio before any upload.
