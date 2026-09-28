@@ -92,7 +92,43 @@ class TableParser(HTMLParser):
             self._cell.append(data)
 
 
+FLOAT_RE = re.compile(r"^-?\d+\.\d{2,}$")
+
+
+def parse_rows_loose(html: str) -> list[dict]:
+    """Header-agnostic fallback: any table row with an integer rank cell, a float score cell
+    and (optionally) a /users/ profile link counts as a leaderboard row."""
+    p = TableParser()
+    p.feed(html)
+    rows = []
+    for table in p.tables:
+        for r in table:
+            texts = [c[0] for c in r]
+            hrefs = [h for c in r for h in c[1]]
+            rank = next((int(x) for x in texts if re.fullmatch(r"\d{1,4}", x)), None)
+            score = next((float(x) for x in texts if FLOAT_RE.match(x)), None)
+            if rank is None or score is None:
+                continue
+            profile = next((h for h in hrefs if "/users/" in h), None)
+            name = profile.rstrip("/").split("/")[-1] if profile else next(
+                (x for x in texts if x and not re.fullmatch(r"[\d.,:%\- ]+", x)), "?")
+            ints = [int(x) for x in texts if re.fullmatch(r"\d{1,4}", x)]
+            row = {"rank": rank, "name": name, "display": name, "score": score}
+            if profile:
+                row["profile"] = profile
+            if len(ints) >= 2:
+                row["submissions"] = ints[1]
+            rows.append(row)
+    rows.sort(key=lambda r: r["rank"])
+    return rows if len(rows) >= 5 else []
+
+
 def parse_leaderboard(html: str) -> list[dict]:
+    strict = parse_leaderboard_strict(html)
+    return strict if strict else parse_rows_loose(html)
+
+
+def parse_leaderboard_strict(html: str) -> list[dict]:
     p = TableParser()
     p.feed(html)
     for table in p.tables:
@@ -217,11 +253,16 @@ def main(argv=None) -> int:
                 frag = http_get(frag_url, args.timeout, htmx=True)
                 frows = parse_leaderboard(frag)
                 fragment_log.append({"url": frag_url, "bytes": len(frag), "rows": len(frows)})
+                if args.dump:
+                    Path(args.dump).with_suffix(".fragment.html").write_text(frag)
                 if frows:
                     rows, source = frows, frag_url
-                    if args.dump:
-                        Path(args.dump).with_suffix(".fragment.html").write_text(frag)
                     break
+                fragment_log[-1]["diagnostics"] = {
+                    "n_tables": frag.lower().count("<table"), "n_tr": frag.lower().count("<tr"),
+                    "n_td": frag.lower().count("<td"), "n_users_links": frag.count("/users/"),
+                    "head": frag[:1500],
+                }
             except Exception as exc:  # noqa: BLE001
                 fragment_log.append({"url": frag_url, "error": f"{type(exc).__name__}: {exc}"})
     status = "ok" if rows else ("fetch-failed" if error else "parse-failed")
