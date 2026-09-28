@@ -5,7 +5,7 @@ name: Leaderboard feed
 # a dated snapshot under evidence/leaderboard/. The site renders docs/leaderboard.json.
 on:
   schedule:
-    - cron: '17 */6 * * *'   # every 6 hours (UTC)
+    - cron: '17 5,17 * * *'  # twice daily (UTC); commits only when the rows change
   workflow_dispatch:
   push:                       # also run when the feed code itself changes on main
     branches: [main]
@@ -28,7 +28,7 @@ jobs:
       - name: Fetch and parse leaderboard
         id: fetch
         continue-on-error: true
-        run: python scripts/fetch_leaderboard.py --dump /tmp/leaderboard.html
+        run: python scripts/fetch_leaderboard.py --dump /tmp/leaderboard.html --only-if-changed
       - name: Keep the raw page for parser diagnostics
         if: always()
         uses: actions/upload-artifact@v4

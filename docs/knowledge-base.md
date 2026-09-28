@@ -40,10 +40,12 @@
 | 48 | smrtdoog5 | 0.1193 | GEMSDOE3 README claim — not verified |
 
 Automation: `.github/workflows/leaderboard-feed.yml` runs `scripts/fetch_leaderboard.py`
-every 6 h on a GitHub-hosted runner (the development sandbox cannot reach drivendata.org),
+twice daily (05:17 / 17:17 UTC) on a GitHub-hosted runner (the development sandbox cannot reach drivendata.org),
 commits `docs/leaderboard.json` and a dated snapshot in `evidence/leaderboard/`, and the
 site renders it. If the page structure changes the feed records `status: parse-failed`
-and the workflow fails visibly.
+and the workflow fails visibly. **Verified live 2026-09-28** (run 36365801815): the page shell has no
+`<table>`; the table arrives as an htmx fragment from `…/leaderboard_partial/?page=1` (50 rows,
+headers `Rank / Team members / Participant / Best public DW-Tversky / Links`, no submission count).
 
 ## 3. Local holdout ledger (frozen protocol — 512-px blocks, 12-px collar, seed 12027, pixel-exact mask, NMS-3 @ 2 %)
 

@@ -249,6 +249,8 @@ def main(argv=None) -> int:
     ap.add_argument("--snapshots", default=str(ROOT / "evidence/leaderboard"))
     ap.add_argument("--timeout", type=int, default=60)
     ap.add_argument("--dump", help="write the raw fetched HTML here (diagnostics; uploaded as a CI artifact)")
+    ap.add_argument("--only-if-changed", action="store_true",
+                    help="on success, leave the feed untouched when the parsed rows equal the committed ones (avoids no-op commits)")
     args = ap.parse_args(argv)
 
     fetched = dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat()
@@ -307,6 +309,13 @@ def main(argv=None) -> int:
 
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
+    if status == "ok" and args.only_if_changed and out.exists():
+        prev = json.loads(out.read_text())
+        key = lambda rs: [(r.get("rank"), r.get("name"), r.get("score"), r.get("submissions")) for r in rs]  # noqa: E731
+        same = prev.get("status") == "ok" and key(prev.get("rows", [])) == key(rows)
+        if same:
+            print(json.dumps({"status": "unchanged", "n_rows": len(rows), "as_of": prev.get("fetched_utc")}))
+            return 0
     if status == "ok":
         out.write_text(json.dumps(feed, indent=2))
         snap_dir = Path(args.snapshots)
