@@ -34,7 +34,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: leaderboard-html-${{ github.run_id }}
-          path: /tmp/leaderboard.html
+          path: |
+            /tmp/leaderboard.html
+            /tmp/leaderboard.fragment.html
           if-no-files-found: ignore
           retention-days: 7
       - name: Commit feed if changed

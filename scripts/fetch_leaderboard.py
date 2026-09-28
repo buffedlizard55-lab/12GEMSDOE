@@ -31,6 +31,7 @@ import sys
 import urllib.request
 from html.parser import HTMLParser
 from pathlib import Path
+from urllib.parse import urljoin
 
 ROOT = Path(__file__).resolve().parents[1]
 URL = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
@@ -140,6 +141,29 @@ def parse_leaderboard(html: str) -> list[dict]:
     return []
 
 
+def discover_fragment_urls(html: str) -> list[str]:
+    """DrivenData loads the leaderboard table with htmx (hx-get) into #leaderboard_table.
+    Return absolute candidate URLs for that fragment, most specific first."""
+    cands = re.findall(r'hx-get\s*=\s*["\']([^"\']+)["\']', html, re.I)
+    cands += re.findall(r'data-(?:url|src)\s*=\s*["\']([^"\']*leaderboard[^"\']*)["\']', html, re.I)
+    out, seen = [], set()
+    for c in cands:
+        u = urljoin(URL, c.replace("&amp;", "&"))
+        if u not in seen and ("leaderboard" in u.lower() or "table" in u.lower()):
+            seen.add(u)
+            out.append(u)
+    return out
+
+
+def http_get(url: str, timeout: int, htmx: bool = False) -> str:
+    headers = {"User-Agent": UA, "Accept": "text/html,*/*", "Referer": URL}
+    if htmx:
+        headers.update({"HX-Request": "true", "HX-Current-URL": URL})
+    req = urllib.request.Request(url, headers=headers)
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        return resp.read().decode("utf-8", errors="replace")
+
+
 def build_feed(rows: list[dict], fetched_utc: str, source: str, status: str, error: str | None = None) -> dict:
     by_name = {r["name"]: r for r in rows}
     watched = {}
@@ -178,15 +202,28 @@ def main(argv=None) -> int:
         source = f"file:{args.html}"
     else:
         try:
-            req = urllib.request.Request(URL, headers={"User-Agent": UA, "Accept": "text/html"})
-            with urllib.request.urlopen(req, timeout=args.timeout) as resp:
-                html = resp.read().decode("utf-8", errors="replace")
+            html = http_get(URL, args.timeout)
         except Exception as exc:  # noqa: BLE001 — we want the message in the feed
             error = f"{type(exc).__name__}: {exc}"
 
     if args.dump and html:
         Path(args.dump).write_text(html)
     rows = parse_leaderboard(html) if html else []
+    fragment_log = []
+    if not rows and html and not args.html:
+        # The page shell has no <table>; the table arrives as an htmx fragment.
+        for frag_url in discover_fragment_urls(html):
+            try:
+                frag = http_get(frag_url, args.timeout, htmx=True)
+                frows = parse_leaderboard(frag)
+                fragment_log.append({"url": frag_url, "bytes": len(frag), "rows": len(frows)})
+                if frows:
+                    rows, source = frows, frag_url
+                    if args.dump:
+                        Path(args.dump).with_suffix(".fragment.html").write_text(frag)
+                    break
+            except Exception as exc:  # noqa: BLE001
+                fragment_log.append({"url": frag_url, "error": f"{type(exc).__name__}: {exc}"})
     status = "ok" if rows else ("fetch-failed" if error else "parse-failed")
     feed = build_feed(rows, fetched, source, status, error)
     if status != "ok" and html:
@@ -198,7 +235,11 @@ def main(argv=None) -> int:
             "n_tables": html.lower().count("<table"),
             "has_leaderboard_word": "leaderboard" in html.lower(),
             "snippet": re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html))[:400],
+            "hx_get_urls": discover_fragment_urls(html)[:10],
+            "fragment_attempts": fragment_log,
         }
+    elif fragment_log:
+        feed["fragment_attempts"] = fragment_log
 
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
