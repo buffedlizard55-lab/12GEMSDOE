@@ -2,32 +2,32 @@
 
 > **Read this README every session.** Maximize P(Win): prioritize scientifically defensible discovery and validation over leaderboard churn. Own the Outcome: follow data, model, artifact and published result end to end. Line-by-line verification from official sources. Zero hallucinations.
 
-[Workbench](https://buffedlizard55-lab.github.io/12GEMSDOE/) · [Executive Submission Guide](https://buffedlizard55-lab.github.io/12GEMSDOE/executive-summary.html) · [Evidence & Sibling Audit](docs/session-review.md) · [Round-1 Hypotheses](docs/hypotheses.md) · [Round-2 Hypotheses H6–H10](docs/hypotheses-round2.md) · [Round-3 H11–H14](docs/hypotheses-round3.md) · [Round-4 H15–H19](docs/hypotheses-round4.md) · [Round-5 Emission Geometry](docs/hypotheses-round5.md) · [**Round-6 Seismic+Texture**](docs/hypotheses-round6.md) · [Official Leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)
+[Workbench](https://buffedlizard55-lab.github.io/12GEMSDOE/) · [Executive Submission Guide](https://buffedlizard55-lab.github.io/12GEMSDOE/executive-summary.html) · [Evidence & Sibling Audit](docs/session-review.md) · [Round-1 Hypotheses](docs/hypotheses.md) · [Round-2 Hypotheses H6–H10](docs/hypotheses-round2.md) · [Round-3 H11–H14](docs/hypotheses-round3.md) · [Round-4 H15–H19](docs/hypotheses-round4.md) · [Round-5 Emission Geometry](docs/hypotheses-round5.md) · [Round-6 Seismic+Texture](docs/hypotheses-round6.md) · [**Round-7 DEM Scarp H32–H36**](docs/hypotheses-round7.md) · [Knowledge Base](docs/knowledge-base.md) · [Live leaderboard feed (JSON)](docs/leaderboard.json) · [Official Leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)
 
-> **Latest status (2026-09-28, Round 6):** Five new mechanism-distinct hypotheses H25–H29 were preregistered **before** coding (all below 0.50 max |corr| vs rounds 1–5: H25 0.43, H26 0.336, H27 0.339, H28 0.384, H29 0.12). Data blocker remains closed; `candidate-features-30.npy` (1.4 GB), `round4/5/6_features.npy` rebuilt and SHA-256 pinned. Frozen masked spatial holdout reproduced bit-exactly for multi25 (0.09071) and random02 (0.13788). With NMS-3 @2% emission frozen, Round-6 gate measured: **H28 magnetic texture variance (mag_anom local std 11 px) passes ≥3/4 folds on BOTH truth protocols** — dense 3/4 (0.22143 vs 0.22138), sparse 3/4 (0.11438 vs 0.11178, +0.0026). H25 passes sparse 3/4 but dense 1/4; H26/H27/H29 fail. No other arm beats multi25+NMS on both protocols. New format-validated artifact `r6-nms3-h28-texture_8721329b55c7` (103,347 px, 2.000% footprint, binary {0,1}, NaN outside) built; **no DrivenData slot spent**. Leaderboard re-fetched 2026-09-28: #1 DARD **0.3168**, #2 0.2993, #3 0.2854, 0.1563 ×3 at #26–28. Top prize remains $300k ($50k Phase1 + $250k Phase2) per [OSTI 96647](https://docs.nlr.gov/docs/fy26osti/96647.pdf).
+> **Latest status (2026-09-28, Round 7):** Five new candidates H32–H36 were preregistered **before** coding ([register](docs/hypotheses-round7.md)); for the first time the round changes the *input resolution* instead of adding another 100 m transform. **H32 = 12 label-free channels per 100 m cell from the USGS 3DEP 1/3″ (~10 m) DEM** (public domain; built on a GitHub runner by sibling GEMSDOE10 tag `ext/dem10-36343078537`, every tile and channel re-hashed here — [`evidence/dem10-fetch.json`](evidence/dem10-fetch.json)). On the frozen masked holdout with NMS-3 @2 % it beats the Round-6 incumbent on **every fold of both protocols: dense 0.24586 vs 0.22143 (+0.0244, 4/4), sparse 0.12732 vs 0.11438 (+0.0129, 4/4)**; reference arms reproduced Round-6 to the last digit; leakage probe 0.0000. Honest caveat: slope-type DEM channels correlate 0.80–0.97 with the supplied `det_elev_slope`; the new information is the one-sided scarp asymmetry, which alone still wins 4/4 (+0.0139/+0.0076). New format-validated artifact `r7-nms3-dem10-scarp_0c9199f14e62` (103,347 px, 2.000 %, binary {0,1}, NaN outside, 0 catalogue pixels; only 10 % of pixels shared with R6); **no DrivenData slot spent**. Also new: a GitHub-Actions leaderboard feed (`docs/leaderboard.json`, every 6 h) and a verified-facts [knowledge base](docs/knowledge-base.md). Leaderboard 2026-09-28: #1 DARD **0.3168**, #5 cutoff 0.2806, 0.1563 ×3 at #26–28. Irregularities found this session: Round-6's gate passed with a mean dense gain of +0.00005 (noise-level; gate tightened); the Round-6 session's feature cube SHA (`fc746d92…`) differs from the deterministic rebuild (`7eb403a2…`, = Round-5) in channel 29 only; the submission guide's step 4/5 still named the R5 file and the Round-1 note (fixed).
 
 ---
 
-## Direct Deliverable: Round-6 Thin-Trace + Texture Submission (Format-Validated, Not Yet Scored)
+## Direct Deliverable: Round-7 Thin-Trace + 10 m DEM Scarp Submission (Format-Validated, Not Yet Scored)
 
 | | |
 |---|---|
-| **Primary GeoTIFF** | [`docs/downloads/12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.tif`](docs/downloads/12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.tif) (463,577 bytes est) |
-| **ZIP (one GeoTIFF)** | [`docs/downloads/12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.zip`](docs/downloads/12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.zip) |
-| **All-finite fallback** | [`docs/downloads/12GEMSDOE_r6-nms3-h28-texture_8721329b55c7_allfinite.tif`](docs/downloads/12GEMSDOE_r6-nms3-h28-texture_8721329b55c7_allfinite.tif) — use only if primary rejected with `"Predicted values must be in range [0, 1]"` |
-| **SHA-256** | `8721329b55c72635803cca27414f3d0ffe4705f48285de0dc7c29d6fd3eb90d3` |
-| **DrivenData note (paste verbatim)** | `12GEMSDOE R6 \| NMS-3 thin-trace + H28 mag texture variance (11px) on multi25+H28 GBM \| 5x5 exclusion 2.0% mass 103347 px \| sha256:8721329b55c7` |
-| **Provenance** | [`docs/downloads/12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.json`](docs/downloads/12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.json) |
-| **Holdout evidence** | [`evidence/holdout_round6.json`](evidence/holdout_round6.json) — dense 0.22143 (3/4), sparse 0.11438 (3/4) vs multi25 0.22138/0.11178 |
-| **Previous R5 archive** | [`docs/downloads/12GEMSDOE_r5-nms3-trace_055e9aac96b8.tif`](docs/downloads/12GEMSDOE_r5-nms3-trace_055e9aac96b8.tif) (463,577 bytes, SHA-256 `055e9aac96b8…`) — still format-validated, superseded by R6 |
+| **Primary GeoTIFF** | [`docs/downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.tif`](docs/downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.tif) (469,858 bytes) |
+| **ZIP (one GeoTIFF)** | [`docs/downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.zip`](docs/downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.zip) |
+| **All-finite fallback** | [`docs/downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62_allfinite.tif`](docs/downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62_allfinite.tif) — use only if primary rejected with `"Predicted values must be in range [0, 1]"` |
+| **SHA-256** | `0c9199f14e625d7b2539a0a045803b74d6494ce568d185abecc193fe7e93c6f2` |
+| **DrivenData note (paste verbatim)** | `12GEMSDOE R7 \| NMS-3 thin-trace on multi25+H28+H32 GBM; H32 = 12 USGS 3DEP 10 m DEM scarp channels (slope/gradient/micro-relief/one-sided asymmetry per 100 m cell) \| 5x5 exclusion 2.0% mass 103347 px \| sha256:0c9199f14e62` |
+| **Provenance** | [`docs/downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.json`](docs/downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.json) — includes the external-data declaration (USGS 3DEP tiles, SHA-256 each) |
+| **Holdout evidence** | [`evidence/holdout_round7.json`](evidence/holdout_round7.json) — dense 0.24586 (4/4), sparse 0.12732 (4/4) vs incumbent multi25+H28 0.22143/0.11438 |
+| **Previous archives** | [`docs/downloads/12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.tif`](docs/downloads/12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.tif) (R6, SHA-256 `8721329b55c7…`), [`docs/downloads/12GEMSDOE_r5-nms3-trace_055e9aac96b8.tif`](docs/downloads/12GEMSDOE_r5-nms3-trace_055e9aac96b8.tif) (R5) — still format-validated, superseded by R7 |
 
 **What it is:** 103,347 predicted fault pixels — exactly 2.000 % of the 5,167,373-pixel
 survey footprint — placed by greedy non-maximum suppression with a 5 × 5 exclusion
-box over the multi25+H28 probability field (H28 = local standard deviation of `mag_anom` in 11 px window, capturing hydrothermal alteration texture disruption). Restricted to pixels the catalogue does not already capture. Values binary `{0,1}`.
+box over the multi25+H28+H32 probability field (H32 = 12 channels from the ~10 m USGS 3DEP DEM: slope max/mean/std, horizontal-gradient magnitude at 20/50/200 m, steep fraction, detrended micro-relief std/range, curvature, one-sided scarp asymmetry at two scales — per 100 m cell). Restricted to pixels the catalogue does not already capture. Values binary `{0,1}`.
 
 **Local format verification:** one `float32` band, EPSG:32611, 100 m, 3,292 × 3,730, transform `(100, 0, 243350, 0, −100, 4508550)`, all 5,167,373 footprint pixels finite and in `[0.0, 1.0]`, all 7,111,787 outside pixels `NaN` — same convention as official `sample_submission.tif`. It
-passes `core.validate()`; `tests/test_round5.py` locks the SHA-256, the value set,
-the pixel count and the 5 × 5 exclusion invariant.
+passes `core.validate()`; `tests/test_round7.py` locks the SHA-256, the value set,
+the pixel count, the 5 × 5 exclusion invariant and that it differs from the R6 file.
 
 **What it is not:** it has no DrivenData score. The standing
 strongest-sibling-baseline gate is still unsatisfied, so it is not
@@ -320,7 +320,23 @@ python scripts/holdout_round5.py
 # 6. Generate the Round-5 format-validated submission GeoTIFF (cannot authorize release)
 python scripts/generate_nms_submission.py
 
-# 7. Run the full test suite
+# 7. Round 6 (build order matters for the distinctness sidecars: r4 -> r5 -> r6)
+python scripts/build_round4_features.py
+python scripts/build_round6_features.py
+python scripts/holdout_round6.py
+python scripts/generate_nms_submission_r6.py
+
+# 8. Round 7: fetch the hash-pinned 10 m DEM channels from the sibling tag (GitHub API only),
+#    build the 12-channel cube + distinctness sidecar, run the gate, package
+python scripts/fetch_dem10_channels.py        # needs `gh auth` (reads buffedlizard55-lab/GEMSDOE10 tag ext/dem10-36343078537)
+python scripts/build_round7_features.py
+python scripts/holdout_round7.py              # ~14 min on 2 CPUs; writes evidence/holdout_round7.json
+python scripts/generate_nms_submission_r7.py  # refuses to run unless gate.passed is true
+
+# 9. Leaderboard feed (network needed; runs on GitHub Actions every 6 h)
+python scripts/fetch_leaderboard.py
+
+# 10. Run the full test suite
 pytest
 ```
 

@@ -20,6 +20,8 @@
     <a href="hypotheses-round4.md">Round-4 H15–H19</a>
     <a href="hypotheses-round5.md">Round-5 Emission Geometry</a>
     <a href="hypotheses-round6.md">Round-6 Seismic+Texture</a>
+    <a href="hypotheses-round7.md">Round-7 DEM Scarp</a>
+    <a href="knowledge-base.md">Knowledge Base</a>
     <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener">Leaderboard ↗</a>
   </nav>
 </header>
@@ -31,21 +33,24 @@
 
     <!-- PROMINENT DOWNLOAD CARD -->
   <section class="hero-cta">
-    <span class="badge">Round-6 thin-trace + texture · format-validated · not yet scored · H28 passes 3/4 both protocols</span>
-    <h2>Download Submission GeoTIFF — Round-6</h2>
-    <p><strong>Primary file:</strong> <code>12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.tif</code> — 103,347 predicted pixels (2.000 % of footprint) placed by 5 × 5 non-maximum suppression on multi25+H28 probability field (H28 = mag_anom local variance 11 px). Verified against official <code>sample_submission.tif</code>: 3,292 × 3,730, one float32 band, EPSG:32611, 100 m, values in [0.0, 1.0] inside 5,167,373-pixel footprint, NaN outside. SHA-256 <code>8721329b55c7…</code>. It has <strong>not</strong> been scored by DrivenData; spending a weekly slot is human decision. Previous R5 artifact: <code>12GEMSDOE_r5-nms3-trace_055e9aac96b8.tif</code> archived.</p>
-    <p><strong>Fallback file:</strong> <code>12GEMSDOE_r6-nms3-h28-texture_8721329b55c7_allfinite.tif</code> — identical predictions, but every pixel finite and inside [0,1] (0.0 outside). Use only if primary rejected with <code>"Predicted values must be in range [0, 1]"</code>.</p>
+    <span class="badge">Round-7 thin-trace + 10 m DEM scarp · format-validated · not yet scored · H32 passes 4/4 on both protocols</span>
+    <h2>Download Submission GeoTIFF — Round-7</h2>
+    <p><strong>Primary file:</strong> <code>12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.tif</code> — 103,347 predicted pixels (2.000 % of footprint) placed by 5 × 5 non-maximum suppression on the multi25+H28+H32 probability field (H32 = 12 channels from the USGS 3DEP ≈10 m DEM: slope, gradient, micro-relief, one-sided scarp asymmetry per 100 m cell). Verified against official <code>sample_submission.tif</code>: 3,292 × 3,730, one float32 band, EPSG:32611, 100 m, values in [0.0, 1.0] inside the 5,167,373-pixel footprint, NaN outside, zero catalogue pixels. SHA-256 <code>0c9199f14e62…</code>. Frozen masked holdout vs the Round-6 file: dense +0.0244 (4/4 folds), sparse +0.0129 (4/4). It has <strong>not</strong> been scored by DrivenData; spending a weekly slot is a human decision. Uses external public-domain USGS elevation data (declare it if the form asks about external data). Previous artifacts archived: <code>12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.tif</code>, <code>12GEMSDOE_r5-nms3-trace_055e9aac96b8.tif</code>.</p>
+    <p><strong>Fallback file:</strong> <code>12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62_allfinite.tif</code> — identical predictions, but every pixel finite and inside [0,1] (0.0 outside). Use only if the primary is rejected with <code>"Predicted values must be in range [0, 1]"</code>.</p>
 
     <div class="btn-row">
-      <a class="button-primary" href="downloads/12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.tif" download="12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.tif">
+      <a class="button-primary" href="downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.tif" download="12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.tif">
         <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download .TIF (R6, 453 KB)
+        Download .TIF (R7, 459 KB)
       </a>
-      <a class="button-secondary" href="downloads/12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.zip" download="12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.zip">
-        Download .ZIP (R6)
+      <a class="button-secondary" href="downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.zip" download="12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.zip">
+        Download .ZIP (R7)
       </a>
-      <a class="button-secondary" href="downloads/12GEMSDOE_r6-nms3-h28-texture_8721329b55c7_allfinite.tif" download="12GEMSDOE_r6-nms3-h28-texture_8721329b55c7_allfinite.tif">
-        All-finite fallback R6
+      <a class="button-secondary" href="downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62_allfinite.tif" download="12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62_allfinite.tif">
+        All-finite fallback R7
+      </a>
+      <a class="button-secondary" href="downloads/12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.tif" download="12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.tif">
+        Archive R6 .TIF
       </a>
       <a class="button-secondary" href="downloads/12GEMSDOE_r5-nms3-trace_055e9aac96b8.tif" download="12GEMSDOE_r5-nms3-trace_055e9aac96b8.tif">
         Archive R5 .TIF
@@ -58,7 +63,7 @@
         <span id="copy-status" style="color: var(--accent-green); display: none; font-weight: 700;">✓ Copied to clipboard!</span>
       </div>
       <div class="note-input-group">
-        <input type="text" id="sub-note" class="note-input" readonly value="12GEMSDOE R6 | NMS-3 thin-trace + H28 mag texture variance (11px) on multi25+H28 GBM | 5x5 exclusion 2.0% mass 103347 px | sha256:8721329b55c7">
+        <input type="text" id="sub-note" class="note-input" readonly value="12GEMSDOE R7 | NMS-3 thin-trace on multi25+H28+H32 GBM; H32 = 12 USGS 3DEP 10 m DEM scarp channels (slope/gradient/micro-relief/one-sided asymmetry per 100 m cell) | 5x5 exclusion 2.0% mass 103347 px | sha256:0c9199f14e62">
         <button class="btn-copy" onclick="copyNote()">Copy Note</button>
       </div>
     </div>
@@ -82,17 +87,17 @@
     </li>
     <li>
       <strong>Step 4: Upload the File</strong><br>
-      Under <strong>"New submission"</strong> &gt; <strong>"File to submit"</strong>, click <em>Browse</em> or <em>Choose File</em>, and select <code>12GEMSDOE_r5-nms3-trace_055e9aac96b8.tif</code> (or its <code>.zip</code>). If — and only if — the form answers
+      Under <strong>"New submission"</strong> &gt; <strong>"File to submit"</strong>, click <em>Browse</em> or <em>Choose File</em>, and select <code>12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.tif</code> (or its <code>.zip</code>). If — and only if — the form answers
       <code>Predicted values must be in range [0, 1]</code>, retry once with
-      <code>12GEMSDOE_r5-nms3-trace_055e9aac96b8_allfinite.tif</code>, then report the outcome: the two files differ only in what sits
+      <code>12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62_allfinite.tif</code>, then report the outcome: the two files differ only in what sits
       outside the survey footprint (NaN vs 0.0) and the answer tells us which check
       DrivenData actually runs.
     </li>
     <li>
       <strong>Step 5: Paste the Submission Note</strong><br>
       Click <strong>"Copy Note"</strong> above and paste it into the <strong>"Note (optional)"</strong> box on DrivenData:
-      <br><code>12GEMSDOE-v1 | MultiPhysics25 archive | format-validated | sha256:06ca61e5c6a3</code>
-      <br><small style="color:var(--text-muted)">This tags the submission uniquely with its model identity and SHA-256 hash so your team can track results on the leaderboard.</small>
+      <br><code>12GEMSDOE R7 | NMS-3 thin-trace on multi25+H28+H32 GBM; H32 = 12 USGS 3DEP 10 m DEM scarp channels (slope/gradient/micro-relief/one-sided asymmetry per 100 m cell) | 5x5 exclusion 2.0% mass 103347 px | sha256:0c9199f14e62</code>
+      <br><small style="color:var(--text-muted)">This tags the submission uniquely with its model identity and SHA-256 hash so your team can track results on the leaderboard. (Corrected 2026-09-28: this step previously still showed the Round-1 note.)</small>
     </li>
     <li>
       <strong>Step 6: Submit &amp; Verify Score</strong><br>
@@ -111,6 +116,11 @@
     </ol>
     <p><strong>Local checks that must pass before any upload</strong> (all automated in <code>scripts/core.py:validate()</code> and <code>scripts/generate_nms_submission.py</code>): grid equality with the template (CRS, transform, width, height); exactly one band; <code>float32</code>; every footprint pixel finite and in <code>[0, 1]</code>; NaN outside the footprint; and a <code>.zip</code> containing exactly one GeoTIFF.</p>
     <p><strong>Protocol if it happens again:</strong> upload the primary <code>.tif</code>; if the form returns the range error, upload the all-finite fallback once and record which file was rejected. The two differ only outside the survey footprint (NaN vs 0.0), so the answer identifies which check DrivenData runs — knowledge worth more than the slot.</p>
+  </div>
+
+  <h2>What Changed in Round 7 (and Why H32 Is Different)</h2>
+  <div class="notice notice-ok">
+    <p>Round-7 changed the <em>input resolution</em> rather than adding another transform of the 100 m bands. H32 = 12 label-free channels per 100 m cell from the USGS 3DEP 1/3 arc-second (~10 m) DEM (public domain; built on a GitHub runner by sibling GEMSDOE10, tag <code>ext/dem10-36343078537</code>; every tile and channel re-hashed here — <a href="../evidence/dem10-fetch.json">dem10-fetch.json</a>). Preregistered in <a href="hypotheses-round7.md">the Round-7 register</a> with a stricter gate (≥3/4 folds <em>and</em> positive mean on both protocols, because Round-6 passed with a mean dense gain of +0.00005). Result on the frozen masked holdout, NMS-3 @2 %: <strong>dense 0.24586 vs 0.22143 (+0.0244, 4/4)</strong>, <strong>sparse 0.12732 vs 0.11438 (+0.0129, 4/4)</strong>; reference arms reproduced Round-6 exactly; leakage probe 0.0000 every fold. Distinctness was reported honestly: slope-type channels correlate 0.80–0.97 with the supplied <code>det_elev_slope</code>; the one-sided scarp-asymmetry channels are the new information and alone still win 4/4. Artifact <code>12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.tif</code>; no slot spent. Evidence: <a href="holdout_round7.json">holdout_round7.json</a> · <a href="../evidence/round7-feature-build.json">round7-feature-build.json</a> · <a href="knowledge-base.md">knowledge base</a>.</p>
   </div>
 
   <h2>What Changed in Round 6 (and Why H28 Matters)</h2>

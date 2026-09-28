@@ -1,0 +1,41 @@
+name: Leaderboard feed
+# Fetches the public DrivenData GEMS leaderboard on a GitHub-hosted runner (the
+# development sandbox has no route to drivendata.org), parses it with
+# scripts/fetch_leaderboard.py (stdlib only) and commits docs/leaderboard.json +
+# a dated snapshot under evidence/leaderboard/. The site renders docs/leaderboard.json.
+on:
+  schedule:
+    - cron: '17 */6 * * *'   # every 6 hours (UTC)
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: leaderboard-feed
+  cancel-in-progress: false
+jobs:
+  feed:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Fetch and parse leaderboard
+        id: fetch
+        continue-on-error: true
+        run: python scripts/fetch_leaderboard.py
+      - name: Commit feed if changed
+        run: |
+          git config user.name "leaderboard-feed[bot]"
+          git config user.email "leaderboard-feed[bot]@users.noreply.github.com"
+          git add docs/leaderboard.json evidence/leaderboard
+          if git diff --cached --quiet; then
+            echo "no change"; exit 0
+          fi
+          git commit -m "leaderboard feed: $(date -u +%Y-%m-%dT%H:%MZ) [skip ci]"
+          git push origin HEAD:${{ github.ref_name }}
+      - name: Fail visibly if the fetch or parse failed
+        if: steps.fetch.outcome == 'failure'
+        run: |
+          echo "::error::leaderboard fetch/parse failed — see docs/leaderboard.json status/error"
+          cat docs/leaderboard.json | head -c 600; exit 1

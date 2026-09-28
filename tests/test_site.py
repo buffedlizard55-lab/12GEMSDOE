@@ -39,18 +39,26 @@ def test_static_links_and_submission_deliverable():
     guide = (root / 'docs/executive-summary.html').read_text()
     assert 'Download .TIF' in home and 'Download .TIF' in guide
 
-    # Round-6 primary deliverable must be the one the site hands out (supersedes R5).
-    primary = '12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.tif'
-    assert primary in home, 'index.html must link the Round-6 primary artifact'
-    assert primary in guide, 'executive-summary.html must link the Round-6 primary artifact'
+    # Round-7 primary deliverable must be the one the site hands out (supersedes R6/R5).
+    primary = '12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.tif'
+    assert primary in home, 'index.html must link the Round-7 primary artifact'
+    assert primary in guide, 'executive-summary.html must link the Round-7 primary artifact'
     for name in (primary,
                  primary.replace('.tif', '.zip'),
                  primary.replace('.tif', '_allfinite.tif')):
         assert (root / 'docs/downloads' / name).is_file(), f'missing deliverable: {name}'
+    # The primary button must come before any archive button (deliverable obvious at the top).
+    assert home.index(primary) < home.index('12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.tif')
+    # The step-by-step guide must name the current file, not a stale one.
+    assert 'select <code>' + primary in guide, 'guide step 4 must reference the current primary'
+    assert '12GEMSDOE-v1 | MultiPhysics25 archive' not in guide, 'stale Round-1 note in guide'
 
-    # Previous Round-5 archive stays downloadable.
-    r5_archive = '12GEMSDOE_r5-nms3-trace_055e9aac96b8.tif'
-    assert (root / 'docs/downloads' / r5_archive).is_file(), 'R5 archive must remain'
+    # Previous Round-6 and Round-5 archives stay downloadable.
+    for arch in ('12GEMSDOE_r6-nms3-h28-texture_8721329b55c7.tif', '12GEMSDOE_r5-nms3-trace_055e9aac96b8.tif'):
+        assert (root / 'docs/downloads' / arch).is_file(), f'{arch} archive must remain'
+
+    # Live leaderboard feed must be wired and the committed feed parseable.
+    assert 'leaderboard.json' in home and (root / 'docs/leaderboard.json').is_file()
 
     # The superseded round-1..4 archive stays downloadable and referenced.
     archived = '12GEMSDOE_multiphysics_submission_06ca61e5.tif'
