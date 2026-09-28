@@ -1,5 +1,5 @@
 {
-  "status": "manual-snapshot",
+  "status": "parse-failed",
   "error": null,
   "source_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
   "source": "manual snapshot read from the leaderboard page by the session agent (partial: ranks 31-32, 35-47, 49 omitted; submission counts only where noted)",
@@ -293,5 +293,6 @@
     }
   },
   "caveat": "Public leaderboard only. Phase-1 prizes are decided on this board; Phase-2 uses an expanded expert-reviewed truth set. Account ownership in `watched` is NOT verified.",
-  "note": "Seed snapshot written by hand on 2026-09-28. Replaced automatically by .github/workflows/leaderboard-feed.yml on its first successful run."
+  "note": "Seed snapshot written by hand on 2026-09-28. Replaced automatically by .github/workflows/leaderboard-feed.yml on its first successful run.",
+  "last_attempt_utc": "2026-09-28T01:14:41+00:00"
 }
