@@ -294,5 +294,12 @@
   },
   "caveat": "Public leaderboard only. Phase-1 prizes are decided on this board; Phase-2 uses an expanded expert-reviewed truth set. Account ownership in `watched` is NOT verified.",
   "note": "Seed snapshot written by hand on 2026-09-28. Replaced automatically by .github/workflows/leaderboard-feed.yml on its first successful run.",
-  "last_attempt_utc": "2026-09-28T01:14:41+00:00"
+  "last_attempt_utc": "2026-09-28T01:16:25+00:00",
+  "diagnostics": {
+    "html_bytes": 30490,
+    "title": "Competition: The Geologic Enhanced Mapping System (GEMS) Prize Challenge",
+    "n_tables": 0,
+    "has_leaderboard_word": true,
+    "snippet": " Competition: The Geologic Enhanced Mapping System (GEMS) Prize Challenge /* While the leaderboard table is fetching (initial load or a pagination click), dim the current table and float the loading indicator centered over it, rather than pushing a spinner below the table. The wrapper gets the htmx-request class because the table and the paginator links point hx-indicator at it. */ #leaderboard_ta"
+  }
 }
