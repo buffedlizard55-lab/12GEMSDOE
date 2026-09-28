@@ -28,7 +28,15 @@ jobs:
       - name: Fetch and parse leaderboard
         id: fetch
         continue-on-error: true
-        run: python scripts/fetch_leaderboard.py
+        run: python scripts/fetch_leaderboard.py --dump /tmp/leaderboard.html
+      - name: Keep the raw page for parser diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: leaderboard-html-${{ github.run_id }}
+          path: /tmp/leaderboard.html
+          if-no-files-found: ignore
+          retention-days: 7
       - name: Commit feed if changed
         run: |
           git config user.name "leaderboard-feed[bot]"
