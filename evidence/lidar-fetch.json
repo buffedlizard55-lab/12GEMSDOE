@@ -1,0 +1,144 @@
+{
+ "bridge": {
+  "commit": "2e7bf080270493f77286fd62f2db958805053ba5",
+  "grid_cells_with_lidar": 6042292,
+  "manifest": "external/dem/lidar_scarp_features.json",
+  "path": "external/dem/lidar_scarp_features_u8.tif",
+  "repo": "buffedlizard55-lab/7GEMSDOE",
+  "tile_status": {
+   "failed": 10,
+   "ok": 706
+  },
+  "workflow_run": "https://github.com/buffedlizard55-lab/7GEMSDOE/actions/runs/36265492931"
+ },
+ "channel_metadata": [
+  {
+   "aggregation": "max",
+   "meaning": "max 2 m slope (m/m) after 2 m smoothing",
+   "name": "s1_max"
+  },
+  {
+   "aggregation": "max",
+   "meaning": "max slope in excess of 30 m regional slope",
+   "name": "ex_max"
+  },
+  {
+   "aggregation": "average",
+   "meaning": "mean slope excess (short-wavelength steepness)",
+   "name": "ex_mean"
+  },
+  {
+   "aggregation": "max",
+   "meaning": "max 10 m-scale slope minus 50 m-scale slope",
+   "name": "step_max"
+  },
+  {
+   "aggregation": "max",
+   "meaning": "max crest convexity (-Laplacian of Gaussian, 6 m)",
+   "name": "lapneg_max"
+  },
+  {
+   "aggregation": "max",
+   "meaning": "max base concavity (+Laplacian of Gaussian, 6 m)",
+   "name": "lappos_max"
+  },
+  {
+   "aggregation": "average",
+   "meaning": "mean squared residual from 10 m surface (sqrt later)",
+   "name": "rough"
+  },
+  {
+   "aggregation": "average",
+   "meaning": "structure tensor Jxx-Jyy (doubled-angle cos)",
+   "name": "jxx_m_jyy"
+  },
+  {
+   "aggregation": "average",
+   "meaning": "structure tensor 2*Jxy (doubled-angle sin)",
+   "name": "j2xy"
+  },
+  {
+   "aggregation": "average",
+   "meaning": "structure tensor trace (gradient energy)",
+   "name": "jtrace"
+  },
+  {
+   "aggregation": "max",
+   "meaning": "max elevation (m)",
+   "name": "zmax"
+  },
+  {
+   "aggregation": "min",
+   "meaning": "min elevation (m)",
+   "name": "zmin"
+  },
+  {
+   "aggregation": "average",
+   "meaning": "fraction of valid lidar samples",
+   "name": "valid"
+  }
+ ],
+ "channels_used": [
+  "ex_max",
+  "ex_mean",
+  "step_max",
+  "lapneg_max",
+  "lappos_max",
+  "downface_max",
+  "upface_max",
+  "cross_max",
+  "relief",
+  "coh100",
+  "strike"
+ ],
+ "file": {
+  "bytes": 36943606,
+  "sha256": "d580bb8bdcdb941e32fefb8b38044bc5bf04e199bf2e83498c3576e6fc465568"
+ },
+ "generated_utc": "2026-09-28T01:46:54+00:00",
+ "grid": {
+  "bands": 12,
+  "crs": "EPSG:32611",
+  "dtype": "uint8",
+  "grid_matches_template": true,
+  "nodata": 0.0,
+  "shape": [
+   3730,
+   3292
+  ],
+  "transform": [
+   100.0,
+   0.0,
+   243350.0,
+   0.0,
+   -100.0,
+   4508550.0
+  ]
+ },
+ "labels_used": false,
+ "product": "USGS 3DEP 1 m DEM \u2192 2 m scarp descriptors \u2192 100 m competition grid (uint8)",
+ "quantisation_rule": "q = 1 + round(254 * t(clip(x/xmax,0,1))), t in {sqrt, linear}; 0 = no lidar",
+ "sandbox_transport": "GitHub Contents API only (USGS hosts unreachable from this sandbox)",
+ "status": "fetched-verified",
+ "upstream_caveats": [
+  "uncalibrated terrain descriptors, not fault detections",
+  "roads, channels, terrace risers, paleo-shorelines, landslides and mines also create steps",
+  "tile list is an OCR-recovered inventory of the competition PDF, not the login-walled CSV",
+  "NAD83(2011) UTM tiles aggregated onto WGS84 UTM 11N; ~1-2 m datum offset is negligible at 100 m"
+ ],
+ "upstream_official_source": "USGS 3DEP 1 m DEM tiles listed in knowledge/dem_tiles.json (official bucket URLs)",
+ "upstream_rights": "USGS 3DEP products are available without use restrictions; acknowledge 'Map services and data available from U.S. Geological Survey, National Geospatial Program.'",
+ "zero_fraction_inside_footprint": {
+  "coh100": 0.2486,
+  "cross_max": 0.3793,
+  "downface_max": 0.3793,
+  "ex_max": 0.2466,
+  "ex_mean": 0.2466,
+  "lapneg_max": 0.2466,
+  "lappos_max": 0.2466,
+  "relief": 0.2466,
+  "step_max": 0.2466,
+  "strike": 0.2466,
+  "upface_max": 0.3793
+ }
+}

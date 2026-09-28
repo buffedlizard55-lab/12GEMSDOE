@@ -69,6 +69,9 @@
     </div>
   </section>
 
+  <!-- ROUND 8 STATUS -->
+  <div class="notice notice-warn"><p><strong>Round-8 status (2026-09-28): nothing replaces the file above.</strong> The frozen Round-8 gate tested four levers against the Round-7 incumbent and <em>none</em> cleared it, so no new artifact was packaged and no weekly slot was spent: the 1 m USGS 3DEP lidar scarp arm won the dense proxy 4/4 (+0.0074) but only 2/4 on the sparse proxy; the marginal-mass sweep split the two proxies in sign (+0.031 dense / −0.010 sparse at 3.2 % mass) and the only real-board measurement of extra mass (−0.0003 for +10,668 pixels) sides with the sparse curve; the graded-emission arm lost 0.171; the catalogue base layer gains only where the truth <em>is</em> the catalogue. Leakage probe 0.0000 on every fold. Round-8 register and results: <a href="hypotheses-round8.md">hypotheses-round8.md</a> · evidence: <a href="holdout_round8.json">holdout_round8.json</a>.</p></div>
+
   <!-- STEP-BY-STEP SUBMISSION WALKTHROUGH -->
   <h2>Step-by-Step Submission Instructions</h2>
   <ol>
@@ -198,11 +201,28 @@
   </div>
 
   <h2>Audit of Team Historical Scores: Why 0.1563 Kept Occurring</h2>
-  <p>The team previously observed identical <strong>0.1563</strong> public scores across multiple submissions. Our byte-level audit revealed:</p>
+  <p>Resolved 2026-09-28 from published bytes, a first-party scored-file ledger, and the
+    metric's own algebra (full audit: <a href="sibling-audit.md">sibling-audit.md</a>;
+    numbers: <a href="../evidence/metric-algebra.json">metric-algebra.json</a>):</p>
   <ul>
-    <li><strong>GEMSDOE1 &amp; 5GEMSDOE:</strong> The <em>published</em> TIFF files are <strong>100% byte-for-byte identical</strong> (SHA-256: <code>7f00890a62878d612fb5eef67a9a364a2df819433dde74b6762ce4fc0fc4fe15</code>). If those published bytes were uploaded, identical scoring follows; upload receipts are unavailable to this audit.</li>
-    <li><strong>CORRECTED 2026-09-27 — 8GEMSDOE:</strong> 8GEMSDOE's published file (<code>b83ea0e7…</code>) differs from the shared base at 563,092 pixels and its own log says <code>BUILT-UNIQUE-UNUPLOADED</code>. The third 0.1563 leaderboard row cannot be byte-attributed without an upload receipt. (The earlier “masked-labels union” explanation is withdrawn; see <a href="session-review.md">session review</a>.)</li>
-    <li><strong>12GEMSDOE Multi-Physics:</strong> A unique raster differing at 373,847 pixels (7.23% of valid footprint; off-label correlation 0.07). Multi-Physics 25 beats raw19 on the masked known-fault proxy (+0.00469 mean DTI, 3/4 folds, probe 0.0000), but is not release-authorized while the strongest sibling baseline is unreproduced. Round 2 and rejected Round 3 evidence is linked on the workbench.</li>
+    <li><strong>GEMSDOE1 &amp; 5GEMSDOE hand out the same file:</strong> both sites link
+      <code>data/evidence/runs/ens12-adopted-floor0.1-w0/submission.tif</code>, SHA-256
+      <code>7f00890a…</code>, 570,890 bytes, 172,974 positive pixels, zero differing pixels — and that
+      exact file is committed in <strong>six places across five repositories</strong>. One fixed public
+      test set can give one prediction raster only one score. No upload receipts exist, so this is
+      evidence about files, not about accounts.</li>
+    <li><strong>0.1560 vs 0.1563 is measured:</strong> GEMSDOE2's union file (<code>f68e590f…</code>)
+      added 10,668 pixels to the 0.1563 field — 1,238 masked (neutral) and 9,430 chargeable — and moved
+      the score <strong>−0.0003</strong>. Extra marginal mass in this family is at break-even, exactly
+      as the metric's marginal rule predicts at DTI ≈ 0.156.</li>
+    <li><strong>8GEMSDOE published <code>max(ens12, catalogue)</code> pixel-for-pixel</strong>
+      (<code>052688ea…</code>): adding the entire known-fault catalogue changed nothing, consistent
+      with the staff ruling that known faults are masked from evaluation. That is why the catalogue
+      base layer is a control arm here, not a strategy.</li>
+    <li><strong>Still flagged, not resolved:</strong> the ledger attrs 0.1152 / 0.1560 / 0.0830 to
+      three of the same family's accounts while the 2026-09-28 board shows two of them at 0.1563
+      (they re-submitted); byte → account attribution beyond the ledger's CERTAIN rows cannot be
+      proven without upload receipts.</li>
   </ul>
 </main>
 
