@@ -294,7 +294,7 @@
   },
   "caveat": "Public leaderboard only. Phase-1 prizes are decided on this board; Phase-2 uses an expanded expert-reviewed truth set. Account ownership in `watched` is NOT verified.",
   "note": "Seed snapshot written by hand on 2026-09-28. Replaced automatically by .github/workflows/leaderboard-feed.yml on its first successful run.",
-  "last_attempt_utc": "2026-09-28T01:18:38+00:00",
+  "last_attempt_utc": "2026-09-28T01:20:44+00:00",
   "diagnostics": {
     "html_bytes": 30490,
     "title": "Competition: The Geologic Enhanced Mapping System (GEMS) Prize Challenge",
@@ -308,7 +308,14 @@
       {
         "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard_partial/?page=1",
         "bytes": 114538,
-        "rows": 0
+        "rows": 0,
+        "diagnostics": {
+          "n_tables": 1,
+          "n_tr": 50,
+          "n_td": 250,
+          "n_users_links": 99,
+          "head": "\n\n  <table id=\"leaderTable\" class=\"table scores-table\">\n    <caption class=\"visually-hidden\">Leaderboard table</caption>\n    <thead class=\"text-sm lh-sm\">\n      <th class=\"text-start\">Rank</th>\n      <th class=\"visually-hidden\">Team members</th>\n      <th class=\"\">Participant</th>\n      \n      \n        <th>\n          <div class=\"d-flex align-items-end justify-content-end gap-2\">\n            <div class=\"text-muted d-none d-md-block\" style=\"height: 16px;\">\n              \n                \n                <div class=\"svg-icon mb-1\"\n                     style=\"transform: scaleY(+1)\">\n                  <i class=\"fa-solid fa-fw fa-arrow-down\"></i>\n                </div>\n              \n            </div>\n            <div class=\"text-right text-nowrap\">\n              \n                <span class=\"fw-normal\">\n                  Best\n                  \n                    public\n                  \n                </span>\n                <br>\n              \n              \n                <span class=\"tooltip-underline\"\n                      title=\"Metric: Distance-weighted Tversky Index\">DW-Tversky</span>\n              \n            </div>\n            <div class=\"visually-hidden\">\n              \n                (in descending order)\n              \n            </div>\n          </div>\n        </th>\n      \n      \n      <th class=\"tooltip-underline text-left text-nowrap w-100\"\n          title=\"Participants can share links about their submissions to help you learn more (for prize competitions, "
+        }
       }
     ]
   }
