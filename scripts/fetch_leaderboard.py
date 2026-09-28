@@ -168,6 +168,7 @@ def main(argv=None) -> int:
     ap.add_argument("--out", default=str(ROOT / "docs/leaderboard.json"))
     ap.add_argument("--snapshots", default=str(ROOT / "evidence/leaderboard"))
     ap.add_argument("--timeout", type=int, default=60)
+    ap.add_argument("--dump", help="write the raw fetched HTML here (diagnostics; uploaded as a CI artifact)")
     args = ap.parse_args(argv)
 
     fetched = dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat()
@@ -183,9 +184,21 @@ def main(argv=None) -> int:
         except Exception as exc:  # noqa: BLE001 — we want the message in the feed
             error = f"{type(exc).__name__}: {exc}"
 
+    if args.dump and html:
+        Path(args.dump).write_text(html)
     rows = parse_leaderboard(html) if html else []
     status = "ok" if rows else ("fetch-failed" if error else "parse-failed")
     feed = build_feed(rows, fetched, source, status, error)
+    if status != "ok" and html:
+        # diagnostics so a parse failure can be understood from the committed feed alone
+        title = re.search(r"<title[^>]*>(.*?)</title>", html, re.I | re.S)
+        feed["diagnostics"] = {
+            "html_bytes": len(html),
+            "title": re.sub(r"\s+", " ", title.group(1)).strip()[:200] if title else None,
+            "n_tables": html.lower().count("<table"),
+            "has_leaderboard_word": "leaderboard" in html.lower(),
+            "snippet": re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html))[:400],
+        }
 
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -197,7 +210,8 @@ def main(argv=None) -> int:
     else:
         # keep the last good feed's rows, but record the failure so the site shows it
         prev = json.loads(out.read_text()) if out.exists() else {}
-        prev.update({"status": status, "error": error, "last_attempt_utc": fetched})
+        prev.update({"status": status, "error": error, "last_attempt_utc": fetched,
+                     "diagnostics": feed.get("diagnostics")})
         out.write_text(json.dumps(prev, indent=2))
     print(json.dumps({"status": status, "n_rows": len(rows), "error": error,
                       "top5": [(r["rank"], r["name"], r["score"]) for r in rows[:5]]}, indent=2))
