@@ -3,7 +3,7 @@
   "error": null,
   "source_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
   "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard_partial/?page=1",
-  "fetched_utc": "2026-10-23T10:02:45+00:00",
+  "fetched_utc": "2026-10-23T20:26:23+00:00",
   "metric": "public DW-Tversky (DTI), higher is better; scored only on expert-labelled new faults; catalogue pixels masked",
   "n_rows": 50,
   "top5_cutoff_score": 0.3539,
@@ -11,34 +11,34 @@
     {
       "rank": 1,
       "name": "xiaofanhu",
-      "display": "xiaofanhu 3d 7h ago \u2e31 28 submissions",
+      "display": "xiaofanhu 3d 18h ago \u2e31 28 submissions",
       "score": 0.4413,
       "profile": "/users/xiaofanhu/"
     },
     {
       "rank": 2,
       "name": "cfld__",
-      "display": "cfld__ 2d 7h ago \u2e31 16 submissions",
+      "display": "cfld__ 2d 18h ago \u2e31 16 submissions",
       "score": 0.3904,
       "profile": "/users/cfld__/"
     },
     {
       "rank": 3,
-      "name": "Batik Shirt Brothers 11h 20min ago \u2e31 47 submissions",
-      "display": "Batik Shirt Brothers 11h 20min ago \u2e31 47 submissions",
+      "name": "Batik Shirt Brothers 21h 44min ago \u2e31 47 submissions",
+      "display": "Batik Shirt Brothers 21h 44min ago \u2e31 47 submissions",
       "score": 0.3904
     },
     {
       "rank": 4,
       "name": "BrandenKMurray",
-      "display": "BrandenKMurray 8h 50min ago \u2e31 29 submissions",
+      "display": "BrandenKMurray 19h 14min ago \u2e31 29 submissions",
       "score": 0.3724,
       "profile": "/users/BrandenKMurray/"
     },
     {
       "rank": 5,
-      "name": "No Fault of Our Own 5d 10h ago \u2e31 39 submissions",
-      "display": "No Fault of Our Own 5d 10h ago \u2e31 39 submissions",
+      "name": "No Fault of Our Own 5d 20h ago \u2e31 39 submissions",
+      "display": "No Fault of Our Own 5d 20h ago \u2e31 39 submissions",
       "score": 0.3539
     },
     {
@@ -51,7 +51,7 @@
     {
       "rank": 7,
       "name": "alexoktaba",
-      "display": "alexoktaba 6d 16h ago \u2e31 34 submissions",
+      "display": "alexoktaba 1w ago \u2e31 34 submissions",
       "score": 0.3416,
       "profile": "/users/alexoktaba/"
     },
@@ -65,83 +65,83 @@
     {
       "rank": 9,
       "name": "yifanxu",
-      "display": "yifanxu 5d 8h ago \u2e31 8 submissions",
+      "display": "yifanxu 5d 18h ago \u2e31 8 submissions",
       "score": 0.333,
       "profile": "/users/yifanxu/"
     },
     {
       "rank": 10,
       "name": "newway",
-      "display": "newway 5d 8h ago \u2e31 13 submissions",
+      "display": "newway 5d 18h ago \u2e31 13 submissions",
       "score": 0.3328,
       "profile": "/users/newway/"
     },
     {
       "rank": 11,
       "name": "ohyeah",
-      "display": "ohyeah 6d 7h ago \u2e31 11 submissions",
+      "display": "ohyeah 6d 17h ago \u2e31 11 submissions",
       "score": 0.3318,
       "profile": "/users/ohyeah/"
     },
     {
       "rank": 12,
-      "name": "notmyfault 6d 7h ago \u2e31 36 submissions",
-      "display": "notmyfault 6d 7h ago \u2e31 36 submissions",
+      "name": "notmyfault 6d 17h ago \u2e31 36 submissions",
+      "display": "notmyfault 6d 17h ago \u2e31 36 submissions",
       "score": 0.3316
     },
     {
       "rank": 13,
       "name": "ruping",
-      "display": "ruping 4d 10h ago \u2e31 12 submissions",
+      "display": "ruping 4d 20h ago \u2e31 12 submissions",
       "score": 0.3314,
       "profile": "/users/ruping/"
     },
     {
       "rank": 14,
       "name": "giles",
-      "display": "giles 4d 10h ago \u2e31 11 submissions",
+      "display": "giles 4d 20h ago \u2e31 11 submissions",
       "score": 0.3313,
       "profile": "/users/giles/"
     },
     {
       "rank": 15,
       "name": "li002666",
-      "display": "li002666 5h 36min ago \u2e31 10 submissions",
+      "display": "li002666 16h ago \u2e31 10 submissions",
       "score": 0.3312,
       "profile": "/users/li002666/"
     },
     {
       "rank": 16,
       "name": "baobao",
-      "display": "baobao 6d 7h ago \u2e31 13 submissions",
+      "display": "baobao 6d 17h ago \u2e31 13 submissions",
       "score": 0.3308,
       "profile": "/users/baobao/"
     },
     {
       "rank": 17,
       "name": "mzoorob",
-      "display": "mzoorob 4d 9h ago \u2e31 42 submissions",
+      "display": "mzoorob 4d 20h ago \u2e31 42 submissions",
       "score": 0.3304,
       "profile": "/users/mzoorob/"
     },
     {
       "rank": 18,
       "name": "DARD",
-      "display": "DARD 3d 19h ago \u2e31 25 submissions",
+      "display": "DARD 4d 6h ago \u2e31 25 submissions",
       "score": 0.3289,
       "profile": "/users/DARD/"
     },
     {
       "rank": 19,
       "name": "Azazel",
-      "display": "Azazel 1d 18h ago \u2e31 7 submissions",
+      "display": "Azazel 2d 4h ago \u2e31 7 submissions",
       "score": 0.3289,
       "profile": "/users/Azazel/"
     },
     {
       "rank": 20,
       "name": "shixing",
-      "display": "shixing 4d 8h ago \u2e31 11 submissions",
+      "display": "shixing 4d 19h ago \u2e31 11 submissions",
       "score": 0.3273,
       "profile": "/users/shixing/"
     },
@@ -162,42 +162,42 @@
     {
       "rank": 23,
       "name": "like60986",
-      "display": "like60986 8h 47min ago \u2e31 7 submissions",
+      "display": "like60986 19h 11min ago \u2e31 7 submissions",
       "score": 0.3217,
       "profile": "/users/like60986/"
     },
     {
       "rank": 24,
       "name": "twang",
-      "display": "twang 8h 46min ago \u2e31 6 submissions",
+      "display": "twang 19h 9min ago \u2e31 6 submissions",
       "score": 0.3169,
       "profile": "/users/twang/"
     },
     {
       "rank": 25,
       "name": "kinneso_outlook",
-      "display": "kinneso_outlook 17h 20min ago \u2e31 4 submissions",
+      "display": "kinneso_outlook 1d 3h ago \u2e31 4 submissions",
       "score": 0.3167,
       "profile": "/users/kinneso_outlook/"
     },
     {
       "rank": 26,
       "name": "like2",
-      "display": "like2 1d 2h ago \u2e31 6 submissions",
+      "display": "like2 1d 13h ago \u2e31 6 submissions",
       "score": 0.316,
       "profile": "/users/like2/"
     },
     {
       "rank": 27,
       "name": "ndavis7",
-      "display": "ndavis7 4d 20h ago \u2e31 17 submissions",
+      "display": "ndavis7 5d 7h ago \u2e31 17 submissions",
       "score": 0.3093,
       "profile": "/users/ndavis7/"
     },
     {
       "rank": 28,
       "name": "nsabaj",
-      "display": "nsabaj 4d 10h ago \u2e31 24 submissions",
+      "display": "nsabaj 4d 20h ago \u2e31 24 submissions",
       "score": 0.3091,
       "profile": "/users/nsabaj/"
     },
@@ -211,49 +211,49 @@
     {
       "rank": 30,
       "name": "sws-jonathan",
-      "display": "sws-jonathan 8h 5min ago \u2e31 9 submissions",
+      "display": "sws-jonathan 18h 28min ago \u2e31 9 submissions",
       "score": 0.3004,
       "profile": "/users/sws-jonathan/"
     },
     {
       "rank": 31,
       "name": "kpomazi",
-      "display": "kpomazi 1d 6h ago \u2e31 29 submissions",
+      "display": "kpomazi 1d 16h ago \u2e31 29 submissions",
       "score": 0.2999,
       "profile": "/users/kpomazi/"
     },
     {
       "rank": 32,
       "name": "faultsofthy",
-      "display": "faultsofthy 1w 2d ago \u2e31 5 submissions",
+      "display": "faultsofthy 1w 3d ago \u2e31 5 submissions",
       "score": 0.2987,
       "profile": "/users/faultsofthy/"
     },
     {
       "rank": 33,
       "name": "pberlizov",
-      "display": "pberlizov 1d 9h ago \u2e31 14 submissions",
+      "display": "pberlizov 1d 20h ago \u2e31 14 submissions",
       "score": 0.2967,
       "profile": "/users/pberlizov/"
     },
     {
       "rank": 34,
       "name": "doublebigmac",
-      "display": "doublebigmac 1w 2d ago \u2e31 8 submissions",
+      "display": "doublebigmac 1w 3d ago \u2e31 8 submissions",
       "score": 0.2964,
       "profile": "/users/doublebigmac/"
     },
     {
       "rank": 35,
       "name": "dmitry_v",
-      "display": "dmitry_v 21h 50min ago \u2e31 25 submissions",
+      "display": "dmitry_v 1d 8h ago \u2e31 26 submissions",
       "score": 0.2963,
       "profile": "/users/dmitry_v/"
     },
     {
       "rank": 36,
       "name": "Financialanalyst",
-      "display": "Financialanalyst 1w 2d ago \u2e31 6 submissions",
+      "display": "Financialanalyst 1w 3d ago \u2e31 6 submissions",
       "score": 0.2949,
       "profile": "/users/Financialanalyst/"
     },
@@ -267,21 +267,21 @@
     {
       "rank": 38,
       "name": "haiderz",
-      "display": "haiderz 1w 2d ago \u2e31 3 submissions",
+      "display": "haiderz 1w 3d ago \u2e31 3 submissions",
       "score": 0.293,
       "profile": "/users/haiderz/"
     },
     {
       "rank": 39,
       "name": "raboush2",
-      "display": "raboush2 1w 2d ago \u2e31 13 submissions",
+      "display": "raboush2 1w 3d ago \u2e31 13 submissions",
       "score": 0.2927,
       "profile": "/users/raboush2/"
     },
     {
       "rank": 40,
       "name": "drjy",
-      "display": "drjy 2d 9h ago \u2e31 16 submissions",
+      "display": "drjy 2d 20h ago \u2e31 16 submissions",
       "score": 0.2898,
       "profile": "/users/drjy/"
     },
@@ -295,7 +295,7 @@
     {
       "rank": 42,
       "name": "NoahNault",
-      "display": "NoahNault 2d 1h ago \u2e31 24 submissions",
+      "display": "NoahNault 2d 11h ago \u2e31 24 submissions",
       "score": 0.2881,
       "profile": "/users/NoahNault/"
     },
@@ -316,44 +316,44 @@
     {
       "rank": 45,
       "name": "lonerganpierce",
-      "display": "lonerganpierce 1w ago \u2e31 9 submissions",
+      "display": "lonerganpierce 1w 1d ago \u2e31 10 submissions",
       "score": 0.2843,
       "profile": "/users/lonerganpierce/"
     },
     {
       "rank": 46,
       "name": "jfper21",
-      "display": "jfper21 1d 10h ago \u2e31 25 submissions",
+      "display": "jfper21 1d 20h ago \u2e31 25 submissions",
       "score": 0.2833,
       "profile": "/users/jfper21/"
     },
     {
       "rank": 47,
+      "name": "jorgeschmidt",
+      "display": "jorgeschmidt 8h 35min ago \u2e31 32 submissions",
+      "score": 0.2826,
+      "profile": "/users/jorgeschmidt/"
+    },
+    {
+      "rank": 48,
       "name": "anna_ms",
-      "display": "anna_ms 1w ago \u2e31 17 submissions",
+      "display": "anna_ms 1w 1d ago \u2e31 18 submissions",
       "score": 0.2826,
       "profile": "/users/anna_ms/"
     },
     {
-      "rank": 48,
+      "rank": 49,
       "name": "jgaines",
       "display": "jgaines 1w 4d ago \u2e31 39 submissions",
       "score": 0.282,
       "profile": "/users/jgaines/"
     },
     {
-      "rank": 49,
+      "rank": 50,
       "name": "moongrega",
-      "display": "moongrega 6d 9h ago \u2e31 29 submissions",
+      "display": "moongrega 6d 20h ago \u2e31 29 submissions",
       "score": 0.2818,
       "profile": "/users/moongrega/"
-    },
-    {
-      "rank": 50,
-      "name": "arnofault",
-      "display": "arnofault 1w 2d ago \u2e31 4 submissions",
-      "score": 0.2817,
-      "profile": "/users/arnofault/"
     }
   ],
   "watched": {
@@ -434,7 +434,7 @@
   "fragment_attempts": [
     {
       "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard_partial/?page=1",
-      "bytes": 117396,
+      "bytes": 118108,
       "rows": 50,
       "sample_row_html": "<tbody>\n      \n      \n        \n          \n\n<tr id=\"leaderRow_326576\"\n    data-rank=\"1\"\n    class=\"text-nowrap  \">\n  <td class=\"text-start text-base font-heading align-middle\"\n      style=\"width: 70px\">\n    <div class=\"lh-1\"\n         id=\"rank-1\">\n      \n        \n        <span class=\"fw-bold\">#1</span>\n        <i class=\"fa-solid fa-star ps-1 text-primary\"\n           data-winner=\"1\"\n           title=\"A winning rank when the competition is over\"\n           role=\"img\"></i>\n      \n      \n    </div>\n  </td>\n  \n  <td class=\"ps-0 pe-0 align-middle\" style=\"width: 150px; max-width: 150px\">\n    <div class=\"d-none d-md-flex justify-content-end flex-wrap\"\n         style=\"width: 150px\">\n      \n        \n\n<div class=\"d-flex gap-2 align-items-center avatar\">\n  <a href=\"/users/xiaofanhu/\"\n     title=\"View xiaofanhu's profile\"\n     class=\"d-flex\"\n     style=\"width: 32px;\n            height: 32px\">\n    \n    \n    <div class=\"avatar-wrapper\"><img class=\"\" src=\"https://secure.gravatar.com/avatar/2e4740d25937497544ab16457dc696bc.jpg?s=64&amp;d=404&amp;r=g\" width=\"64\" height=\"64\" alt=\"\" loading=\"lazy\" onload=\"this.style.opacity = 1\" onerror=\"this.style.opacity = 0; this.onerror = null; this.src = 'https://drivendata-prod-public.s3.amazonaws.com/avatar/2e4740d25937497544ab16457dc696bc.svg'\"/></div>\n  </a>\n  \n</div>\n\n      \n    </div>\n  </td>\n  <td class=\"text-nowrap align-middle \">\n    <div class=\"d-flex flex-column gap-1\">\n      <div class=\"d-flex align-items-center\">\n        <div class=\"d-flex text-s"
     }
